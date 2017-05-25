@@ -31,6 +31,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.startButton = new System.Windows.Forms.Button();
             this.quitButton = new System.Windows.Forms.Button();
+            this.testButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,11 +66,24 @@
             this.quitButton.UseVisualStyleBackColor = true;
             this.quitButton.Click += new System.EventHandler(this.quitButton_Click);
             // 
+            // testButton
+            // 
+            this.testButton.BackColor = System.Drawing.Color.SteelBlue;
+            this.testButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.testButton.Location = new System.Drawing.Point(416, 39);
+            this.testButton.Name = "testButton";
+            this.testButton.Size = new System.Drawing.Size(138, 98);
+            this.testButton.TabIndex = 1;
+            this.testButton.Text = "Test!";
+            this.testButton.UseVisualStyleBackColor = false;
+            this.testButton.Click += new System.EventHandler(this.testButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.testButton);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "MainWindow";
             this.Text = "Watermelon";
@@ -83,6 +97,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button quitButton;
+        private System.Windows.Forms.Button testButton;
     }
 }
 

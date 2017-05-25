@@ -33,6 +33,14 @@ namespace Watermelon.UI
         {
             Application.Exit();
         }
+
+        private void testButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var form1 = new Form1();
+            form1.FormClosed += (s, args) => this.Close();
+            form1.Show();
+        }
     }
 }
 
