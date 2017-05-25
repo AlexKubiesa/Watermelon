@@ -256,6 +256,7 @@
             this.discardPilePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.discardPilePictureBox.TabIndex = 1;
             this.discardPilePictureBox.TabStop = false;
+            this.discardPilePictureBox.Click += new System.EventHandler(this.DiscardPilePictureBox_Click);
             // 
             // drawGroupBox
             // 
