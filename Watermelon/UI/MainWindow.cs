@@ -43,6 +43,3 @@ namespace Watermelon.UI
         }
     }
 }
-
-// ToDo: Have just one form for the game, but make the start menu and game window into user controls.
-// ToDo: Make the start menu look pretty, with some nice styling.
