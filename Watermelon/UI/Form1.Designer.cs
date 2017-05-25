@@ -28,23 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainMenu1 = new Watermelon.UI.MainMenu();
+            this.mainMenu = new Watermelon.UI.MainMenu();
+            this.gameBoard = new Watermelon.UI.GameBoard();
             this.SuspendLayout();
             // 
-            // mainMenu1
+            // mainMenu
             // 
-            this.mainMenu1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainMenu1.Location = new System.Drawing.Point(0, 0);
-            this.mainMenu1.Name = "mainMenu1";
-            this.mainMenu1.Size = new System.Drawing.Size(784, 561);
-            this.mainMenu1.TabIndex = 0;
+            this.mainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainMenu.GameBoard = this.gameBoard;
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Name = "mainMenu";
+            this.mainMenu.Size = new System.Drawing.Size(784, 561);
+            this.mainMenu.TabIndex = 0;
+            // 
+            // gameBoard
+            // 
+            this.gameBoard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gameBoard.Enabled = false;
+            this.gameBoard.Location = new System.Drawing.Point(0, 0);
+            this.gameBoard.Name = "gameBoard";
+            this.gameBoard.Size = new System.Drawing.Size(784, 561);
+            this.gameBoard.TabIndex = 1;
+            this.gameBoard.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.mainMenu1);
+            this.Controls.Add(this.mainMenu);
+            this.Controls.Add(this.gameBoard);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -53,6 +66,7 @@
 
         #endregion
 
-        private MainMenu mainMenu1;
+        private MainMenu mainMenu;
+        private GameBoard gameBoard;
     }
 }

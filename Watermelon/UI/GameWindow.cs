@@ -127,7 +127,7 @@ namespace Watermelon.UI
         private void DiscardPile_ImageUpdated(object sender, EventArgs e)
         {
             var discardPile = sender as DiscardPile;
-            AddPendingUiUpdate(delegate { discardPilePictureBox.Image = discardPile.Image; }, true);
+            discardPilePictureBox.Image = discardPile.Image;
         }
 
         private void HumanHandCardBox_Confirm(object sender, SelectionEventArgs e)
