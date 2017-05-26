@@ -32,10 +32,10 @@ namespace Watermelon.UI
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            Visible = false;
-            Enabled = false;
             _gameBoard.Visible = true;
             _gameBoard.Enabled = true;
+            Visible = false;
+            Enabled = false;
         }
     }
 }
