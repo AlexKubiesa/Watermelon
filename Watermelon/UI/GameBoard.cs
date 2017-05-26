@@ -123,15 +123,23 @@ namespace Watermelon.UI
             // ToList() prevents lazy evaluation.
             var indices = e.Selection.Select(x => Array.IndexOf(_humanUpDownCardBoxes, x)).ToList();
 
-            // If there's an up card at one of the indices, it must be up cards that we're playing.
-            if (_humanPlayer.UpCards[indices[0]] != null)
+            var upCards = indices.Select(x => _humanPlayer.UpCards[x]);
+
+            // If the selected cards are all up cards, try and play them.
+            if (upCards.All(x => x != null))
             {
-                _humanPlayer.TryPlayUpCards(indices.Select(x => _humanPlayer.UpCards[x]).ToList());
+                _humanPlayer.TryPlayUpCards(upCards.ToList());
             }
-            // Otherwise, if there's a down card, we must be playing a down card. (NB: Only one!).
-            else if (_humanPlayer.DownCards[indices[0]] != null)
+            // Otherwise, there can't be any up cards for a valid play.
+            else if (upCards.All(x => x == null))
             {
-                _humanPlayer.TryBlindPlayDownCard(_humanPlayer.DownCards[indices[0]]);
+                var downCards = indices.Select(x => _humanPlayer.DownCards[x]);
+
+                // Must play exactly one down card.
+                if (downCards.Count() == 1 && downCards.First() != null)
+                {
+                    _humanPlayer.TryBlindPlayDownCard(downCards.First(x => x != null));
+                }
             }
         }
 
