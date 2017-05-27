@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watermelon", "Watermelon\Watermelon.csproj", "{1E14ADA4-ACBA-4C33-BF2D-14FB125424ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watermelon_PlayTesting", "Watermelon_PlayTesting\Watermelon_PlayTesting.csproj", "{6AFCCFD5-2214-4866-89FD-DB2B9E1B556D}"
-EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{998D015A-9BB5-41C6-80B0-5B7958169BEC}"
 EndProject
 Global
@@ -19,8 +17,6 @@ Global
 		{1E14ADA4-ACBA-4C33-BF2D-14FB125424ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E14ADA4-ACBA-4C33-BF2D-14FB125424ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E14ADA4-ACBA-4C33-BF2D-14FB125424ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6AFCCFD5-2214-4866-89FD-DB2B9E1B556D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AFCCFD5-2214-4866-89FD-DB2B9E1B556D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{998D015A-9BB5-41C6-80B0-5B7958169BEC}.Debug|Any CPU.ActiveCfg = Debug
 		{998D015A-9BB5-41C6-80B0-5B7958169BEC}.Release|Any CPU.ActiveCfg = Release
 		{998D015A-9BB5-41C6-80B0-5B7958169BEC}.Release|Any CPU.Build.0 = Release

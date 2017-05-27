@@ -85,7 +85,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cheats.cs" />
     <Compile Include="Gameplay\Deck.cs" />
     <Compile Include="Gameplay\ComputerPlayer.cs" />
     <Compile Include="Gameplay\Dealer.cs" />
