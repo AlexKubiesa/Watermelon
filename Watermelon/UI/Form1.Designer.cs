@@ -1,6 +1,6 @@
 ﻿namespace Watermelon.UI
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,6 +34,7 @@
             // 
             // mainMenu
             // 
+            this.mainMenu.BackColor = System.Drawing.Color.WhiteSmoke;
             this.mainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainMenu.GameBoard = this.gameBoard;
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
@@ -43,6 +44,7 @@
             // 
             // gameBoard
             // 
+            this.gameBoard.BackColor = System.Drawing.Color.WhiteSmoke;
             this.gameBoard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gameBoard.Enabled = false;
             this.gameBoard.Location = new System.Drawing.Point(0, 0);
@@ -51,15 +53,17 @@
             this.gameBoard.TabIndex = 1;
             this.gameBoard.Visible = false;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.gameBoard);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "Watermelon";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }

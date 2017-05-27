@@ -63,18 +63,20 @@
             // 
             // computerHandPanel
             // 
-            this.computerHandPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.computerHandPanel.BackColor = System.Drawing.Color.SteelBlue;
             this.computerHandPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.computerHandPanel.Location = new System.Drawing.Point(3, 16);
+            this.computerHandPanel.Location = new System.Drawing.Point(3, 19);
             this.computerHandPanel.Name = "computerHandPanel";
-            this.computerHandPanel.Size = new System.Drawing.Size(794, 81);
+            this.computerHandPanel.Size = new System.Drawing.Size(794, 78);
             this.computerHandPanel.TabIndex = 0;
             // 
             // computerHandGroupBox
             // 
-            this.computerHandGroupBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.computerHandGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
             this.computerHandGroupBox.Controls.Add(this.computerHandPanel);
             this.computerHandGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.computerHandGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.computerHandGroupBox.ForeColor = System.Drawing.Color.White;
             this.computerHandGroupBox.Location = new System.Drawing.Point(0, 0);
             this.computerHandGroupBox.Name = "computerHandGroupBox";
             this.computerHandGroupBox.Size = new System.Drawing.Size(800, 100);
@@ -84,7 +86,7 @@
             // 
             // computerUpDownCardsPanel
             // 
-            this.computerUpDownCardsPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.computerUpDownCardsPanel.BackColor = System.Drawing.Color.SteelBlue;
             this.computerUpDownCardsPanel.ColumnCount = 3;
             this.computerUpDownCardsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.computerUpDownCardsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -101,6 +103,7 @@
             // 
             // computerUpDownCardPictureBox1
             // 
+            this.computerUpDownCardPictureBox1.BackColor = System.Drawing.Color.SteelBlue;
             this.computerUpDownCardPictureBox1.Location = new System.Drawing.Point(3, 3);
             this.computerUpDownCardPictureBox1.Name = "computerUpDownCardPictureBox1";
             this.computerUpDownCardPictureBox1.Size = new System.Drawing.Size(107, 78);
@@ -110,6 +113,7 @@
             // 
             // computerUpDownCardPictureBox2
             // 
+            this.computerUpDownCardPictureBox2.BackColor = System.Drawing.Color.SteelBlue;
             this.computerUpDownCardPictureBox2.Location = new System.Drawing.Point(116, 3);
             this.computerUpDownCardPictureBox2.Name = "computerUpDownCardPictureBox2";
             this.computerUpDownCardPictureBox2.Size = new System.Drawing.Size(107, 78);
@@ -119,6 +123,7 @@
             // 
             // computerUpDownCardPictureBox3
             // 
+            this.computerUpDownCardPictureBox3.BackColor = System.Drawing.Color.SteelBlue;
             this.computerUpDownCardPictureBox3.Location = new System.Drawing.Point(229, 3);
             this.computerUpDownCardPictureBox3.Name = "computerUpDownCardPictureBox3";
             this.computerUpDownCardPictureBox3.Size = new System.Drawing.Size(108, 78);
@@ -129,8 +134,10 @@
             // computerUpDownCardsGroupBox
             // 
             this.computerUpDownCardsGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.computerUpDownCardsGroupBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.computerUpDownCardsGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
             this.computerUpDownCardsGroupBox.Controls.Add(this.computerUpDownCardsPanel);
+            this.computerUpDownCardsGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.computerUpDownCardsGroupBox.ForeColor = System.Drawing.Color.White;
             this.computerUpDownCardsGroupBox.Location = new System.Drawing.Point(224, 106);
             this.computerUpDownCardsGroupBox.Name = "computerUpDownCardsGroupBox";
             this.computerUpDownCardsGroupBox.Size = new System.Drawing.Size(352, 106);
@@ -141,8 +148,10 @@
             // playerUpDownCardsGroupBox
             // 
             this.playerUpDownCardsGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.playerUpDownCardsGroupBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.playerUpDownCardsGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
             this.playerUpDownCardsGroupBox.Controls.Add(this.playerUpDownCardsPanel);
+            this.playerUpDownCardsGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playerUpDownCardsGroupBox.ForeColor = System.Drawing.Color.White;
             this.playerUpDownCardsGroupBox.Location = new System.Drawing.Point(224, 388);
             this.playerUpDownCardsGroupBox.Name = "playerUpDownCardsGroupBox";
             this.playerUpDownCardsGroupBox.Size = new System.Drawing.Size(352, 106);
@@ -152,7 +161,7 @@
             // 
             // playerUpDownCardsPanel
             // 
-            this.playerUpDownCardsPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.playerUpDownCardsPanel.BackColor = System.Drawing.Color.SteelBlue;
             this.playerUpDownCardsPanel.ColumnCount = 3;
             this.playerUpDownCardsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.playerUpDownCardsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -170,7 +179,7 @@
             // 
             // humanUpDownCardBox3
             // 
-            this.humanUpDownCardBox3.BackColor = System.Drawing.Color.Transparent;
+            this.humanUpDownCardBox3.BackColor = System.Drawing.Color.SteelBlue;
             this.humanUpDownCardBox3.CheckedColor = System.Drawing.Color.Black;
             this.humanUpDownCardBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.humanUpDownCardBox3.HoverColor = System.Drawing.Color.White;
@@ -185,7 +194,7 @@
             // 
             // humanUpDownCardBox2
             // 
-            this.humanUpDownCardBox2.BackColor = System.Drawing.Color.Transparent;
+            this.humanUpDownCardBox2.BackColor = System.Drawing.Color.SteelBlue;
             this.humanUpDownCardBox2.CheckedColor = System.Drawing.Color.Black;
             this.humanUpDownCardBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.humanUpDownCardBox2.HoverColor = System.Drawing.Color.White;
@@ -200,7 +209,7 @@
             // 
             // humanUpDownCardBox1
             // 
-            this.humanUpDownCardBox1.BackColor = System.Drawing.Color.Transparent;
+            this.humanUpDownCardBox1.BackColor = System.Drawing.Color.SteelBlue;
             this.humanUpDownCardBox1.CheckedColor = System.Drawing.Color.Black;
             this.humanUpDownCardBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.humanUpDownCardBox1.HoverColor = System.Drawing.Color.White;
@@ -215,9 +224,11 @@
             // 
             // playerHandGroupBox
             // 
-            this.playerHandGroupBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.playerHandGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
             this.playerHandGroupBox.Controls.Add(this.playerHandPanel);
             this.playerHandGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.playerHandGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playerHandGroupBox.ForeColor = System.Drawing.Color.White;
             this.playerHandGroupBox.Location = new System.Drawing.Point(0, 500);
             this.playerHandGroupBox.Name = "playerHandGroupBox";
             this.playerHandGroupBox.Size = new System.Drawing.Size(800, 100);
@@ -227,18 +238,20 @@
             // 
             // playerHandPanel
             // 
-            this.playerHandPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.playerHandPanel.BackColor = System.Drawing.Color.SteelBlue;
             this.playerHandPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playerHandPanel.Location = new System.Drawing.Point(3, 16);
+            this.playerHandPanel.Location = new System.Drawing.Point(3, 19);
             this.playerHandPanel.Name = "playerHandPanel";
-            this.playerHandPanel.Size = new System.Drawing.Size(794, 81);
+            this.playerHandPanel.Size = new System.Drawing.Size(794, 78);
             this.playerHandPanel.TabIndex = 0;
             // 
             // discardGroupBox
             // 
             this.discardGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.discardGroupBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.discardGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
             this.discardGroupBox.Controls.Add(this.discardPilePictureBox);
+            this.discardGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discardGroupBox.ForeColor = System.Drawing.Color.White;
             this.discardGroupBox.Location = new System.Drawing.Point(401, 240);
             this.discardGroupBox.Name = "discardGroupBox";
             this.discardGroupBox.Size = new System.Drawing.Size(90, 120);
@@ -248,7 +261,7 @@
             // 
             // discardPilePictureBox
             // 
-            this.discardPilePictureBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.discardPilePictureBox.BackColor = System.Drawing.Color.SteelBlue;
             this.discardPilePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.discardPilePictureBox.Location = new System.Drawing.Point(6, 19);
             this.discardPilePictureBox.Name = "discardPilePictureBox";
@@ -261,8 +274,10 @@
             // drawGroupBox
             // 
             this.drawGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.drawGroupBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.drawGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
             this.drawGroupBox.Controls.Add(this.drawPilePictureBox);
+            this.drawGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.drawGroupBox.ForeColor = System.Drawing.Color.White;
             this.drawGroupBox.Location = new System.Drawing.Point(305, 240);
             this.drawGroupBox.Name = "drawGroupBox";
             this.drawGroupBox.Size = new System.Drawing.Size(90, 120);
@@ -272,7 +287,7 @@
             // 
             // drawPilePictureBox
             // 
-            this.drawPilePictureBox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.drawPilePictureBox.BackColor = System.Drawing.Color.SteelBlue;
             this.drawPilePictureBox.Location = new System.Drawing.Point(6, 19);
             this.drawPilePictureBox.Name = "drawPilePictureBox";
             this.drawPilePictureBox.Size = new System.Drawing.Size(78, 95);
@@ -284,6 +299,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.playerUpDownCardsGroupBox);
             this.Controls.Add(this.playerHandGroupBox);
             this.Controls.Add(this.discardGroupBox);

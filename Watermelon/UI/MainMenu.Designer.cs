@@ -28,61 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.startButton = new System.Windows.Forms.Button();
             this.quitButton = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.startButton = new System.Windows.Forms.Button();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.flowLayoutPanel1.Controls.Add(this.startButton);
-            this.flowLayoutPanel1.Controls.Add(this.quitButton);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(300, 234);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 133);
-            this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // startButton
-            // 
-            this.startButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.startButton.Location = new System.Drawing.Point(13, 13);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(174, 50);
-            this.startButton.TabIndex = 0;
-            this.startButton.Text = "Start";
-            this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // quitButton
             // 
-            this.quitButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.quitButton.Location = new System.Drawing.Point(13, 69);
+            this.quitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.quitButton.BackColor = System.Drawing.Color.White;
+            this.quitButton.Font = new System.Drawing.Font("Segoe Print", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quitButton.ForeColor = System.Drawing.Color.Blue;
+            this.quitButton.Location = new System.Drawing.Point(194, 355);
             this.quitButton.Name = "quitButton";
-            this.quitButton.Size = new System.Drawing.Size(174, 50);
+            this.quitButton.Size = new System.Drawing.Size(413, 100);
             this.quitButton.TabIndex = 1;
             this.quitButton.Text = "Quit";
-            this.quitButton.UseVisualStyleBackColor = true;
+            this.quitButton.UseVisualStyleBackColor = false;
             this.quitButton.Click += new System.EventHandler(this.QuitButton_Click);
+            // 
+            // startButton
+            // 
+            this.startButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.startButton.BackColor = System.Drawing.Color.White;
+            this.startButton.Font = new System.Drawing.Font("Segoe Print", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startButton.ForeColor = System.Drawing.Color.Blue;
+            this.startButton.Location = new System.Drawing.Point(194, 245);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(413, 100);
+            this.startButton.TabIndex = 0;
+            this.startButton.Text = "Start";
+            this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.titleLabel.Font = new System.Drawing.Font("Segoe Print", 42F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.ForeColor = System.Drawing.Color.DarkBlue;
+            this.titleLabel.Location = new System.Drawing.Point(194, 37);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(413, 107);
+            this.titleLabel.TabIndex = 2;
+            this.titleLabel.Text = "Watermelon!";
+            this.titleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.startButton);
+            this.Controls.Add(this.quitButton);
+            this.Controls.Add(this.titleLabel);
             this.Name = "MainMenu";
             this.Size = new System.Drawing.Size(800, 600);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button quitButton;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Label titleLabel;
     }
 }
