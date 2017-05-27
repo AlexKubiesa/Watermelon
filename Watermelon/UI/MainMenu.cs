@@ -12,13 +12,13 @@ namespace Watermelon.UI
 {
     public partial class MainMenu : UserControl
     {
-        public GameBoard GameBoard
+        public DifficultyMenu DifficultyMenu
         {
-            get { return _gameBoard; }
-            set { _gameBoard = value; }
+            get { return _difficultyMenu; }
+            set { _difficultyMenu = value; }
         }
 
-        private GameBoard _gameBoard;
+        private DifficultyMenu _difficultyMenu;
 
         public MainMenu()
         {
@@ -32,8 +32,8 @@ namespace Watermelon.UI
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            _gameBoard.Visible = true;
-            _gameBoard.Enabled = true;
+            _difficultyMenu.Visible = true;
+            _difficultyMenu.Enabled = true;
             Visible = false;
             Enabled = false;
         }
