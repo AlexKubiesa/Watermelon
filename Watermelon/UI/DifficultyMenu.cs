@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Watermelon.Gameplay;
 
 namespace Watermelon.UI
 {
@@ -30,15 +31,12 @@ namespace Watermelon.UI
 
         private void EasyButton_Click(object sender, EventArgs e)
         {
-            _gameBoard.Visible = true;
-            _gameBoard.Enabled = true;
-            Visible = false;
-            Enabled = false;
+            StartGame(GameDifficulty.Easy);
         }
 
         private void MediumButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Still in development!");
+            StartGame(GameDifficulty.Medium);
         }
 
         private void HardButton_Click(object sender, EventArgs e)
@@ -46,5 +44,17 @@ namespace Watermelon.UI
             MessageBox.Show(NOT_IMPLEMENTED_MESSAGE, "Not implemented", MessageBoxButtons.OK);
             hardButton.Enabled = false;
         }
+
+        private void StartGame(GameDifficulty difficulty)
+        {
+            _gameBoard.GameDifficulty = difficulty;
+
+            _gameBoard.Visible = true;
+            _gameBoard.Enabled = true;
+            Visible = false;
+            Enabled = false;
+        }
     }
 }
+
+// Next: Bug: GameBoard's game class is created when it loads, before it is enabled. This means that the difficulty is set too early.

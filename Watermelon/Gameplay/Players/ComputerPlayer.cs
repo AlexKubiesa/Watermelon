@@ -29,6 +29,9 @@ namespace Watermelon.Gameplay.Players
         protected ComputerPlayer(Game game) : base(game)
         { }
 
-        public abstract override void BeginTurn();
+        public override void BeginTurn()
+        {
+            base.BeginTurn();
+        }
     }
 }

@@ -17,6 +17,10 @@ namespace Watermelon.UI
         private const bool SHOW_COMPUTER_CARDS = false;
 #endif
 
+        internal GameDifficulty GameDifficulty { get => _gameDifficulty; set => _gameDifficulty = value; }
+
+        private GameDifficulty _gameDifficulty;
+
         private Game _game;
 
         // Converts between cards in the human player's hand and the corresponding card selection boxes.
@@ -26,7 +30,7 @@ namespace Watermelon.UI
 
         private HumanPlayer _humanPlayer;
 
-        private EasyComputerPlayer _computerPlayer;
+        private ComputerPlayer _computerPlayer;
 
         private CardSelectionBox[] _humanUpDownCardBoxes;
 
@@ -46,7 +50,7 @@ namespace Watermelon.UI
         {
             InitializeComponent();
 
-            _game = new Game();
+            _game = new Game(_gameDifficulty);
 
             DrawPile.ImageUpdated += DrawPile_ImageUpdated;
             DiscardPile.ImageUpdated += DiscardPile_ImageUpdated;
