@@ -87,11 +87,13 @@
   <ItemGroup>
     <Compile Include="Gameplay\Deck.cs" />
     <Compile Include="Gameplay\Players\ComputerPlayer.cs" />
+    <Compile Include="Gameplay\Players\EasyComputerPlayer.cs" />
     <Compile Include="Gameplay\Dealer.cs" />
     <Compile Include="Gameplay\DiscardPile.cs" />
     <Compile Include="Gameplay\DrawPile.cs" />
     <Compile Include="Gameplay\Players\HumanPlayer.cs" />
     <Compile Include="Gameplay\CardEventArgs.cs" />
+    <Compile Include="Gameplay\Players\MediumComputerPlayer.cs" />
     <Compile Include="Gameplay\Players\Player.cs" />
     <Compile Include="Gameplay\TurnTracker.cs" />
     <Compile Include="UI\CardSelectionBox.cs">

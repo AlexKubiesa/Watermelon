@@ -6,59 +6,29 @@ using System.Threading.Tasks;
 
 namespace Watermelon.Gameplay.Players
 {
-    class ComputerPlayer : Player
+    abstract class ComputerPlayer : Player
     {
-        private Random _random;
-
-        public ComputerPlayer(Game game) : base(game)
+        public static ComputerPlayer Create(Game game)
         {
-            _random = new Random();
-        }
-
-        public override void BeginTurn()
-        {
-            base.BeginTurn();
-
-            // Compute playable cards. If there are none, pick up the discard pile.
-            var playableCards = GetPlayableCards().ToList();
-            if (!playableCards.Any())
+            switch (game.Difficulty)
             {
-                PickUp();
-            }
+                case GameDifficulty.Easy:
+                    return new EasyComputerPlayer(game);
 
-            while (Active)
-            {
-                // Choose a random card to play.
-                var card = playableCards[_random.Next(playableCards.Count)];
+                case GameDifficulty.Medium:
+                    return new MediumComputerPlayer(game);
 
-                // Play the card.
-                switch (ActiveRegion.Value)
-                {
-                    case PlayRegion.Hand:
-                        TryPlayFromHand(card);
-                        break;
+                case GameDifficulty.Hard:
+                    throw new NotImplementedException();
 
-                    case PlayRegion.UpCards:
-                        TryPlayUpCard(card);
-                        break;
-
-                    case PlayRegion.DownCards:
-                        TryBlindPlayDownCard(card);
-                        break;
-
-                    default:
-                        break;
-                }
-
-                // If the player's turn has ended, then get out of here.
-                if (!Active)
-                {
-                    return;
-                }
-
-                // If there is another move to make, calculate available moves again.
-                playableCards = GetPlayableCards().ToList();
+                default:
+                    return new EasyComputerPlayer(game);
             }
         }
+
+        protected ComputerPlayer(Game game) : base(game)
+        { }
+
+        public abstract override void BeginTurn();
     }
 }

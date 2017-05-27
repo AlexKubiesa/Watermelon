@@ -26,7 +26,7 @@ namespace Watermelon.UI
 
         private HumanPlayer _humanPlayer;
 
-        private ComputerPlayer _computerPlayer;
+        private EasyComputerPlayer _computerPlayer;
 
         private CardSelectionBox[] _humanUpDownCardBoxes;
 
@@ -54,7 +54,7 @@ namespace Watermelon.UI
             _humanCardBoxesToCards = new Bidictionary<CardSelectionBox, Card>();
             _computerCardPictureBoxes = new Dictionary<Card, PictureBox>();
 
-            _humanPlayer = _game.Player;
+            _humanPlayer = _game.HumanPlayer;
             _humanPlayer.PlayedFromHand += HumanPlayer_PlayedFromHand;
             _humanPlayer.PlayedUpCards += HumanPlayer_PlayedUpCards;
             _humanPlayer.BlindPlayerDownCard += HumanPlayer_PlayedDownCard;
