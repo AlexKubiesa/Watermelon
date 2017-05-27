@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Watermelon.Gameplay
+namespace Watermelon.Gameplay.Players
 {
     // The regions of the game from which the player can play
     enum PlayRegion

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Watermelon.Gameplay;
+using Watermelon.Gameplay.Players;
 using Watermelon.Utility;
 
 namespace Watermelon.UI
@@ -235,15 +236,17 @@ namespace Watermelon.UI
         private void AddToHumanHand(Card card)
         {
             // Show card in player's hand.
-            var addedCardBox = new CardSelectionBox();
-            addedCardBox.Image = card.FrontImage;
-            addedCardBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            addedCardBox.Width = drawPilePictureBox.Width - 20;
-            addedCardBox.Height = playerHandPanel.Height - playerHandPanel.Padding.Vertical - 6;
-            addedCardBox.Cursor = Cursors.Hand;
-            addedCardBox.Padding = new Padding(4);
-            addedCardBox.HoverColor = Color.White;
-            addedCardBox.CheckedColor = Color.Black;
+            var addedCardBox = new CardSelectionBox()
+            {
+                Image = card.FrontImage,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Width = drawPilePictureBox.Width - 20,
+                Height = playerHandPanel.Height - playerHandPanel.Padding.Vertical - 6,
+                Cursor = Cursors.Hand,
+                Padding = new Padding(4),
+                HoverColor = Color.White,
+                CheckedColor = Color.Black
+            };
             addedCardBox.Confirm += HumanHandCardBox_Confirm;
             playerHandPanel.Controls.Add(addedCardBox);
 
@@ -254,11 +257,13 @@ namespace Watermelon.UI
         private void AddToComputerHand(Card card)
         {
             // Show card in player's hand.
-            PictureBox addedCardPictureBox = new PictureBox();
-            addedCardPictureBox.Image = SHOW_COMPUTER_CARDS ? card.FrontImage : card.BackImage;
-            addedCardPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            addedCardPictureBox.Width = drawPilePictureBox.Width;
-            addedCardPictureBox.Height = computerHandPanel.Height - computerHandPanel.Padding.Vertical - 6;
+            PictureBox addedCardPictureBox = new PictureBox()
+            {
+                Image = SHOW_COMPUTER_CARDS ? card.FrontImage : card.BackImage,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Width = drawPilePictureBox.Width,
+                Height = computerHandPanel.Height - computerHandPanel.Padding.Vertical - 6
+            };
             computerHandPanel.Controls.Add(addedCardPictureBox);
 
             // Add card to dictionary.

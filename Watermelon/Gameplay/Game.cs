@@ -1,4 +1,6 @@
-﻿namespace Watermelon.Gameplay
+﻿using Watermelon.Gameplay.Players;
+
+namespace Watermelon.Gameplay
 {
     public partial class Game
     {
