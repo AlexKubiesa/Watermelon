@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenu = new Watermelon.UI.MainMenu();
             this.gameBoard = new Watermelon.UI.GameBoard();
             this.SuspendLayout();
@@ -61,6 +62,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.gameBoard);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Watermelon";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
