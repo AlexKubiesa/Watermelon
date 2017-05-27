@@ -232,6 +232,23 @@ namespace Watermelon.UI
             }
         }
 
+        protected override void OnDoubleClick(EventArgs e)
+        {
+            base.OnDoubleClick(e);
+
+            if (Checked && !_quickConfirm)
+            {
+                // Confirm choice.
+                OnConfirm(new SelectionEventArgs(CURRENTLY_CHECKED));
+                foreach (CardSelectionBox box in CURRENTLY_CHECKED)
+                {
+                    box.Checked = false;
+                }
+                CURRENT_PARENT = null;
+                CURRENTLY_CHECKED = new List<CardSelectionBox>();
+            }
+        }
+
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
