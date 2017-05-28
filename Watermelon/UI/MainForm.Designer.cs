@@ -42,6 +42,7 @@
             this.mainMenu.Name = "mainMenu";
             this.mainMenu.Size = new System.Drawing.Size(784, 561);
             this.mainMenu.TabIndex = 0;
+            this.mainMenu.StartButtonClicked += new System.EventHandler(this.MainMenu_StartButtonClicked);
             // 
             // difficultyMenu
             // 
@@ -51,7 +52,7 @@
             this.difficultyMenu.Name = "difficultyMenu";
             this.difficultyMenu.Size = new System.Drawing.Size(784, 561);
             this.difficultyMenu.TabIndex = 2;
-            this.difficultyMenu.DifficultyChosen += new System.EventHandler<GameDifficultyEventArgs>(this.DifficultyMenu_DifficultyChosen);
+            this.difficultyMenu.DifficultyChosen += new System.EventHandler<Watermelon.UI.GameDifficultyEventArgs>(this.DifficultyMenu_DifficultyChosen);
             // 
             // MainForm
             // 

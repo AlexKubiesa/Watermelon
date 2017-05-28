@@ -20,11 +20,23 @@ namespace Watermelon.UI
             InitializeComponent();
         }
 
+        private void MainMenu_StartButtonClicked(object sender, EventArgs e)
+        {
+            var menu = sender as MainMenu;
+
+            menu.Enabled = false;
+            difficultyMenu.Visible = true;
+            menu.Visible = false;
+            difficultyMenu.Enabled = true;
+        }
+
         private void DifficultyMenu_DifficultyChosen(object sender, GameDifficultyEventArgs e)
         {
             var menu = sender as DifficultyMenu;
+
             menu.Enabled = false;
 
+            SuspendLayout();
             _gameBoard = new GameBoard()
             {
                 BackColor = Color.WhiteSmoke,
@@ -39,6 +51,8 @@ namespace Watermelon.UI
             };
 
             Controls.Add(_gameBoard);
+            ResumeLayout();
+
             _gameBoard.Visible = true;
             menu.Visible = false;
 
@@ -47,5 +61,3 @@ namespace Watermelon.UI
         }
     }
 }
-
-// ToDo: Move all visible/enabled logic of menus into the form level.

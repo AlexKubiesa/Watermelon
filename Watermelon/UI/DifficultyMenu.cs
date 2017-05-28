@@ -15,10 +15,6 @@ namespace Watermelon.UI
     {
         private const string NOT_IMPLEMENTED_MESSAGE = "Not implemented yet. Stay tuned!";
 
-        public GameBoard GameBoard { get => _gameBoard; set => _gameBoard = value; }
-
-        private GameBoard _gameBoard;
-
         public DifficultyMenu()
         {
             InitializeComponent();
