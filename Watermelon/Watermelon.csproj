@@ -86,13 +86,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gameplay\Deck.cs" />
-    <Compile Include="Gameplay\ComputerPlayer.cs" />
+    <Compile Include="Gameplay\Players\ComputerPlayer.cs" />
+    <Compile Include="Gameplay\Players\EasyComputerPlayer.cs" />
     <Compile Include="Gameplay\Dealer.cs" />
     <Compile Include="Gameplay\DiscardPile.cs" />
     <Compile Include="Gameplay\DrawPile.cs" />
-    <Compile Include="Gameplay\HumanPlayer.cs" />
+    <Compile Include="Gameplay\Players\HumanPlayer.cs" />
     <Compile Include="Gameplay\CardEventArgs.cs" />
-    <Compile Include="Gameplay\Player.cs" />
+    <Compile Include="Gameplay\Players\MediumComputerPlayer.cs" />
+    <Compile Include="Gameplay\Players\Player.cs" />
     <Compile Include="Gameplay\TurnTracker.cs" />
     <Compile Include="UI\CardSelectionBox.cs">
       <SubType>Component</SubType>
@@ -100,6 +102,13 @@
     <Compile Include="UI\CardSelectionBox.Designer.cs">
       <DependentUpon>CardSelectionBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\DifficultyMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DifficultyMenu.Designer.cs">
+      <DependentUpon>DifficultyMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\GameDifficultyEventArgs.cs" />
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +136,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gameplay\Card.cs" />
+    <EmbeddedResource Include="UI\DifficultyMenu.resx">
+      <DependentUpon>DifficultyMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

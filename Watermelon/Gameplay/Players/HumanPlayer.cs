@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Watermelon.Gameplay
+namespace Watermelon.Gameplay.Players
 {
-    class HumanPlayer : Player
+    sealed class HumanPlayer : Player
     {
         public HumanPlayer(Game game) : base(game)
         { }

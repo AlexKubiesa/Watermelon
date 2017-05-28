@@ -1,26 +1,39 @@
-﻿namespace Watermelon.Gameplay
+﻿using Watermelon.Gameplay.Players;
+
+namespace Watermelon.Gameplay
 {
-    public partial class Game
+    enum GameDifficulty
     {
-        internal DrawPile DrawPile
+        Easy,
+        Medium,
+        Hard
+    }
+
+    partial class Game
+    {
+        public GameDifficulty Difficulty { get => _difficulty; }
+
+        public DrawPile DrawPile
         {
             get { return _drawPile; }
         }
 
-        internal DiscardPile DiscardPile
+        public DiscardPile DiscardPile
         {
             get { return _discardPile; }
         }
 
-        internal HumanPlayer Player
+        public HumanPlayer HumanPlayer
         {
             get { return _humanPlayer; }
         }
 
-        internal ComputerPlayer ComputerPlayer
+        public ComputerPlayer ComputerPlayer
         {
             get { return _computerPlayer; }
         }
+
+        private GameDifficulty _difficulty;
 
         private HumanPlayer _humanPlayer;
 
@@ -32,11 +45,13 @@
 
         private DiscardPile _discardPile;
 
-        public Game()
+        public Game(GameDifficulty difficulty)
         {
+            _difficulty = difficulty;
+
             _humanPlayer = new HumanPlayer(this);
 
-            _computerPlayer = new ComputerPlayer(this);
+            _computerPlayer = ComputerPlayer.Create(this);
 
             _turnTracker = new TurnTracker();
             _turnTracker.AddPlayer(_humanPlayer);

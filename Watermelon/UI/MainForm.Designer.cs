@@ -30,29 +30,29 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenu = new Watermelon.UI.MainMenu();
-            this.gameBoard = new Watermelon.UI.GameBoard();
+            this.difficultyMenu = new Watermelon.UI.DifficultyMenu();
             this.SuspendLayout();
             // 
             // mainMenu
             // 
             this.mainMenu.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.mainMenu.DifficultyMenu = this.difficultyMenu;
             this.mainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainMenu.GameBoard = this.gameBoard;
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
             this.mainMenu.Size = new System.Drawing.Size(784, 561);
             this.mainMenu.TabIndex = 0;
+            this.mainMenu.StartButtonClicked += new System.EventHandler(this.MainMenu_StartButtonClicked);
             // 
-            // gameBoard
+            // difficultyMenu
             // 
-            this.gameBoard.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.gameBoard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gameBoard.Enabled = false;
-            this.gameBoard.Location = new System.Drawing.Point(0, 0);
-            this.gameBoard.Name = "gameBoard";
-            this.gameBoard.Size = new System.Drawing.Size(784, 561);
-            this.gameBoard.TabIndex = 1;
-            this.gameBoard.Visible = false;
+            this.difficultyMenu.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.difficultyMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.difficultyMenu.Location = new System.Drawing.Point(0, 0);
+            this.difficultyMenu.Name = "difficultyMenu";
+            this.difficultyMenu.Size = new System.Drawing.Size(784, 561);
+            this.difficultyMenu.TabIndex = 2;
+            this.difficultyMenu.DifficultyChosen += new System.EventHandler<Watermelon.UI.GameDifficultyEventArgs>(this.DifficultyMenu_DifficultyChosen);
             // 
             // MainForm
             // 
@@ -61,7 +61,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.mainMenu);
-            this.Controls.Add(this.gameBoard);
+            this.Controls.Add(this.difficultyMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Watermelon";
@@ -73,6 +73,6 @@
         #endregion
 
         private MainMenu mainMenu;
-        private GameBoard gameBoard;
+        private DifficultyMenu difficultyMenu;
     }
 }

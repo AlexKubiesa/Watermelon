@@ -66,7 +66,7 @@
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.titleLabel.Font = new System.Drawing.Font("Segoe Print", 42F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.DarkBlue;
-            this.titleLabel.Location = new System.Drawing.Point(194, 37);
+            this.titleLabel.Location = new System.Drawing.Point(194, 40);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(413, 107);
             this.titleLabel.TabIndex = 2;

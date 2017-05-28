@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Watermelon.Gameplay
+namespace Watermelon.Gameplay.Players
 {
-    class ComputerPlayer : Player
+    sealed class EasyComputerPlayer : ComputerPlayer
     {
         private Random _random;
 
-        public ComputerPlayer(Game game) : base(game)
+        public EasyComputerPlayer(Game game) : base(game)
         {
             _random = new Random();
         }
