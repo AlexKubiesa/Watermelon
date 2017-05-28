@@ -108,6 +108,7 @@
     <Compile Include="UI\DifficultyMenu.Designer.cs">
       <DependentUpon>DifficultyMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\GameDifficultyEventArgs.cs" />
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

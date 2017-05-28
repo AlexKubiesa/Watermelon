@@ -308,7 +308,6 @@
             this.Controls.Add(this.computerHandGroupBox);
             this.Name = "GameBoard";
             this.Size = new System.Drawing.Size(800, 600);
-            this.Load += new System.EventHandler(this.GameBoard_Load);
             this.computerHandGroupBox.ResumeLayout(false);
             this.computerUpDownCardsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox1)).EndInit();

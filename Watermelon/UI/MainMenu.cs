@@ -32,10 +32,10 @@ namespace Watermelon.UI
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            _difficultyMenu.Visible = true;
-            _difficultyMenu.Enabled = true;
-            Visible = false;
             Enabled = false;
+            _difficultyMenu.Visible = true;
+            Visible = false;
+            _difficultyMenu.Enabled = true;
         }
     }
 }

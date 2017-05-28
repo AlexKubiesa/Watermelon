@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenu = new Watermelon.UI.MainMenu();
             this.difficultyMenu = new Watermelon.UI.DifficultyMenu();
-            this.gameBoard = new Watermelon.UI.GameBoard();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -48,22 +47,11 @@
             // 
             this.difficultyMenu.BackColor = System.Drawing.Color.WhiteSmoke;
             this.difficultyMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.difficultyMenu.GameBoard = this.gameBoard;
             this.difficultyMenu.Location = new System.Drawing.Point(0, 0);
             this.difficultyMenu.Name = "difficultyMenu";
             this.difficultyMenu.Size = new System.Drawing.Size(784, 561);
             this.difficultyMenu.TabIndex = 2;
-            // 
-            // gameBoard
-            // 
-            this.gameBoard.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.gameBoard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gameBoard.Enabled = false;
-            this.gameBoard.Location = new System.Drawing.Point(0, 0);
-            this.gameBoard.Name = "gameBoard";
-            this.gameBoard.Size = new System.Drawing.Size(784, 561);
-            this.gameBoard.TabIndex = 1;
-            this.gameBoard.Visible = false;
+            this.difficultyMenu.DifficultyChosen += new System.EventHandler<GameDifficultyEventArgs>(this.DifficultyMenu_DifficultyChosen);
             // 
             // MainForm
             // 
@@ -73,7 +61,6 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.difficultyMenu);
-            this.Controls.Add(this.gameBoard);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Watermelon";
@@ -85,7 +72,6 @@
         #endregion
 
         private MainMenu mainMenu;
-        private GameBoard gameBoard;
         private DifficultyMenu difficultyMenu;
     }
 }

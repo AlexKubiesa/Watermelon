@@ -31,12 +31,12 @@ namespace Watermelon.UI
 
         private void EasyButton_Click(object sender, EventArgs e)
         {
-            StartGame(GameDifficulty.Easy);
+            OnDifficultyChosen(new GameDifficultyEventArgs(GameDifficulty.Easy));
         }
 
         private void MediumButton_Click(object sender, EventArgs e)
         {
-            StartGame(GameDifficulty.Medium);
+            OnDifficultyChosen(new GameDifficultyEventArgs(GameDifficulty.Medium));
         }
 
         private void HardButton_Click(object sender, EventArgs e)
@@ -45,16 +45,11 @@ namespace Watermelon.UI
             hardButton.Enabled = false;
         }
 
-        private void StartGame(GameDifficulty difficulty)
+        internal virtual void OnDifficultyChosen(GameDifficultyEventArgs e)
         {
-            _gameBoard.GameDifficulty = difficulty;
-
-            _gameBoard.Visible = true;
-            _gameBoard.Enabled = true;
-            Visible = false;
-            Enabled = false;
+            DifficultyChosen?.Invoke(this, e);
         }
+
+        public event EventHandler<GameDifficultyEventArgs> DifficultyChosen;
     }
 }
-
-// Next: Bug: GameBoard's game class is created when it loads, before it is enabled. This means that the difficulty is set too early.

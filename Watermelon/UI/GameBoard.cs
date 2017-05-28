@@ -50,6 +50,28 @@ namespace Watermelon.UI
         {
             InitializeComponent();
 
+            _humanUpDownCardBoxes = new CardSelectionBox[3]
+            {
+                humanUpDownCardBox1,
+                humanUpDownCardBox2,
+                humanUpDownCardBox3
+            };
+
+            foreach (var box in _humanUpDownCardBoxes)
+            {
+                box.Confirm += HumanUpDownCardBox_Confirm;
+            }
+
+            _computerUpDownCardPictureBoxes = new List<PictureBox>()
+            {
+                computerUpDownCardPictureBox1,
+                computerUpDownCardPictureBox2,
+                computerUpDownCardPictureBox3
+            };
+        }
+
+        public void Initialise()
+        {
             _game = new Game(_gameDifficulty);
 
             DrawPile.ImageUpdated += DrawPile_ImageUpdated;
@@ -76,28 +98,6 @@ namespace Watermelon.UI
             _computerPlayer.AddedDownCard += ComputerPlayer_AddedDownCard;
             _computerPlayer.Won += ComputerPlayer_Won;
 
-            _humanUpDownCardBoxes = new CardSelectionBox[3]
-            {
-                humanUpDownCardBox1,
-                humanUpDownCardBox2,
-                humanUpDownCardBox3
-            };
-
-            foreach (var box in _humanUpDownCardBoxes)
-            {
-                box.Confirm += HumanUpDownCardBox_Confirm;
-            }
-
-            _computerUpDownCardPictureBoxes = new List<PictureBox>()
-            {
-                computerUpDownCardPictureBox1,
-                computerUpDownCardPictureBox2,
-                computerUpDownCardPictureBox3
-            };
-        }
-
-        private void GameBoard_Load(object sender, EventArgs e)
-        {
             _game.Start();
         }
 
