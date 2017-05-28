@@ -27,6 +27,11 @@ namespace Watermelon.Gameplay.Players
             get { return _activeRegion; }
         }
 
+        public IReadOnlyList<Card> Hand
+        {
+            get { return _hand; }
+        }
+
         public IReadOnlyList<Card> UpCards
         {
             get { return _upCards; }
@@ -293,7 +298,7 @@ namespace Watermelon.Gameplay.Players
                 switch (_activeRegion.Value)
                 {
                     case PlayRegion.Hand:
-                        if (_hand.Count != 1 || !_hand[0].IsSpecial)
+                        if (_hand.Count != 1 || !_hand[0].IsSpecial || _downCards.Any())
                         {
                             // If the player is not left with one special card, normal rules apply.
                             return !DiscardPile.EffectiveRank.HasValue ?
@@ -314,7 +319,7 @@ namespace Watermelon.Gameplay.Players
                             upCards.Where(x => x.CanBePlayedOn(DiscardPile.EffectiveRank.Value));
                         
                     case PlayRegion.DownCards:
-                        // No check here for last card being a special - still need to try and blind play it.
+                        // No checks here of any kind - whatever we have, we can try and blind-play.
                         return _downCards.Where(x => (x != null));
 
                     default:
