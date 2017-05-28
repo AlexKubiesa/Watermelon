@@ -70,7 +70,7 @@ namespace Watermelon.UI
             };
         }
 
-        public void Initialise()
+        public void StartGame()
         {
             _game = new Game(_gameDifficulty);
 

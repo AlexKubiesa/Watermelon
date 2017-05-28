@@ -56,7 +56,7 @@ namespace Watermelon.UI
             _gameBoard.Visible = true;
             menu.Visible = false;
 
-            _gameBoard.Initialise();
+            _gameBoard.StartGame();
             _gameBoard.Enabled = true;
         }
     }
