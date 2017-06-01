@@ -26,6 +26,14 @@ namespace Watermelon.Gameplay.Players
         public PlayRegion? ActiveRegion
         {
             get { return _activeRegion; }
+            private set
+            {
+                if (_activeRegion != value)
+                {
+                    _activeRegion = value;
+                    OnActiveRegionChanged(EventArgs.Empty);
+                }
+            }
         }
 
         public IReadOnlyList<Card> Hand
@@ -53,6 +61,7 @@ namespace Watermelon.Gameplay.Players
 
         private Card[] _downCards;
 
+        // Should only be set with UpdateActiveRegion, so that the value makes sense.
         private PlayRegion? _activeRegion;
 
         private DrawPile DrawPile
@@ -123,16 +132,24 @@ namespace Watermelon.Gameplay.Players
                 return;
             }
             // Check to make sure the player doesn't win on a special.
-            else if (!_downCards.Any(x => x != null) &&
-                _hand.Count == 1 &&
-                _hand[0].IsSpecial)
+            else if (!_downCards.Any() &&               // No down cards
+                cards.First().IsSpecial &&              // Trying to play (only) special cards
+                _hand.All(x => cards.Contains(x)))      // No other cards left in hand
             {
-                // Pick up the discard pile and end the player's turn.
-                var pile = DiscardPile.PickUp();
-                _hand.AddRange(pile);
-                OnAddedCardsToHand(new CardEventArgs(pile));
-                EndTurn();
-                return;
+                if (cards.Count() == 1)
+                {
+                    // Pick up the discard pile and end the player's turn.
+                    var pile = DiscardPile.PickUp();
+                    _hand.AddRange(pile);
+                    OnAddedCardsToHand(new CardEventArgs(pile));
+                    EndTurn();
+                    return;
+                }
+                else
+                {
+                    // Invalid move, but the player can still play just one of the cards instead.
+                    return;
+                }
             }
             // Play the cards.
             else
@@ -351,19 +368,19 @@ namespace Watermelon.Gameplay.Players
         {
             if (!_active)
             {
-                _activeRegion = null;
+                ActiveRegion = null;
             }
             else if (_hand.Any())
             {
-                _activeRegion = PlayRegion.Hand;
+                ActiveRegion = PlayRegion.Hand;
             }
             else if (_upCards.Any(x => x != null))
             {
-                _activeRegion = PlayRegion.UpCards;
+                ActiveRegion = PlayRegion.UpCards;
             }
             else if (_downCards.Any(x => x != null))
             {
-                _activeRegion = PlayRegion.DownCards;
+                ActiveRegion = PlayRegion.DownCards;
             }
             else
             {
@@ -374,15 +391,20 @@ namespace Watermelon.Gameplay.Players
         private void EndTurn()
         {
             _active = false;
-            _activeRegion = null;
+            ActiveRegion = null;
             OnEndedTurn(EventArgs.Empty);
         }
 
         private void Win()
         {
             _active = false;
-            _activeRegion = null;
+            ActiveRegion = null;
             OnWon(EventArgs.Empty);
+        }
+
+        protected virtual void OnActiveRegionChanged(EventArgs e)
+        {
+            ActiveRegionChanged?.Invoke(this, e);
         }
 
         protected virtual void OnAddedCardsToHand(CardEventArgs e)
@@ -424,6 +446,8 @@ namespace Watermelon.Gameplay.Players
         {
             Won?.Invoke(this, e);
         }
+
+        public event EventHandler ActiveRegionChanged;
 
         public event EventHandler<CardEventArgs> AddedCardsToHand;
 
