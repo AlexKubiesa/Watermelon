@@ -11,6 +11,8 @@ namespace Watermelon.Gameplay
 
     partial class Game
     {
+        public static int ACTION_DELAY { get => 300; }
+
         public GameDifficulty Difficulty { get => _difficulty; }
 
         public DrawPile DrawPile

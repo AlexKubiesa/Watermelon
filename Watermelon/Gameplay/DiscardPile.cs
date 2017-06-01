@@ -62,7 +62,7 @@ namespace Watermelon.Gameplay
         public void PlayCard(Card card, out bool burn)
         {
             Add(card);
-            Thread.Sleep(300);
+            Thread.Sleep(Game.ACTION_DELAY);
             burn = TryBurn();
         }
 
@@ -74,7 +74,7 @@ namespace Watermelon.Gameplay
         public void PlayCards(IEnumerable<Card> cards, out bool burn)
         {
             AddRange(cards);
-            Thread.Sleep(300);
+            Thread.Sleep(Game.ACTION_DELAY);
             burn = TryBurn();
         }
 
@@ -130,7 +130,7 @@ namespace Watermelon.Gameplay
         {
             _cards.Clear();
             UpdateImage();
-            Thread.Sleep(300);
+            Thread.Sleep(Game.ACTION_DELAY);
         }
 
         private Image ComputeImage()

@@ -335,7 +335,7 @@ namespace Watermelon.Gameplay.Players
             var cards = DiscardPile.PickUp();
             _hand.AddRange(cards);
             OnAddedCardsToHand(new CardEventArgs(cards));
-            Thread.Sleep(300);
+            Thread.Sleep(Game.ACTION_DELAY);
             EndTurn();
         }
 
@@ -344,7 +344,7 @@ namespace Watermelon.Gameplay.Players
             var card = DrawPile.Draw();
             _hand.Add(card);
             OnAddedCardsToHand(new CardEventArgs(card));
-            Thread.Sleep(300);
+            Thread.Sleep(Game.ACTION_DELAY);
         }
 
         private void UpdateActiveRegion()
