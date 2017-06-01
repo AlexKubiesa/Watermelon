@@ -132,16 +132,24 @@ namespace Watermelon.Gameplay.Players
                 return;
             }
             // Check to make sure the player doesn't win on a special.
-            else if (!_downCards.Any(x => x != null) &&
-                _hand.Count == 1 &&
-                _hand[0].IsSpecial)
+            else if (!_downCards.Any() &&               // No down cards
+                cards.First().IsSpecial &&              // Trying to play (only) special cards
+                !_hand.Any(x => !cards.Contains(x)))    // No other cards left in hand
             {
-                // Pick up the discard pile and end the player's turn.
-                var pile = DiscardPile.PickUp();
-                _hand.AddRange(pile);
-                OnAddedCardsToHand(new CardEventArgs(pile));
-                EndTurn();
-                return;
+                if (cards.Count() == 1)
+                {
+                    // Pick up the discard pile and end the player's turn.
+                    var pile = DiscardPile.PickUp();
+                    _hand.AddRange(pile);
+                    OnAddedCardsToHand(new CardEventArgs(pile));
+                    EndTurn();
+                    return;
+                }
+                else
+                {
+                    // Invalid move, but the player can still play just one of the cards instead.
+                    return;
+                }
             }
             // Play the cards.
             else
