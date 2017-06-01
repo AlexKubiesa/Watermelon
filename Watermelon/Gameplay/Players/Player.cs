@@ -134,7 +134,7 @@ namespace Watermelon.Gameplay.Players
             // Check to make sure the player doesn't win on a special.
             else if (!_downCards.Any() &&               // No down cards
                 cards.First().IsSpecial &&              // Trying to play (only) special cards
-                !_hand.Any(x => !cards.Contains(x)))    // No other cards left in hand
+                _hand.All(x => cards.Contains(x)))      // No other cards left in hand
             {
                 if (cards.Count() == 1)
                 {

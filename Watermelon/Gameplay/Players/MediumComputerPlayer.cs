@@ -55,22 +55,30 @@ namespace Watermelon.Gameplay.Players
                 {
                     // If the player is supposed to know anything about what they're playing...
                     case PlayRegion.Hand:
-                    case PlayRegion.UpCards:
                         // Choose a playable card with the lowest entropy.
                         var worstCard = playableCards.First(x => playableCards.All(y => GetEntropy(x) <= GetEntropy(y)));
 
                         // Find all playable cards with the same rank.
-                        var cardsToPlay = playableCards.Where(x => x.Rank == worstCard.Rank);
+                        var worstCardSet = playableCards.Where(x => x.Rank == worstCard.Rank);
+
+                        var cardsToPlay =
+                            (!DownCards.Any() && worstCard.IsSpecial && Hand.All(x => worstCardSet.Contains(x)) && worstCardSet.Count() > 1) ?
+                            worstCardSet.Where(x => x != worstCard) : // If all special, then play all but one. (Can't win on a special).
+                            worstCardSet;                             // Otherwise, just play all of them.
 
                         // Play the cards.
-                        if (ActiveRegion.Value == PlayRegion.Hand)
-                        {
-                            TryPlayFromHand(cardsToPlay);
-                        }
-                        else
-                        {
-                            TryPlayUpCards(cardsToPlay);
-                        }
+                        TryPlayFromHand(cardsToPlay);
+                        break;
+
+                    case PlayRegion.UpCards:
+                        // Choose a playable card with the lowest entropy.
+                        worstCard = playableCards.First(x => playableCards.All(y => GetEntropy(x) <= GetEntropy(y)));
+
+                        // Find all playable cards with the same rank.
+                        cardsToPlay = playableCards.Where(x => x.Rank == worstCard.Rank);
+
+                        // Play the cards.
+                        TryPlayUpCards(cardsToPlay);
                         break;
 
                     // If the player doesn't know what they're doing...
