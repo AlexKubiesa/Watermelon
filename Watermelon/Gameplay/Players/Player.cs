@@ -26,6 +26,14 @@ namespace Watermelon.Gameplay.Players
         public PlayRegion? ActiveRegion
         {
             get { return _activeRegion; }
+            private set
+            {
+                if (_activeRegion != value)
+                {
+                    _activeRegion = value;
+                    OnActiveRegionChanged(EventArgs.Empty);
+                }
+            }
         }
 
         public IReadOnlyList<Card> Hand
@@ -53,6 +61,7 @@ namespace Watermelon.Gameplay.Players
 
         private Card[] _downCards;
 
+        // Should only be set with UpdateActiveRegion, so that the value makes sense.
         private PlayRegion? _activeRegion;
 
         private DrawPile DrawPile
@@ -351,19 +360,19 @@ namespace Watermelon.Gameplay.Players
         {
             if (!_active)
             {
-                _activeRegion = null;
+                ActiveRegion = null;
             }
             else if (_hand.Any())
             {
-                _activeRegion = PlayRegion.Hand;
+                ActiveRegion = PlayRegion.Hand;
             }
             else if (_upCards.Any(x => x != null))
             {
-                _activeRegion = PlayRegion.UpCards;
+                ActiveRegion = PlayRegion.UpCards;
             }
             else if (_downCards.Any(x => x != null))
             {
-                _activeRegion = PlayRegion.DownCards;
+                ActiveRegion = PlayRegion.DownCards;
             }
             else
             {
@@ -374,15 +383,20 @@ namespace Watermelon.Gameplay.Players
         private void EndTurn()
         {
             _active = false;
-            _activeRegion = null;
+            ActiveRegion = null;
             OnEndedTurn(EventArgs.Empty);
         }
 
         private void Win()
         {
             _active = false;
-            _activeRegion = null;
+            ActiveRegion = null;
             OnWon(EventArgs.Empty);
+        }
+
+        protected virtual void OnActiveRegionChanged(EventArgs e)
+        {
+            ActiveRegionChanged?.Invoke(this, e);
         }
 
         protected virtual void OnAddedCardsToHand(CardEventArgs e)
@@ -424,6 +438,8 @@ namespace Watermelon.Gameplay.Players
         {
             Won?.Invoke(this, e);
         }
+
+        public event EventHandler ActiveRegionChanged;
 
         public event EventHandler<CardEventArgs> AddedCardsToHand;
 

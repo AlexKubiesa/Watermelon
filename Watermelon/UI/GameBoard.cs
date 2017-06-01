@@ -90,6 +90,7 @@ namespace Watermelon.UI
             _computerCardPictureBoxes = new Dictionary<Card, PictureBox>();
 
             _humanPlayer = _game.HumanPlayer;
+            _humanPlayer.ActiveRegionChanged += HumanPlayer_ActiveRegionChanged;
             _humanPlayer.PlayedFromHand += HumanPlayer_PlayedFromHand;
             _humanPlayer.PlayedUpCards += HumanPlayer_PlayedUpCards;
             _humanPlayer.BlindPlayerDownCard += HumanPlayer_PlayedDownCard;
@@ -157,6 +158,12 @@ namespace Watermelon.UI
                     await Task.Run(() => _humanPlayer.TryBlindPlayDownCard(downCards.First(x => x != null)));
                 }
             }
+        }
+
+        private void HumanPlayer_ActiveRegionChanged(object sender, EventArgs e)
+        {
+            VoidDelegate d = UpdateEnabledHumanPlayerCardBoxes;
+            Invoke(d);
         }
 
         private void HumanPlayer_AddedCardsToHand(object sender, CardEventArgs e)
@@ -262,6 +269,91 @@ namespace Watermelon.UI
         {
             MessageBox.Show("You lose. Better luck next time!");
             Application.Exit();
+        }
+
+        private void UpdateEnabledHumanPlayerCardBoxes()
+        {
+            switch (_humanPlayer.ActiveRegion)
+            {
+                case PlayRegion.Hand:
+                    DisableHumanPlayerUpDownCards();
+                    EnableHumanPlayerHand();
+                    break;
+
+                case PlayRegion.UpCards:
+                    DisableHumanPlayerHand();
+                    for (int i = 0; i < 3; ++i)
+                    {
+                        if (_humanPlayer.UpCards[i] != null)
+                        {
+                            EnableHumanPlayerUpDownCardPile(_humanUpDownCardBoxes[i]);
+                        }
+                        else
+                        {
+                            DisableHumanPlayerUpDownCardBox(_humanUpDownCardBoxes[i]);
+                        }
+                    }
+                    break;
+
+                case PlayRegion.DownCards:
+                    DisableHumanPlayerHand();
+                    for (int i = 0; i < 3; ++i)
+                    {
+                        if (_humanPlayer.UpCards[i] == null && _humanPlayer.DownCards[i] != null)
+                        {
+                            EnableHumanPlayerUpDownCardPile(_humanUpDownCardBoxes[i]);
+                        }
+                        else
+                        {
+                            DisableHumanPlayerUpDownCardBox(_humanUpDownCardBoxes[i]);
+                        }
+                    }
+                    break;
+
+                case null:
+                    DisableHumanPlayerHand();
+                    DisableHumanPlayerUpDownCards();
+                    break;
+
+                default:
+                    DisableHumanPlayerHand();
+                    DisableHumanPlayerUpDownCards();
+                    break;
+            }
+        }
+
+        private void DisableHumanPlayerHand()
+        {
+            foreach (var cardBox in _humanCardBoxesToCards.Keys)
+            {
+                cardBox.Enabled = false;
+            }
+        }
+
+        private void DisableHumanPlayerUpDownCardBox(CardSelectionBox box)
+        {
+            box.Enabled = false;
+        }
+
+        private void DisableHumanPlayerUpDownCards()
+        {
+            foreach (var cardBox in _humanUpDownCardBoxes)
+            {
+                cardBox.Enabled = false;
+            }
+        }
+
+        private void EnableHumanPlayerHand()
+        {
+            foreach (var cardBox in _humanCardBoxesToCards.Keys)
+            {
+                cardBox.Enabled = true;
+            }
+        }
+
+        private void EnableHumanPlayerUpDownCardPile(CardSelectionBox box)
+        {
+            box.Enabled = true;
         }
 
         private void AddToHumanHand(Card card)
