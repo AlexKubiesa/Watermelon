@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 
 namespace Watermelon.Gameplay
 {
@@ -61,6 +62,7 @@ namespace Watermelon.Gameplay
         public void PlayCard(Card card, out bool burn)
         {
             Add(card);
+            Thread.Sleep(Game.ACTION_DELAY);
             burn = TryBurn();
         }
 
@@ -72,6 +74,7 @@ namespace Watermelon.Gameplay
         public void PlayCards(IEnumerable<Card> cards, out bool burn)
         {
             AddRange(cards);
+            Thread.Sleep(Game.ACTION_DELAY);
             burn = TryBurn();
         }
 
@@ -127,6 +130,7 @@ namespace Watermelon.Gameplay
         {
             _cards.Clear();
             UpdateImage();
+            Thread.Sleep(Game.ACTION_DELAY);
         }
 
         private Image ComputeImage()

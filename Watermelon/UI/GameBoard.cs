@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Watermelon.Gameplay;
 using Watermelon.Gameplay.Players;
@@ -11,6 +13,12 @@ namespace Watermelon.UI
 {
     public partial class GameBoard : UserControl
     {
+        delegate void CardDelegate(Card card);
+
+        delegate void PictureBoxImageUpdateDelegate(PictureBox box, Image image);
+
+        delegate void VoidDelegate();
+
 #if DEBUG
         private const bool SHOW_COMPUTER_CARDS = true;
 #else
@@ -49,6 +57,7 @@ namespace Watermelon.UI
         public GameBoard()
         {
             InitializeComponent();
+            Thread.CurrentThread.Name = "UI Thread";
 
             _humanUpDownCardBoxes = new CardSelectionBox[3]
             {
@@ -104,26 +113,28 @@ namespace Watermelon.UI
         private void DrawPile_ImageUpdated(object sender, EventArgs e)
         {
             var drawPile = sender as DrawPile;
-            drawPilePictureBox.Image = drawPile.Image;
+            PictureBoxImageUpdateDelegate d = delegate (PictureBox box, Image image) { box.Image = image; };
+            Invoke(d, drawPilePictureBox, drawPile.Image);
         }
 
         private void DiscardPile_ImageUpdated(object sender, EventArgs e)
         {
             var discardPile = sender as DiscardPile;
-            discardPilePictureBox.Image = discardPile.Image;
+            PictureBoxImageUpdateDelegate d = delegate (PictureBox box, Image image) { box.Image = image; };
+            Invoke(d, discardPilePictureBox, discardPile.Image);
         }
 
-        private void HumanHandCardBox_Confirm(object sender, SelectionEventArgs e)
+        private async void HumanHandCardBox_Confirm(object sender, SelectionEventArgs e)
         {
             // Try to play all the selected cards.
             // Used ToList() to force evaluation, so that it doesn't fall over later when trying to figure out
             // which cards have been played but GameWindow has removed the relevant information from its
             // dictionary.
             var cards = e.Selection.Cast<CardSelectionBox>().Select(x => _humanCardBoxesToCards.Forward(x)).ToList();
-            _humanPlayer.TryPlayFromHand(cards);
+            await Task.Run(() => _humanPlayer.TryPlayFromHand(cards));
         }
 
-        private void HumanUpDownCardBox_Confirm(object sender, SelectionEventArgs e)
+        private async void HumanUpDownCardBox_Confirm(object sender, SelectionEventArgs e)
         {
             // ToList() prevents lazy evaluation.
             var indices = e.Selection.Select(x => Array.IndexOf(_humanUpDownCardBoxes, x)).ToList();
@@ -133,7 +144,7 @@ namespace Watermelon.UI
             // If the selected cards are all up cards, try and play them.
             if (upCards.All(x => x != null))
             {
-                _humanPlayer.TryPlayUpCards(upCards.ToList());
+                await Task.Run(() => _humanPlayer.TryPlayUpCards(upCards.ToList()));
             }
             // Otherwise, there can't be any up cards for a valid play.
             else if (upCards.All(x => x == null))
@@ -143,86 +154,102 @@ namespace Watermelon.UI
                 // Must play exactly one down card.
                 if (downCards.Count() == 1 && downCards.First() != null)
                 {
-                    _humanPlayer.TryBlindPlayDownCard(downCards.First(x => x != null));
+                    await Task.Run(() => _humanPlayer.TryBlindPlayDownCard(downCards.First(x => x != null)));
                 }
             }
         }
 
         private void HumanPlayer_AddedCardsToHand(object sender, CardEventArgs e)
         {
+            CardDelegate d = AddToHumanHand;
+
             foreach (var card in e.Cards)
             {
-                AddToHumanHand(card);
+                Invoke(d, card);
             }
         }
 
         private void ComputerPlayer_AddedCardsToHand(object sender, CardEventArgs e)
         {
+            CardDelegate d = AddToComputerHand;
+
             foreach (var card in e.Cards)
             {
-                AddToComputerHand(card);
+                Invoke(d, card);
             }
         }
 
         private void HumanPlayer_AddedUpCard(object sender, EventArgs e)
         {
-            UpdateHumanUpDownCardBoxes();
+            VoidDelegate d = UpdateHumanUpDownCardBoxes;
+            Invoke(d);
         }
 
         private void ComputerPlayer_AddedUpCard(object sender, EventArgs e)
         {
-            UpdateComputerUpDownCardPictureBoxes();
+            VoidDelegate d = UpdateComputerUpDownCardPictureBoxes;
+            Invoke(d);
         }
 
         private void HumanPlayer_AddedDownCard(object sender, EventArgs e)
         {
-            UpdateHumanUpDownCardBoxes();
+            VoidDelegate d = UpdateHumanUpDownCardBoxes;
+            Invoke(d);
         }
 
         private void ComputerPlayer_AddedDownCard(object sender, EventArgs e)
         {
-            UpdateComputerUpDownCardPictureBoxes();
+            VoidDelegate d = UpdateComputerUpDownCardPictureBoxes;
+            Invoke(d);
         }
 
         private void HumanPlayer_PlayedFromHand(object sender, CardEventArgs e)
         {
+            CardDelegate d = RemoveFromHumanHand;
+
             foreach (var card in e.Cards)
             {
-                RemoveFromHumanHand(card);
+                Invoke(d, card);
             }
         }
 
         private void ComputerPlayer_PlayedFromHand(object sender, CardEventArgs e)
         {
+            CardDelegate d = RemoveFromComputerHand;
+
             foreach (var card in e.Cards)
             {
-                RemoveFromComputerHand(card);
+                Invoke(d, card);
             }
         }
 
         private void HumanPlayer_PlayedUpCards(object sender, EventArgs e)
         {
-            UpdateHumanUpDownCardBoxes();
+            VoidDelegate d = UpdateHumanUpDownCardBoxes;
+            Invoke(d);
         }
 
         private void ComputerPlayer_PlayedUpCards(object sender, EventArgs e)
         {
-            UpdateComputerUpDownCardPictureBoxes();
+            VoidDelegate d = UpdateComputerUpDownCardPictureBoxes;
+            Invoke(d);
         }
 
         private void HumanPlayer_PlayedDownCard(object sender, EventArgs e)
         {
-            UpdateHumanUpDownCardBoxes();
+            VoidDelegate d = UpdateHumanUpDownCardBoxes;
+            Invoke(d);
         }
 
         private void ComputerPlayer_PlayedDownCard(object sender, EventArgs e)
         {
-            UpdateComputerUpDownCardPictureBoxes();
+            VoidDelegate d = UpdateComputerUpDownCardPictureBoxes;
+            Invoke(d);
         }
 
-        private void DiscardPilePictureBox_Click(object sender, EventArgs e)
+        private async void DiscardPilePictureBox_Click(object sender, EventArgs e)
         {
-            _humanPlayer.TryPickUp();
+            await Task.Run(() => _humanPlayer.TryPickUp());
         }
 
         private void HumanPlayer_Won(object sender, EventArgs e)
@@ -301,6 +328,7 @@ namespace Watermelon.UI
                 var upCard = _humanPlayer.UpCards[i];
                 var downCard = _humanPlayer.DownCards[i];
                 _humanUpDownCardBoxes[i].Image = GetUpDownCardStackedImage(upCard, downCard);
+                _humanUpDownCardBoxes[i].Invalidate();
             }
         }
 
