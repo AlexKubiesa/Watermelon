@@ -328,6 +328,7 @@ namespace Watermelon.UI
                 var upCard = _humanPlayer.UpCards[i];
                 var downCard = _humanPlayer.DownCards[i];
                 _humanUpDownCardBoxes[i].Image = GetUpDownCardStackedImage(upCard, downCard);
+                _humanUpDownCardBoxes[i].Invalidate();
             }
         }
 

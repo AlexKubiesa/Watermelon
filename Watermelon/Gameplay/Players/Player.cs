@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Watermelon.Gameplay.Players
@@ -334,6 +335,7 @@ namespace Watermelon.Gameplay.Players
             var cards = DiscardPile.PickUp();
             _hand.AddRange(cards);
             OnAddedCardsToHand(new CardEventArgs(cards));
+            Thread.Sleep(300);
             EndTurn();
         }
 
@@ -342,6 +344,7 @@ namespace Watermelon.Gameplay.Players
             var card = DrawPile.Draw();
             _hand.Add(card);
             OnAddedCardsToHand(new CardEventArgs(card));
+            Thread.Sleep(300);
         }
 
         private void UpdateActiveRegion()
