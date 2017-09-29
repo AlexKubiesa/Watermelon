@@ -16,6 +16,17 @@ namespace Watermelon.UI
         private static Control CURRENT_PARENT = null;
         private static List<CardSelectionBox> CURRENTLY_CHECKED = new List<CardSelectionBox>();
 
+        public static void UncheckAll()
+        {
+            foreach (var box in CURRENTLY_CHECKED)
+            {
+                box.Checked = false;
+            }
+
+            CURRENTLY_CHECKED.Clear();
+            CURRENT_PARENT = null;
+        }
+
         public bool Checked
         {
             get { return _checked; }

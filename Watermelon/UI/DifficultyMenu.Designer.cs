@@ -40,7 +40,7 @@
             // 
             this.easyButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.easyButton.BackColor = System.Drawing.Color.White;
-            this.easyButton.Font = new System.Drawing.Font("Segoe Print", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.easyButton.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.easyButton.ForeColor = System.Drawing.Color.Blue;
             this.easyButton.Location = new System.Drawing.Point(194, 190);
             this.easyButton.Name = "easyButton";
@@ -54,7 +54,7 @@
             // 
             this.mediumButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.mediumButton.BackColor = System.Drawing.Color.White;
-            this.mediumButton.Font = new System.Drawing.Font("Segoe Print", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mediumButton.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mediumButton.ForeColor = System.Drawing.Color.Blue;
             this.mediumButton.Location = new System.Drawing.Point(194, 300);
             this.mediumButton.Name = "mediumButton";
@@ -67,7 +67,7 @@
             // titleLabel
             // 
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.titleLabel.Font = new System.Drawing.Font("Segoe Print", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.DarkBlue;
             this.titleLabel.Location = new System.Drawing.Point(156, 40);
             this.titleLabel.Name = "titleLabel";
@@ -80,7 +80,8 @@
             // 
             this.hardButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.hardButton.BackColor = System.Drawing.Color.White;
-            this.hardButton.Font = new System.Drawing.Font("Segoe Print", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hardButton.Enabled = false;
+            this.hardButton.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hardButton.ForeColor = System.Drawing.Color.Blue;
             this.hardButton.Location = new System.Drawing.Point(194, 410);
             this.hardButton.Name = "hardButton";

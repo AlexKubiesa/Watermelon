@@ -452,6 +452,13 @@ namespace Watermelon.UI
                 return upCard.FrontImage;
             }
         }
+
+        internal void ProcessKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                CardSelectionBox.UncheckAll();
+            }
+        }
     }
 }
-// ToDo: Bug with MediumComputerPlayer: Can win on a special!

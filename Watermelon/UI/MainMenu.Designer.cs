@@ -37,7 +37,7 @@
             // 
             this.quitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.quitButton.BackColor = System.Drawing.Color.White;
-            this.quitButton.Font = new System.Drawing.Font("Segoe Print", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quitButton.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitButton.ForeColor = System.Drawing.Color.Blue;
             this.quitButton.Location = new System.Drawing.Point(194, 355);
             this.quitButton.Name = "quitButton";
@@ -51,7 +51,7 @@
             // 
             this.startButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.startButton.BackColor = System.Drawing.Color.White;
-            this.startButton.Font = new System.Drawing.Font("Segoe Print", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startButton.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.ForeColor = System.Drawing.Color.Blue;
             this.startButton.Location = new System.Drawing.Point(194, 245);
             this.startButton.Name = "startButton";
@@ -64,7 +64,7 @@
             // titleLabel
             // 
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.titleLabel.Font = new System.Drawing.Font("Segoe Print", 42F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 42F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.DarkBlue;
             this.titleLabel.Location = new System.Drawing.Point(194, 40);
             this.titleLabel.Name = "titleLabel";

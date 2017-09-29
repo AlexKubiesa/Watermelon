@@ -59,5 +59,13 @@ namespace Watermelon.UI
             _gameBoard.StartGame();
             _gameBoard.Enabled = true;
         }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_gameBoard.Enabled)
+            {
+                _gameBoard.ProcessKeyDown(sender, e);
+            }
+        }
     }
 }
