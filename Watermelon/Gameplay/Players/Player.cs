@@ -316,17 +316,17 @@ namespace Watermelon.Gameplay.Players
                 switch (_activeRegion.Value)
                 {
                     case PlayRegion.Hand:
-                        if (_hand.Count != 1 || !_hand[0].IsSpecial || _downCards.Any())
+                        if (_hand.Count == 1 && _hand[0].IsSpecial && !_downCards.Any())
                         {
-                            // If the player is not left with one special card, normal rules apply.
-                            return !DiscardPile.EffectiveRank.HasValue ?
-                                _hand :
-                                _hand.Where(x => x.CanBePlayedOn(DiscardPile.EffectiveRank.Value));
+                            // If player is on their last card and it's a special, then they can't play it.
+                            return new List<Card>();
                         }
                         else
                         {
-                            // Otherwise, no available moves, since you can't win on a special card.
-                            return new List<Card>();
+                            // Otherwise, normal rules apply.
+                            return !DiscardPile.EffectiveRank.HasValue ?
+                                _hand :
+                                _hand.Where(x => x.CanBePlayedOn(DiscardPile.EffectiveRank.Value));
                         }
 
                     case PlayRegion.UpCards:
