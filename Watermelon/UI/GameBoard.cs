@@ -460,5 +460,11 @@ namespace Watermelon.UI
                 CardSelectionBox.UncheckAll();
             }
         }
+
+        private void infoButton_Click(object sender, EventArgs e)
+        {
+            var detailsForm = new GameBoardInformationForm(DiscardPile);
+            detailsForm.ShowDialog();
+        }
     }
 }

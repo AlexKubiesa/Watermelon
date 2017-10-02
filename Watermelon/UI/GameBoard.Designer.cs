@@ -31,35 +31,35 @@
             this.computerHandPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.computerHandGroupBox = new System.Windows.Forms.GroupBox();
             this.computerUpDownCardsPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.computerUpDownCardsGroupBox = new System.Windows.Forms.GroupBox();
-            this.playerUpDownCardsGroupBox = new System.Windows.Forms.GroupBox();
-            this.playerUpDownCardsPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.playerHandGroupBox = new System.Windows.Forms.GroupBox();
-            this.playerHandPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.discardGroupBox = new System.Windows.Forms.GroupBox();
-            this.drawGroupBox = new System.Windows.Forms.GroupBox();
-            this.infoButton = new System.Windows.Forms.Button();
-            this.discardPilePictureBox = new System.Windows.Forms.PictureBox();
-            this.drawPilePictureBox = new System.Windows.Forms.PictureBox();
             this.computerUpDownCardPictureBox1 = new System.Windows.Forms.PictureBox();
             this.computerUpDownCardPictureBox2 = new System.Windows.Forms.PictureBox();
             this.computerUpDownCardPictureBox3 = new System.Windows.Forms.PictureBox();
+            this.computerUpDownCardsGroupBox = new System.Windows.Forms.GroupBox();
+            this.playerUpDownCardsGroupBox = new System.Windows.Forms.GroupBox();
+            this.playerUpDownCardsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.humanUpDownCardBox3 = new Watermelon.UI.CardSelectionBox();
             this.humanUpDownCardBox2 = new Watermelon.UI.CardSelectionBox();
             this.humanUpDownCardBox1 = new Watermelon.UI.CardSelectionBox();
+            this.playerHandGroupBox = new System.Windows.Forms.GroupBox();
+            this.playerHandPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.discardGroupBox = new System.Windows.Forms.GroupBox();
+            this.discardPilePictureBox = new System.Windows.Forms.PictureBox();
+            this.drawGroupBox = new System.Windows.Forms.GroupBox();
+            this.drawPilePictureBox = new System.Windows.Forms.PictureBox();
+            this.infoButton = new System.Windows.Forms.Button();
             this.computerHandGroupBox.SuspendLayout();
             this.computerUpDownCardsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox3)).BeginInit();
             this.computerUpDownCardsGroupBox.SuspendLayout();
             this.playerUpDownCardsGroupBox.SuspendLayout();
             this.playerUpDownCardsPanel.SuspendLayout();
             this.playerHandGroupBox.SuspendLayout();
             this.discardGroupBox.SuspendLayout();
-            this.drawGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.discardPilePictureBox)).BeginInit();
+            this.drawGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.drawPilePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // computerHandPanel
@@ -101,6 +101,36 @@
             this.computerUpDownCardsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.computerUpDownCardsPanel.Size = new System.Drawing.Size(340, 84);
             this.computerUpDownCardsPanel.TabIndex = 0;
+            // 
+            // computerUpDownCardPictureBox1
+            // 
+            this.computerUpDownCardPictureBox1.BackColor = System.Drawing.Color.SteelBlue;
+            this.computerUpDownCardPictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.computerUpDownCardPictureBox1.Name = "computerUpDownCardPictureBox1";
+            this.computerUpDownCardPictureBox1.Size = new System.Drawing.Size(107, 78);
+            this.computerUpDownCardPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.computerUpDownCardPictureBox1.TabIndex = 0;
+            this.computerUpDownCardPictureBox1.TabStop = false;
+            // 
+            // computerUpDownCardPictureBox2
+            // 
+            this.computerUpDownCardPictureBox2.BackColor = System.Drawing.Color.SteelBlue;
+            this.computerUpDownCardPictureBox2.Location = new System.Drawing.Point(116, 3);
+            this.computerUpDownCardPictureBox2.Name = "computerUpDownCardPictureBox2";
+            this.computerUpDownCardPictureBox2.Size = new System.Drawing.Size(107, 78);
+            this.computerUpDownCardPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.computerUpDownCardPictureBox2.TabIndex = 1;
+            this.computerUpDownCardPictureBox2.TabStop = false;
+            // 
+            // computerUpDownCardPictureBox3
+            // 
+            this.computerUpDownCardPictureBox3.BackColor = System.Drawing.Color.SteelBlue;
+            this.computerUpDownCardPictureBox3.Location = new System.Drawing.Point(229, 3);
+            this.computerUpDownCardPictureBox3.Name = "computerUpDownCardPictureBox3";
+            this.computerUpDownCardPictureBox3.Size = new System.Drawing.Size(108, 78);
+            this.computerUpDownCardPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.computerUpDownCardPictureBox3.TabIndex = 2;
+            this.computerUpDownCardPictureBox3.TabStop = false;
             // 
             // computerUpDownCardsGroupBox
             // 
@@ -148,120 +178,6 @@
             this.playerUpDownCardsPanel.Size = new System.Drawing.Size(340, 84);
             this.playerUpDownCardsPanel.TabIndex = 0;
             // 
-            // playerHandGroupBox
-            // 
-            this.playerHandGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
-            this.playerHandGroupBox.Controls.Add(this.playerHandPanel);
-            this.playerHandGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.playerHandGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playerHandGroupBox.ForeColor = System.Drawing.Color.White;
-            this.playerHandGroupBox.Location = new System.Drawing.Point(0, 500);
-            this.playerHandGroupBox.Name = "playerHandGroupBox";
-            this.playerHandGroupBox.Size = new System.Drawing.Size(800, 100);
-            this.playerHandGroupBox.TabIndex = 9;
-            this.playerHandGroupBox.TabStop = false;
-            this.playerHandGroupBox.Text = "Player\'s Hand";
-            // 
-            // playerHandPanel
-            // 
-            this.playerHandPanel.BackColor = System.Drawing.Color.SteelBlue;
-            this.playerHandPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playerHandPanel.Location = new System.Drawing.Point(3, 19);
-            this.playerHandPanel.Name = "playerHandPanel";
-            this.playerHandPanel.Size = new System.Drawing.Size(794, 78);
-            this.playerHandPanel.TabIndex = 0;
-            // 
-            // discardGroupBox
-            // 
-            this.discardGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.discardGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
-            this.discardGroupBox.Controls.Add(this.discardPilePictureBox);
-            this.discardGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discardGroupBox.ForeColor = System.Drawing.Color.White;
-            this.discardGroupBox.Location = new System.Drawing.Point(401, 240);
-            this.discardGroupBox.Name = "discardGroupBox";
-            this.discardGroupBox.Size = new System.Drawing.Size(90, 120);
-            this.discardGroupBox.TabIndex = 8;
-            this.discardGroupBox.TabStop = false;
-            this.discardGroupBox.Text = "Discard";
-            // 
-            // drawGroupBox
-            // 
-            this.drawGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.drawGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
-            this.drawGroupBox.Controls.Add(this.drawPilePictureBox);
-            this.drawGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.drawGroupBox.ForeColor = System.Drawing.Color.White;
-            this.drawGroupBox.Location = new System.Drawing.Point(305, 240);
-            this.drawGroupBox.Name = "drawGroupBox";
-            this.drawGroupBox.Size = new System.Drawing.Size(90, 120);
-            this.drawGroupBox.TabIndex = 7;
-            this.drawGroupBox.TabStop = false;
-            this.drawGroupBox.Text = "Draw";
-            // 
-            // infoButton
-            // 
-            this.infoButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.infoButton.BackColor = System.Drawing.Color.Transparent;
-            this.infoButton.Image = global::Watermelon.Properties.Resources.info;
-            this.infoButton.Location = new System.Drawing.Point(582, 454);
-            this.infoButton.Name = "infoButton";
-            this.infoButton.Size = new System.Drawing.Size(40, 40);
-            this.infoButton.TabIndex = 11;
-            this.infoButton.UseVisualStyleBackColor = false;
-            // 
-            // discardPilePictureBox
-            // 
-            this.discardPilePictureBox.BackColor = System.Drawing.Color.SteelBlue;
-            this.discardPilePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.discardPilePictureBox.Location = new System.Drawing.Point(6, 19);
-            this.discardPilePictureBox.Name = "discardPilePictureBox";
-            this.discardPilePictureBox.Size = new System.Drawing.Size(78, 95);
-            this.discardPilePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.discardPilePictureBox.TabIndex = 1;
-            this.discardPilePictureBox.TabStop = false;
-            this.discardPilePictureBox.Click += new System.EventHandler(this.DiscardPilePictureBox_Click);
-            // 
-            // drawPilePictureBox
-            // 
-            this.drawPilePictureBox.BackColor = System.Drawing.Color.SteelBlue;
-            this.drawPilePictureBox.Location = new System.Drawing.Point(6, 19);
-            this.drawPilePictureBox.Name = "drawPilePictureBox";
-            this.drawPilePictureBox.Size = new System.Drawing.Size(78, 95);
-            this.drawPilePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.drawPilePictureBox.TabIndex = 0;
-            this.drawPilePictureBox.TabStop = false;
-            // 
-            // computerUpDownCardPictureBox1
-            // 
-            this.computerUpDownCardPictureBox1.BackColor = System.Drawing.Color.SteelBlue;
-            this.computerUpDownCardPictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.computerUpDownCardPictureBox1.Name = "computerUpDownCardPictureBox1";
-            this.computerUpDownCardPictureBox1.Size = new System.Drawing.Size(107, 78);
-            this.computerUpDownCardPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.computerUpDownCardPictureBox1.TabIndex = 0;
-            this.computerUpDownCardPictureBox1.TabStop = false;
-            // 
-            // computerUpDownCardPictureBox2
-            // 
-            this.computerUpDownCardPictureBox2.BackColor = System.Drawing.Color.SteelBlue;
-            this.computerUpDownCardPictureBox2.Location = new System.Drawing.Point(116, 3);
-            this.computerUpDownCardPictureBox2.Name = "computerUpDownCardPictureBox2";
-            this.computerUpDownCardPictureBox2.Size = new System.Drawing.Size(107, 78);
-            this.computerUpDownCardPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.computerUpDownCardPictureBox2.TabIndex = 1;
-            this.computerUpDownCardPictureBox2.TabStop = false;
-            // 
-            // computerUpDownCardPictureBox3
-            // 
-            this.computerUpDownCardPictureBox3.BackColor = System.Drawing.Color.SteelBlue;
-            this.computerUpDownCardPictureBox3.Location = new System.Drawing.Point(229, 3);
-            this.computerUpDownCardPictureBox3.Name = "computerUpDownCardPictureBox3";
-            this.computerUpDownCardPictureBox3.Size = new System.Drawing.Size(108, 78);
-            this.computerUpDownCardPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.computerUpDownCardPictureBox3.TabIndex = 2;
-            this.computerUpDownCardPictureBox3.TabStop = false;
-            // 
             // humanUpDownCardBox3
             // 
             this.humanUpDownCardBox3.BackColor = System.Drawing.Color.SteelBlue;
@@ -307,6 +223,92 @@
             this.humanUpDownCardBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.humanUpDownCardBox1.TabIndex = 0;
             // 
+            // playerHandGroupBox
+            // 
+            this.playerHandGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
+            this.playerHandGroupBox.Controls.Add(this.playerHandPanel);
+            this.playerHandGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.playerHandGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playerHandGroupBox.ForeColor = System.Drawing.Color.White;
+            this.playerHandGroupBox.Location = new System.Drawing.Point(0, 500);
+            this.playerHandGroupBox.Name = "playerHandGroupBox";
+            this.playerHandGroupBox.Size = new System.Drawing.Size(800, 100);
+            this.playerHandGroupBox.TabIndex = 9;
+            this.playerHandGroupBox.TabStop = false;
+            this.playerHandGroupBox.Text = "Player\'s Hand";
+            // 
+            // playerHandPanel
+            // 
+            this.playerHandPanel.BackColor = System.Drawing.Color.SteelBlue;
+            this.playerHandPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playerHandPanel.Location = new System.Drawing.Point(3, 19);
+            this.playerHandPanel.Name = "playerHandPanel";
+            this.playerHandPanel.Size = new System.Drawing.Size(794, 78);
+            this.playerHandPanel.TabIndex = 0;
+            // 
+            // discardGroupBox
+            // 
+            this.discardGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.discardGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
+            this.discardGroupBox.Controls.Add(this.discardPilePictureBox);
+            this.discardGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discardGroupBox.ForeColor = System.Drawing.Color.White;
+            this.discardGroupBox.Location = new System.Drawing.Point(401, 240);
+            this.discardGroupBox.Name = "discardGroupBox";
+            this.discardGroupBox.Size = new System.Drawing.Size(90, 120);
+            this.discardGroupBox.TabIndex = 8;
+            this.discardGroupBox.TabStop = false;
+            this.discardGroupBox.Text = "Discard";
+            // 
+            // discardPilePictureBox
+            // 
+            this.discardPilePictureBox.BackColor = System.Drawing.Color.SteelBlue;
+            this.discardPilePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.discardPilePictureBox.Location = new System.Drawing.Point(6, 19);
+            this.discardPilePictureBox.Name = "discardPilePictureBox";
+            this.discardPilePictureBox.Size = new System.Drawing.Size(78, 95);
+            this.discardPilePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.discardPilePictureBox.TabIndex = 1;
+            this.discardPilePictureBox.TabStop = false;
+            this.discardPilePictureBox.Click += new System.EventHandler(this.DiscardPilePictureBox_Click);
+            // 
+            // drawGroupBox
+            // 
+            this.drawGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.drawGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
+            this.drawGroupBox.Controls.Add(this.drawPilePictureBox);
+            this.drawGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.drawGroupBox.ForeColor = System.Drawing.Color.White;
+            this.drawGroupBox.Location = new System.Drawing.Point(305, 240);
+            this.drawGroupBox.Name = "drawGroupBox";
+            this.drawGroupBox.Size = new System.Drawing.Size(90, 120);
+            this.drawGroupBox.TabIndex = 7;
+            this.drawGroupBox.TabStop = false;
+            this.drawGroupBox.Text = "Draw";
+            // 
+            // drawPilePictureBox
+            // 
+            this.drawPilePictureBox.BackColor = System.Drawing.Color.SteelBlue;
+            this.drawPilePictureBox.Location = new System.Drawing.Point(6, 19);
+            this.drawPilePictureBox.Name = "drawPilePictureBox";
+            this.drawPilePictureBox.Size = new System.Drawing.Size(78, 95);
+            this.drawPilePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.drawPilePictureBox.TabIndex = 0;
+            this.drawPilePictureBox.TabStop = false;
+            // 
+            // infoButton
+            // 
+            this.infoButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.infoButton.BackColor = System.Drawing.Color.Transparent;
+            this.infoButton.Image = global::Watermelon.Properties.Resources.info;
+            this.infoButton.Location = new System.Drawing.Point(582, 454);
+            this.infoButton.Name = "infoButton";
+            this.infoButton.Size = new System.Drawing.Size(40, 40);
+            this.infoButton.TabIndex = 11;
+            this.infoButton.UseVisualStyleBackColor = false;
+            this.infoButton.Visible = false;
+            this.infoButton.Click += new System.EventHandler(this.infoButton_Click);
+            // 
             // GameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,17 +326,17 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProcessKeyDown);
             this.computerHandGroupBox.ResumeLayout(false);
             this.computerUpDownCardsPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox3)).EndInit();
             this.computerUpDownCardsGroupBox.ResumeLayout(false);
             this.playerUpDownCardsGroupBox.ResumeLayout(false);
             this.playerUpDownCardsPanel.ResumeLayout(false);
             this.playerHandGroupBox.ResumeLayout(false);
             this.discardGroupBox.ResumeLayout(false);
-            this.drawGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.discardPilePictureBox)).EndInit();
+            this.drawGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.drawPilePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
