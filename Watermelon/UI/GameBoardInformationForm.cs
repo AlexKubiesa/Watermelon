@@ -13,38 +13,20 @@ namespace Watermelon.UI
 {
     public partial class GameBoardInformationForm : Form
     {
-        private IList<Card> discardPile;
-
         public GameBoardInformationForm(IEnumerable<Card> discardPile)
         {
             InitializeComponent();
-            this.discardPile = discardPile.ToList();
+            FillCardHistoryListView(discardPile);
         }
 
-        private DataTable DataTableFromDiscardPile(IList<Card> discardPile)
+        private void FillCardHistoryListView(IEnumerable<Card> discardPile)
         {
-            DataTable table = new DataTable();
-
-            var column = new DataColumn
-            {
-                DataType = typeof(string),
-                ReadOnly = true,
-                ColumnName = "Card Summary"
-            };
-            table.Columns.Add(column);
-
-            foreach (Card c in discardPile)
-            {
-                table.Rows.Add("Some card here.");
-            }
-
-            return table;
+            cardHistoryListView.Items.AddRange(discardPile.Select(CreateListViewItem).ToArray());
         }
 
-        private void GameBoardInformationForm_Load(object sender, EventArgs e)
+        private ListViewItem CreateListViewItem(Card card)
         {
-            discardPileBindingSource.DataSource = DataTableFromDiscardPile(discardPile);
-            //dataGridView1.Columns.GetFirstColumn(DataGridViewElementStates.None).DataPropertyName = "Card Summary";
+            return new ListViewItem(card.ToString());
         }
     }
 }

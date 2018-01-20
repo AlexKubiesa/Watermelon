@@ -28,22 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameBoardInformationForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cardHistoryListView = new System.Windows.Forms.ListView();
+            this.cardColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.playerColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.headingLabel = new System.Windows.Forms.Label();
-            this.discardPileBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Summary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.discardPileBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.MidnightBlue;
-            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.cardHistoryListView);
             this.panel1.Controls.Add(this.headingLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -51,19 +48,31 @@
             this.panel1.Size = new System.Drawing.Size(284, 261);
             this.panel1.TabIndex = 0;
             // 
-            // dataGridView1
+            // cardHistoryListView
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.SteelBlue;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Summary});
-            this.dataGridView1.DataSource = this.discardPileBindingSource;
-            this.dataGridView1.GridColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 37);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(259, 212);
-            this.dataGridView1.TabIndex = 2;
+            this.cardHistoryListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cardHistoryListView.BackColor = System.Drawing.Color.SteelBlue;
+            this.cardHistoryListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cardColumnHeader,
+            this.playerColumnHeader});
+            this.cardHistoryListView.Location = new System.Drawing.Point(12, 36);
+            this.cardHistoryListView.Name = "cardHistoryListView";
+            this.cardHistoryListView.Size = new System.Drawing.Size(260, 213);
+            this.cardHistoryListView.TabIndex = 3;
+            this.cardHistoryListView.UseCompatibleStateImageBehavior = false;
+            this.cardHistoryListView.View = System.Windows.Forms.View.Details;
+            // 
+            // cardColumnHeader
+            // 
+            this.cardColumnHeader.Text = "Card";
+            this.cardColumnHeader.Width = 141;
+            // 
+            // playerColumnHeader
+            // 
+            this.playerColumnHeader.Text = "Player";
+            this.playerColumnHeader.Width = 104;
             // 
             // headingLabel
             // 
@@ -77,12 +86,6 @@
             this.headingLabel.Text = "Cards on Discard Pile";
             this.headingLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // Summary
-            // 
-            this.Summary.HeaderText = "Summary";
-            this.Summary.Name = "Summary";
-            this.Summary.ReadOnly = true;
-            // 
             // GameBoardInformationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -95,10 +98,7 @@
             this.Name = "GameBoardInformationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Game Info";
-            this.Load += new System.EventHandler(this.GameBoardInformationForm_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.discardPileBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -107,8 +107,8 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label headingLabel;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource discardPileBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Summary;
+        private System.Windows.Forms.ListView cardHistoryListView;
+        private System.Windows.Forms.ColumnHeader cardColumnHeader;
+        private System.Windows.Forms.ColumnHeader playerColumnHeader;
     }
 }
