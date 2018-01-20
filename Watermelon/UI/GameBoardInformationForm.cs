@@ -26,7 +26,8 @@ namespace Watermelon.UI
 
         private ListViewItem CreateListViewItem(Card card)
         {
-            return new ListViewItem(card.ToString());
+            var str = new CardConverter().ConvertToString(card);
+            return new ListViewItem(str);
         }
     }
 }

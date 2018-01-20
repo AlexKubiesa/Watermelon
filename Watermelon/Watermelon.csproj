@@ -96,6 +96,7 @@
     <Compile Include="Gameplay\Players\MediumComputerPlayer.cs" />
     <Compile Include="Gameplay\Players\Player.cs" />
     <Compile Include="Gameplay\TurnTracker.cs" />
+    <Compile Include="Gameplay\CardConverter.cs" />
     <Compile Include="UI\CardSelectionBox.cs">
       <SubType>Component</SubType>
     </Compile>

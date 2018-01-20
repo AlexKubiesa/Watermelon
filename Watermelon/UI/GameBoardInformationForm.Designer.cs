@@ -57,6 +57,7 @@
             this.cardHistoryListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.cardColumnHeader,
             this.playerColumnHeader});
+            this.cardHistoryListView.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cardHistoryListView.Location = new System.Drawing.Point(12, 36);
             this.cardHistoryListView.Name = "cardHistoryListView";
             this.cardHistoryListView.Size = new System.Drawing.Size(260, 213);
