@@ -25,7 +25,6 @@ namespace Watermelon.Gameplay
             currentPlayerNode = playersLinkedList.Tail;
         }
 
-        // Only call this method once, and only after all players have been added to the turn tracker.
         public void Start()
         {
             CallNextPlayer();
