@@ -120,6 +120,12 @@
       <DependentUpon>GameBoardInformationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\GameDifficultyEventArgs.cs" />
+    <Compile Include="UI\HumanPlayerHandControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\HumanPlayerHandControl.Designer.cs">
+      <DependentUpon>HumanPlayerHandControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\GameBoardInformationForm.resx">
       <DependentUpon>GameBoardInformationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HumanPlayerHandControl.resx">
+      <DependentUpon>HumanPlayerHandControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

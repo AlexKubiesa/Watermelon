@@ -37,16 +37,15 @@
             this.computerUpDownCardsGroupBox = new System.Windows.Forms.GroupBox();
             this.playerUpDownCardsGroupBox = new System.Windows.Forms.GroupBox();
             this.playerUpDownCardsPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.playerHandGroupBox = new System.Windows.Forms.GroupBox();
-            this.playerHandPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.humanUpDownCardBox3 = new Watermelon.UI.CardSelectionBox();
+            this.humanUpDownCardBox2 = new Watermelon.UI.CardSelectionBox();
+            this.humanUpDownCardBox1 = new Watermelon.UI.CardSelectionBox();
             this.discardGroupBox = new System.Windows.Forms.GroupBox();
             this.discardPilePictureBox = new System.Windows.Forms.PictureBox();
             this.drawGroupBox = new System.Windows.Forms.GroupBox();
             this.drawPilePictureBox = new System.Windows.Forms.PictureBox();
             this.infoButton = new System.Windows.Forms.Button();
-            this.humanUpDownCardBox3 = new Watermelon.UI.CardSelectionBox();
-            this.humanUpDownCardBox2 = new Watermelon.UI.CardSelectionBox();
-            this.humanUpDownCardBox1 = new Watermelon.UI.CardSelectionBox();
+            this.humanPlayerHandControl = new Watermelon.UI.HumanPlayerHandControl();
             this.computerHandGroupBox.SuspendLayout();
             this.computerUpDownCardsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox1)).BeginInit();
@@ -55,7 +54,6 @@
             this.computerUpDownCardsGroupBox.SuspendLayout();
             this.playerUpDownCardsGroupBox.SuspendLayout();
             this.playerUpDownCardsPanel.SuspendLayout();
-            this.playerHandGroupBox.SuspendLayout();
             this.discardGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.discardPilePictureBox)).BeginInit();
             this.drawGroupBox.SuspendLayout();
@@ -178,28 +176,50 @@
             this.playerUpDownCardsPanel.Size = new System.Drawing.Size(340, 84);
             this.playerUpDownCardsPanel.TabIndex = 0;
             // 
-            // playerHandGroupBox
+            // humanUpDownCardBox3
             // 
-            this.playerHandGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
-            this.playerHandGroupBox.Controls.Add(this.playerHandPanel);
-            this.playerHandGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.playerHandGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playerHandGroupBox.ForeColor = System.Drawing.Color.White;
-            this.playerHandGroupBox.Location = new System.Drawing.Point(0, 500);
-            this.playerHandGroupBox.Name = "playerHandGroupBox";
-            this.playerHandGroupBox.Size = new System.Drawing.Size(800, 100);
-            this.playerHandGroupBox.TabIndex = 9;
-            this.playerHandGroupBox.TabStop = false;
-            this.playerHandGroupBox.Text = "Player\'s Hand";
+            this.humanUpDownCardBox3.BackColor = System.Drawing.Color.SteelBlue;
+            this.humanUpDownCardBox3.CheckedColor = System.Drawing.Color.Black;
+            this.humanUpDownCardBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.humanUpDownCardBox3.HoverColor = System.Drawing.Color.White;
+            this.humanUpDownCardBox3.Image = null;
+            this.humanUpDownCardBox3.Location = new System.Drawing.Point(229, 3);
+            this.humanUpDownCardBox3.Name = "humanUpDownCardBox3";
+            this.humanUpDownCardBox3.Padding = new System.Windows.Forms.Padding(4);
+            this.humanUpDownCardBox3.QuickConfirm = false;
+            this.humanUpDownCardBox3.Size = new System.Drawing.Size(107, 78);
+            this.humanUpDownCardBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.humanUpDownCardBox3.TabIndex = 2;
             // 
-            // playerHandPanel
+            // humanUpDownCardBox2
             // 
-            this.playerHandPanel.BackColor = System.Drawing.Color.SteelBlue;
-            this.playerHandPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playerHandPanel.Location = new System.Drawing.Point(3, 19);
-            this.playerHandPanel.Name = "playerHandPanel";
-            this.playerHandPanel.Size = new System.Drawing.Size(794, 78);
-            this.playerHandPanel.TabIndex = 0;
+            this.humanUpDownCardBox2.BackColor = System.Drawing.Color.SteelBlue;
+            this.humanUpDownCardBox2.CheckedColor = System.Drawing.Color.Black;
+            this.humanUpDownCardBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.humanUpDownCardBox2.HoverColor = System.Drawing.Color.White;
+            this.humanUpDownCardBox2.Image = null;
+            this.humanUpDownCardBox2.Location = new System.Drawing.Point(116, 3);
+            this.humanUpDownCardBox2.Name = "humanUpDownCardBox2";
+            this.humanUpDownCardBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.humanUpDownCardBox2.QuickConfirm = false;
+            this.humanUpDownCardBox2.Size = new System.Drawing.Size(107, 78);
+            this.humanUpDownCardBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.humanUpDownCardBox2.TabIndex = 1;
+            // 
+            // humanUpDownCardBox1
+            // 
+            this.humanUpDownCardBox1.BackColor = System.Drawing.Color.SteelBlue;
+            this.humanUpDownCardBox1.CheckedColor = System.Drawing.Color.Black;
+            this.humanUpDownCardBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.humanUpDownCardBox1.HoverColor = System.Drawing.Color.White;
+            this.humanUpDownCardBox1.Image = null;
+            this.humanUpDownCardBox1.Location = new System.Drawing.Point(3, 3);
+            this.humanUpDownCardBox1.Name = "humanUpDownCardBox1";
+            this.humanUpDownCardBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.humanUpDownCardBox1.QuickConfirm = false;
+            this.humanUpDownCardBox1.Size = new System.Drawing.Size(107, 78);
+            this.humanUpDownCardBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.humanUpDownCardBox1.TabIndex = 0;
             // 
             // discardGroupBox
             // 
@@ -263,64 +283,28 @@
             this.infoButton.UseVisualStyleBackColor = false;
             this.infoButton.Click += new System.EventHandler(this.infoButton_Click);
             // 
-            // humanUpDownCardBox3
+            // humanPlayerHandControl
             // 
-            this.humanUpDownCardBox3.BackColor = System.Drawing.Color.SteelBlue;
-            this.humanUpDownCardBox3.CheckedColor = System.Drawing.Color.Black;
-            this.humanUpDownCardBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.humanUpDownCardBox3.HoverColor = System.Drawing.Color.White;
-            this.humanUpDownCardBox3.Image = null;
-            this.humanUpDownCardBox3.Location = new System.Drawing.Point(229, 3);
-            this.humanUpDownCardBox3.Name = "humanUpDownCardBox3";
-            this.humanUpDownCardBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.humanUpDownCardBox3.QuickConfirm = false;
-            this.humanUpDownCardBox3.Size = new System.Drawing.Size(107, 78);
-            this.humanUpDownCardBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.humanUpDownCardBox3.TabIndex = 2;
+            this.humanPlayerHandControl.AreCardsVisible = true;
+            this.humanPlayerHandControl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.humanPlayerHandControl.Location = new System.Drawing.Point(0, 500);
+            this.humanPlayerHandControl.Name = "humanPlayerHandControl";
+            this.humanPlayerHandControl.Size = new System.Drawing.Size(800, 100);
+            this.humanPlayerHandControl.TabIndex = 12;
             // 
-            // humanUpDownCardBox2
-            // 
-            this.humanUpDownCardBox2.BackColor = System.Drawing.Color.SteelBlue;
-            this.humanUpDownCardBox2.CheckedColor = System.Drawing.Color.Black;
-            this.humanUpDownCardBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.humanUpDownCardBox2.HoverColor = System.Drawing.Color.White;
-            this.humanUpDownCardBox2.Image = null;
-            this.humanUpDownCardBox2.Location = new System.Drawing.Point(116, 3);
-            this.humanUpDownCardBox2.Name = "humanUpDownCardBox2";
-            this.humanUpDownCardBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.humanUpDownCardBox2.QuickConfirm = false;
-            this.humanUpDownCardBox2.Size = new System.Drawing.Size(107, 78);
-            this.humanUpDownCardBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.humanUpDownCardBox2.TabIndex = 1;
-            // 
-            // humanUpDownCardBox1
-            // 
-            this.humanUpDownCardBox1.BackColor = System.Drawing.Color.SteelBlue;
-            this.humanUpDownCardBox1.CheckedColor = System.Drawing.Color.Black;
-            this.humanUpDownCardBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.humanUpDownCardBox1.HoverColor = System.Drawing.Color.White;
-            this.humanUpDownCardBox1.Image = null;
-            this.humanUpDownCardBox1.Location = new System.Drawing.Point(3, 3);
-            this.humanUpDownCardBox1.Name = "humanUpDownCardBox1";
-            this.humanUpDownCardBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.humanUpDownCardBox1.QuickConfirm = false;
-            this.humanUpDownCardBox1.Size = new System.Drawing.Size(107, 78);
-            this.humanUpDownCardBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.humanUpDownCardBox1.TabIndex = 0;
-            // 
-            // GameBoard
+            // GameBoardControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.humanPlayerHandControl);
             this.Controls.Add(this.infoButton);
             this.Controls.Add(this.playerUpDownCardsGroupBox);
-            this.Controls.Add(this.playerHandGroupBox);
             this.Controls.Add(this.discardGroupBox);
             this.Controls.Add(this.drawGroupBox);
             this.Controls.Add(this.computerUpDownCardsGroupBox);
             this.Controls.Add(this.computerHandGroupBox);
-            this.Name = "GameBoard";
+            this.Name = "GameBoardControl";
             this.Size = new System.Drawing.Size(800, 600);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProcessKeyDown);
             this.computerHandGroupBox.ResumeLayout(false);
@@ -331,7 +315,6 @@
             this.computerUpDownCardsGroupBox.ResumeLayout(false);
             this.playerUpDownCardsGroupBox.ResumeLayout(false);
             this.playerUpDownCardsPanel.ResumeLayout(false);
-            this.playerHandGroupBox.ResumeLayout(false);
             this.discardGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.discardPilePictureBox)).EndInit();
             this.drawGroupBox.ResumeLayout(false);
@@ -354,12 +337,11 @@
         private CardSelectionBox humanUpDownCardBox3;
         private CardSelectionBox humanUpDownCardBox2;
         private CardSelectionBox humanUpDownCardBox1;
-        private System.Windows.Forms.GroupBox playerHandGroupBox;
-        private System.Windows.Forms.FlowLayoutPanel playerHandPanel;
         private System.Windows.Forms.GroupBox discardGroupBox;
         private System.Windows.Forms.PictureBox discardPilePictureBox;
         private System.Windows.Forms.GroupBox drawGroupBox;
         private System.Windows.Forms.PictureBox drawPilePictureBox;
         private System.Windows.Forms.Button infoButton;
+        private HumanPlayerHandControl humanPlayerHandControl;
     }
 }

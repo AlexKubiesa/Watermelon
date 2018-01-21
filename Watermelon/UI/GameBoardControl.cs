@@ -31,6 +31,7 @@ namespace Watermelon.UI
 
         private Game _game;
 
+        [Obsolete]
         // Converts between cards in the human player's hand and the corresponding card selection boxes.
         private Bidictionary<CardSelectionBox, Card> _humanCardBoxesToCards;
 
@@ -107,6 +108,8 @@ namespace Watermelon.UI
             _computerPlayer.AddedUpCard += ComputerPlayer_AddedUpCard;
             _computerPlayer.AddedDownCard += ComputerPlayer_AddedDownCard;
             _computerPlayer.Won += ComputerPlayer_Won;
+
+            humanPlayerHandControl.Player = _humanPlayer;
 
             _game.Start();
         }
@@ -358,23 +361,23 @@ namespace Watermelon.UI
 
         private void AddToHumanHand(Card card)
         {
-            // Show card in player's hand.
-            var addedCardBox = new CardSelectionBox()
-            {
-                Image = card.FrontImage,
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                Width = drawPilePictureBox.Width - 20,
-                Height = playerHandPanel.Height - playerHandPanel.Padding.Vertical - 6,
-                Cursor = Cursors.Hand,
-                Padding = new Padding(4),
-                HoverColor = Color.White,
-                CheckedColor = Color.Black
-            };
-            addedCardBox.Confirm += HumanHandCardBox_Confirm;
-            playerHandPanel.Controls.Add(addedCardBox);
+            //// Show card in player's hand.
+            //var addedCardBox = new CardSelectionBox()
+            //{
+            //    Image = card.FrontImage,
+            //    SizeMode = PictureBoxSizeMode.StretchImage,
+            //    Width = drawPilePictureBox.Width - 20,
+            //    Height = playerHandPanel.Height - playerHandPanel.Padding.Vertical - 6,
+            //    Cursor = Cursors.Hand,
+            //    Padding = new Padding(4),
+            //    HoverColor = Color.White,
+            //    CheckedColor = Color.Black
+            //};
+            //addedCardBox.Confirm += HumanHandCardBox_Confirm;
+            //playerHandPanel.Controls.Add(addedCardBox);
 
-            // Add card to dictionary.
-            _humanCardBoxesToCards.Add(addedCardBox, card);
+            //// Add card to dictionary.
+            //_humanCardBoxesToCards.Add(addedCardBox, card);
         }
 
         private void AddToComputerHand(Card card)
@@ -395,12 +398,12 @@ namespace Watermelon.UI
 
         private void RemoveFromHumanHand(Card card)
         {
-            // Remove card from player's hand.
-            var removedCardBox = _humanCardBoxesToCards.Reverse(card);
-            playerHandPanel.Controls.Remove(removedCardBox);
+            //// Remove card from player's hand.
+            //var removedCardBox = _humanCardBoxesToCards.Reverse(card);
+            //playerHandPanel.Controls.Remove(removedCardBox);
 
-            // Remove card from dictionary.
-            _humanCardBoxesToCards.RemoveReverse(card);
+            //// Remove card from dictionary.
+            //_humanCardBoxesToCards.RemoveReverse(card);
         }
 
         private void RemoveFromComputerHand(Card card)
