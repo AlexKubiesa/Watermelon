@@ -129,11 +129,11 @@
     <Compile Include="UI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\GameBoard.cs">
+    <Compile Include="UI\GameBoardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\GameBoard.Designer.cs">
-      <DependentUpon>GameBoard.cs</DependentUpon>
+    <Compile Include="UI\GameBoardControl.Designer.cs">
+      <DependentUpon>GameBoardControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\MainMenu.cs">
       <SubType>UserControl</SubType>
@@ -159,8 +159,8 @@
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\GameBoard.resx">
-      <DependentUpon>GameBoard.cs</DependentUpon>
+    <EmbeddedResource Include="UI\GameBoardControl.resx">
+      <DependentUpon>GameBoardControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

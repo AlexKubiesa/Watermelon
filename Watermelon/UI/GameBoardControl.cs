@@ -11,7 +11,7 @@ using Watermelon.Utility;
 
 namespace Watermelon.UI
 {
-    public partial class GameBoard : UserControl
+    public partial class GameBoardControl : UserControl
     {
         delegate void CardDelegate(Card card);
 
@@ -50,7 +50,7 @@ namespace Watermelon.UI
 
         private DiscardPileHistoryTracker _discardPileHistoryTracker;
 
-        public GameBoard()
+        public GameBoardControl()
         {
             InitializeComponent();
             Thread.CurrentThread.Name = "UI Thread";

@@ -1,6 +1,6 @@
 ﻿namespace Watermelon.UI
 {
-    partial class GameBoard
+    partial class GameBoardControl
     {
         /// <summary> 
         /// Required designer variable.
