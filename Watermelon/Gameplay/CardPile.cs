@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Watermelon.Gameplay
 {
-    internal class CardPile : ICardPile
+    abstract class CardPile : ICardPile
     {
         public Image Image => _image;
 
