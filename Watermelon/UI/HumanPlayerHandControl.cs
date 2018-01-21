@@ -17,13 +17,19 @@ namespace Watermelon.UI
     {
         delegate void CardDelegate(Card card);
 
+        public bool AreCardsVisible { get; set; } = true;
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get => groupBox.Text;
-            set => groupBox.Text = value;
+            set
+            {
+                base.Text = value;
+                groupBox.Text = value;
+            }
         }
-
-        public bool AreCardsVisible { get; set; } = true;
 
         internal HumanPlayer Player
         {
@@ -33,7 +39,6 @@ namespace Watermelon.UI
                 player = value;
                 player.AddedCardsToHand += Player_AddedCardsToHand;
                 player.PlayedFromHand += Player_PlayedFromHand;
-                //_humanPlayer.ActiveRegionChanged += HumanPlayer_ActiveRegionChanged;
             }
         }
 

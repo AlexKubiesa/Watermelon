@@ -37,6 +37,7 @@
             this.computerUpDownCardsGroupBox = new System.Windows.Forms.GroupBox();
             this.playerUpDownCardsGroupBox = new System.Windows.Forms.GroupBox();
             this.playerUpDownCardsPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.humanPlayerHandControl = new HumanPlayerHandControl();
             this.humanUpDownCardBox3 = new Watermelon.UI.CardSelectionBox();
             this.humanUpDownCardBox2 = new Watermelon.UI.CardSelectionBox();
             this.humanUpDownCardBox1 = new Watermelon.UI.CardSelectionBox();
@@ -45,7 +46,6 @@
             this.drawGroupBox = new System.Windows.Forms.GroupBox();
             this.drawPilePictureBox = new System.Windows.Forms.PictureBox();
             this.infoButton = new System.Windows.Forms.Button();
-            this.humanPlayerHandControl = new Watermelon.UI.HumanPlayerHandControl();
             this.computerHandGroupBox.SuspendLayout();
             this.computerUpDownCardsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox1)).BeginInit();
@@ -221,6 +221,19 @@
             this.humanUpDownCardBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.humanUpDownCardBox1.TabIndex = 0;
             // 
+            // humanPlayerHandControl
+            // 
+            this.humanPlayerHandControl.AreCardsVisible = true;
+            this.humanPlayerHandControl.BackColor = System.Drawing.Color.MidnightBlue;
+            this.humanPlayerHandControl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.humanPlayerHandControl.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.humanPlayerHandControl.ForeColor = System.Drawing.Color.White;
+            this.humanPlayerHandControl.Location = new System.Drawing.Point(0, 500);
+            this.humanPlayerHandControl.Name = "humanPlayerHandControl";
+            this.humanPlayerHandControl.Size = new System.Drawing.Size(800, 100);
+            this.humanPlayerHandControl.TabIndex = 12;
+            this.humanPlayerHandControl.Text = "Player\'s Hand";
+            // 
             // discardGroupBox
             // 
             this.discardGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -282,15 +295,6 @@
             this.infoButton.TabIndex = 11;
             this.infoButton.UseVisualStyleBackColor = false;
             this.infoButton.Click += new System.EventHandler(this.infoButton_Click);
-            // 
-            // humanPlayerHandControl
-            // 
-            this.humanPlayerHandControl.AreCardsVisible = true;
-            this.humanPlayerHandControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.humanPlayerHandControl.Location = new System.Drawing.Point(0, 500);
-            this.humanPlayerHandControl.Name = "humanPlayerHandControl";
-            this.humanPlayerHandControl.Size = new System.Drawing.Size(800, 100);
-            this.humanPlayerHandControl.TabIndex = 12;
             // 
             // GameBoardControl
             // 
