@@ -92,10 +92,8 @@ namespace Watermelon.UI
 
             _humanPlayer = _game.HumanPlayer;
             _humanPlayer.ActiveRegionChanged += HumanPlayer_ActiveRegionChanged;
-            _humanPlayer.PlayedFromHand += HumanPlayer_PlayedFromHand;
             _humanPlayer.PlayedUpCards += HumanPlayer_PlayedUpCards;
             _humanPlayer.BlindPlayedDownCard += HumanPlayer_PlayedDownCard;
-            _humanPlayer.AddedCardsToHand += HumanPlayer_AddedCardsToHand;
             _humanPlayer.AddedUpCard += HumanPlayer_AddedUpCard;
             _humanPlayer.AddedDownCard += HumanPlayer_AddedDownCard;
             _humanPlayer.Won += HumanPlayer_Won;
@@ -128,16 +126,6 @@ namespace Watermelon.UI
             Invoke(d, discardPilePictureBox, discardPile.Image);
         }
 
-        private async void HumanHandCardBox_Confirm(object sender, SelectionEventArgs e)
-        {
-            // Try to play all the selected cards.
-            // Used ToList() to force evaluation, so that it doesn't fall over later when trying to figure out
-            // which cards have been played but GameWindow has removed the relevant information from its
-            // dictionary.
-            var cards = e.Selection.Cast<CardSelectionBox>().Select(x => _humanCardBoxesToCards.Forward(x)).ToList();
-            await Task.Run(() => _humanPlayer.TryPlayFromHand(cards));
-        }
-
         private async void HumanUpDownCardBox_Confirm(object sender, SelectionEventArgs e)
         {
             // ToList() prevents lazy evaluation.
@@ -167,16 +155,6 @@ namespace Watermelon.UI
         {
             VoidDelegate d = UpdateEnabledHumanPlayerCardBoxes;
             Invoke(d);
-        }
-
-        private void HumanPlayer_AddedCardsToHand(object sender, CardEventArgs e)
-        {
-            CardDelegate d = AddToHumanHand;
-
-            foreach (var card in e.Cards)
-            {
-                Invoke(d, card);
-            }
         }
 
         private void ComputerPlayer_AddedCardsToHand(object sender, CardEventArgs e)
@@ -213,15 +191,15 @@ namespace Watermelon.UI
             Invoke(d);
         }
 
-        private void HumanPlayer_PlayedFromHand(object sender, CardEventArgs e)
-        {
-            CardDelegate d = RemoveFromHumanHand;
+        //private void HumanPlayer_PlayedFromHand(object sender, CardEventArgs e)
+        //{
+        //    CardDelegate d = RemoveFromHumanHand;
 
-            foreach (var card in e.Cards)
-            {
-                Invoke(d, card);
-            }
-        }
+        //    foreach (var card in e.Cards)
+        //    {
+        //        Invoke(d, card);
+        //    }
+        //}
 
         private void ComputerPlayer_PlayedFromHand(object sender, CardEventArgs e)
         {
@@ -359,27 +337,6 @@ namespace Watermelon.UI
             box.Enabled = true;
         }
 
-        private void AddToHumanHand(Card card)
-        {
-            //// Show card in player's hand.
-            //var addedCardBox = new CardSelectionBox()
-            //{
-            //    Image = card.FrontImage,
-            //    SizeMode = PictureBoxSizeMode.StretchImage,
-            //    Width = drawPilePictureBox.Width - 20,
-            //    Height = playerHandPanel.Height - playerHandPanel.Padding.Vertical - 6,
-            //    Cursor = Cursors.Hand,
-            //    Padding = new Padding(4),
-            //    HoverColor = Color.White,
-            //    CheckedColor = Color.Black
-            //};
-            //addedCardBox.Confirm += HumanHandCardBox_Confirm;
-            //playerHandPanel.Controls.Add(addedCardBox);
-
-            //// Add card to dictionary.
-            //_humanCardBoxesToCards.Add(addedCardBox, card);
-        }
-
         private void AddToComputerHand(Card card)
         {
             // Show card in player's hand.
@@ -394,16 +351,6 @@ namespace Watermelon.UI
 
             // Add card to dictionary.
             _computerCardPictureBoxes.Add(card, addedCardPictureBox);
-        }
-
-        private void RemoveFromHumanHand(Card card)
-        {
-            //// Remove card from player's hand.
-            //var removedCardBox = _humanCardBoxesToCards.Reverse(card);
-            //playerHandPanel.Controls.Remove(removedCardBox);
-
-            //// Remove card from dictionary.
-            //_humanCardBoxesToCards.RemoveReverse(card);
         }
 
         private void RemoveFromComputerHand(Card card)

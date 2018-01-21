@@ -32,8 +32,8 @@ namespace Watermelon.UI
             {
                 player = value;
                 player.AddedCardsToHand += Player_AddedCardsToHand;
+                player.PlayedFromHand += Player_PlayedFromHand;
                 //_humanPlayer.ActiveRegionChanged += HumanPlayer_ActiveRegionChanged;
-                //_humanPlayer.PlayedFromHand += HumanPlayer_PlayedFromHand;
             }
         }
 
@@ -79,6 +79,16 @@ namespace Watermelon.UI
             }
         }
 
+        private void RemoveCard(Card card)
+        {
+            // Remove card from player's hand.
+            var removedCardBox = _playerCardBoxesToCards.Reverse(card);
+            flowLayoutPanel.Controls.Remove(removedCardBox);
+
+            // Remove card from dictionary.
+            _playerCardBoxesToCards.RemoveReverse(card);
+        }
+
         private async void CardSelectionBox_Confirm(object sender, SelectionEventArgs e)
         {
             // Try to play all the selected cards.
@@ -87,6 +97,16 @@ namespace Watermelon.UI
             // dictionary.
             var cards = e.Selection.Cast<CardSelectionBox>().Select(x => _playerCardBoxesToCards.Forward(x)).ToList();
             await Task.Run(() => Player.TryPlayFromHand(cards));
+        }
+
+        private void Player_PlayedFromHand(object sender, CardEventArgs e)
+        {
+            CardDelegate d = RemoveCard;
+
+            foreach (var card in e.Cards)
+            {
+                Invoke(d, card);
+            }
         }
     }
 }
