@@ -36,7 +36,7 @@ namespace Watermelon.Gameplay
             get { return _computerPlayer; }
         }
 
-        public IEnumerable<Player> Players => _turnTracker.Players;
+        public IEnumerable<Player> Players => _players;
 
         private GameDifficulty _difficulty;
 
@@ -44,7 +44,9 @@ namespace Watermelon.Gameplay
 
         private ComputerPlayer _computerPlayer;
 
-        private TurnTracker _turnTracker;
+        private List<Player> _players;
+
+        private PlayerTurnController _turnController;
 
         private DrawPile _drawPile;
 
@@ -58,9 +60,9 @@ namespace Watermelon.Gameplay
 
             _computerPlayer = ComputerPlayer.Create("Computer", this);
 
-            _turnTracker = new TurnTracker();
-            _turnTracker.AddPlayer(_humanPlayer);
-            _turnTracker.AddPlayer(_computerPlayer);
+            _players = new List<Player> { _humanPlayer, _computerPlayer };
+
+            _turnController = new PlayerTurnController(_players);
 
             _drawPile = new DrawPile();
             _discardPile = new DiscardPile();
@@ -74,10 +76,10 @@ namespace Watermelon.Gameplay
 
             // Shuffle and deal the cards.
             dealer.Shuffle();
-            dealer.Deal(_turnTracker.Players, _drawPile);
+            dealer.Deal(_players, _drawPile);
 
             // Start the game!
-            _turnTracker.Start();
+            _turnController.Start();
         }
     }
 }

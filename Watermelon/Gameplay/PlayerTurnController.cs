@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Watermelon.Gameplay.Players;
+using Watermelon.Utility;
+
+namespace Watermelon.Gameplay
+{
+    internal class PlayerTurnController
+    {
+        private CircularDoublyLinkedList<Player> playersLinkedList;
+
+        private ICircularDoublyLinkedListNode<Player> currentPlayerNode;
+
+        public PlayerTurnController(IEnumerable<Player> players)
+        {
+            playersLinkedList = new CircularDoublyLinkedList<Player>(players);
+            currentPlayerNode = playersLinkedList.Head;
+        }
+
+        // Only call this method once, and only after all players have been added to the turn tracker.
+        public void Start()
+        {
+            CallNextPlayer();
+        }
+
+        private void Player_EndedTurn(object sender, EventArgs e)
+        {
+            CallNextPlayer();
+        }
+
+        private void CallNextPlayer()
+        {
+            currentPlayerNode = currentPlayerNode.Next;
+            var currentPlayer = currentPlayerNode.Value;
+            currentPlayer.BeginTurn();
+        }
+    }
+}
