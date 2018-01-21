@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Watermelon.Gameplay
 {
-    class DiscardPile : CardPile, IEnumerable<Card>
+    class DiscardPile : CardPile
     {
         // The rank of the top non-three, or null if no such card exists.
         public CardRank? EffectiveRank =>
@@ -52,18 +52,6 @@ namespace Watermelon.Gameplay
             var cards = TakeAllCards();
             OnCleared(EventArgs.Empty);
             return cards;
-        }
-
-        [Obsolete]
-        public IEnumerator<Card> GetEnumerator()
-        {
-            return _orientedCards.Select(orientedCard => orientedCard.Card).GetEnumerator();
-        }
-
-        [Obsolete]
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _orientedCards.Select(orientedCard => orientedCard.Card).GetEnumerator();
         }
 
         private bool TryBurn()
