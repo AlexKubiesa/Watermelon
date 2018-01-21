@@ -69,6 +69,9 @@
     <ApplicationIcon>Watermelon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -96,6 +99,7 @@
     <Compile Include="Gameplay\Players\MediumComputerPlayer.cs" />
     <Compile Include="Gameplay\Players\Player.cs" />
     <Compile Include="Gameplay\TurnTracker.cs" />
+    <Compile Include="Gameplay\CardConverter.cs" />
     <Compile Include="UI\CardSelectionBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -108,6 +112,8 @@
     <Compile Include="UI\DifficultyMenu.Designer.cs">
       <DependentUpon>DifficultyMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\DiscardPileHistoryRecord.cs" />
+    <Compile Include="UI\DiscardPileHistoryTracker.cs" />
     <Compile Include="UI\GameBoardInformationForm.cs">
       <SubType>Form</SubType>
     </Compile>

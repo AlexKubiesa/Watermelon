@@ -1,4 +1,5 @@
-﻿using Watermelon.Gameplay.Players;
+﻿using System.Collections.Generic;
+using Watermelon.Gameplay.Players;
 
 namespace Watermelon.Gameplay
 {
@@ -35,6 +36,8 @@ namespace Watermelon.Gameplay
             get { return _computerPlayer; }
         }
 
+        public IEnumerable<Player> Players => _turnTracker.Players;
+
         private GameDifficulty _difficulty;
 
         private HumanPlayer _humanPlayer;
@@ -51,9 +54,9 @@ namespace Watermelon.Gameplay
         {
             _difficulty = difficulty;
 
-            _humanPlayer = new HumanPlayer(this);
+            _humanPlayer = new HumanPlayer("You", this);
 
-            _computerPlayer = ComputerPlayer.Create(this);
+            _computerPlayer = ComputerPlayer.Create("Computer", this);
 
             _turnTracker = new TurnTracker();
             _turnTracker.AddPlayer(_humanPlayer);
