@@ -83,6 +83,7 @@ namespace Watermelon.Gameplay
             var cards = _cards;
             _cards = new Stack<Card>();
             UpdateImage();
+            OnCleared(new CardEventArgs(_cards));
             return cards;
         }
 
@@ -130,6 +131,7 @@ namespace Watermelon.Gameplay
         {
             _cards.Clear();
             UpdateImage();
+            OnCleared(new CardEventArgs(_cards));
             Thread.Sleep(Game.ACTION_DELAY);
         }
 
@@ -145,10 +147,16 @@ namespace Watermelon.Gameplay
         }
 
         public event EventHandler ImageUpdated;
+        public event EventHandler Cleared;
 
         protected virtual void OnImageUpdated(EventArgs e)
         {
             ImageUpdated?.Invoke(this, e);
+        }
+
+        protected virtual void OnCleared(EventArgs e)
+        {
+            Cleared?.Invoke(this, e);
         }
 
         // ToDo: Factor out the image handling into a separate class.

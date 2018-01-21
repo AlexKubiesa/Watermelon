@@ -14,8 +14,6 @@ namespace Watermelon.UI
 
         private List<DiscardPileHistoryRecord> _history = new List<DiscardPileHistoryRecord>();
 
-        private DiscardPile _discardPile;
-
         internal DiscardPileHistoryTracker(DiscardPile discardPile, IEnumerable<Player> players)
         {
             foreach (var player in players)
@@ -25,7 +23,7 @@ namespace Watermelon.UI
                 player.BlindPlayedDownCard += Player_PlayedCards;
             }
 
-            _discardPile = discardPile; // ToDo: Hook up burns, pick up, etc.
+            discardPile.Cleared += DiscardPile_Cleared;
         }
 
         private void Player_PlayedCards(object sender, CardEventArgs e)
@@ -34,6 +32,11 @@ namespace Watermelon.UI
             {
                 _history.Add(new DiscardPileHistoryRecord { Card = card, Player = (Player) sender });
             }
+        }
+
+        private void DiscardPile_Cleared(object sender, EventArgs e)
+        {
+            _history.Clear();
         }
     }
 }
