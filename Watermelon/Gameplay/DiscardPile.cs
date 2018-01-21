@@ -158,7 +158,5 @@ namespace Watermelon.Gameplay
         {
             Cleared?.Invoke(this, e);
         }
-
-        // ToDo: Factor out the image handling into a separate class.
     }
 }
