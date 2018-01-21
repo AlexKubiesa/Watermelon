@@ -11,38 +11,41 @@ namespace Watermelon.Gameplay
     {
         public Image Image => _image;
 
-        protected List<(Card Card, CardOrientation Orientation)> _orientedCards;
+        protected Stack<(Card Card, CardOrientation Orientation)> _orientedCards;
 
         private Image _image;
 
         public CardPile()
         {
-            _orientedCards = new List<(Card Card, CardOrientation Orientation)>();
+            _orientedCards = new Stack<(Card Card, CardOrientation Orientation)>();
             UpdateImage();
         }
 
         public CardPile(IEnumerable<Card> cards, CardOrientation orientation)
         {
-            _orientedCards = cards.Select(card => (Card: card, Orientation: orientation)).ToList();
+            _orientedCards = new Stack<(Card Card, CardOrientation Orientation)>(
+                cards.Select(card => (Card: card, Orientation: orientation)));
             UpdateImage();
         }
 
         public void AddOneCard(Card card, CardOrientation orientation)
         {
-            _orientedCards.Add((Card: card, Orientation: orientation));
+            _orientedCards.Push((Card: card, Orientation: orientation));
             UpdateImage();
         }
 
         public void AddManyCards(IEnumerable<Card> cards, CardOrientation orientation)
         {
-            _orientedCards.AddRange(cards.Select(card => (Card: card, Orientation: orientation)));
+            foreach (var card in cards)
+            {
+                _orientedCards.Push((Card: card, Orientation: orientation));
+            }
             UpdateImage();
         }
 
         public Card TakeTopCard()
         {
-            var card = _orientedCards.Last().Card;
-            _orientedCards.RemoveAt(_orientedCards.Count - 1);
+            var card = _orientedCards.Pop().Card;
             UpdateImage();
             return card;
         }
@@ -68,7 +71,7 @@ namespace Watermelon.Gameplay
                 return null;
             }
 
-            var topOrientedCard = _orientedCards.Last();
+            var topOrientedCard = _orientedCards.Peek();
             switch (topOrientedCard.Orientation)
             {
                 case CardOrientation.FaceUp:
