@@ -7,23 +7,51 @@ using System.Threading;
 
 namespace Watermelon.Gameplay
 {
-    class DiscardPile : CardPile, IEnumerable<Card>
+    class DiscardPile : IEnumerable<Card>
     {
-        [Obsolete]
         private Stack<Card> _cards;
 
-        // The rank of the top non-three, or null if no such card exists.
-        public CardRank? EffectiveRank =>
-            _orientedCards.FirstOrDefault(orientedCard => orientedCard.Card.Rank != CardRank.Three)
-                          .Card
-                          ?.Rank;
+        private Image _image;
 
-        public DiscardPile() : base()
+        public Image Image
         {
+            get
+            {
+                return _image;
+            }
         }
 
-        public DiscardPile(IEnumerable<Card> cards, CardOrientation orientation) : base(cards, orientation)
+        // The rank of the top non-three, or null if no such card exists.
+        public CardRank? EffectiveRank
         {
+            get
+            {
+                return _cards.FirstOrDefault(x => x.Rank != CardRank.Three)?.Rank;
+            }
+        }
+
+        public DiscardPile() : this(new Stack<Card>())
+        { }
+
+        public DiscardPile(Stack<Card> cards)
+        {
+            _cards = cards;
+            _image = ComputeImage();
+        }
+
+        public void Add(Card card)
+        {
+            _cards.Push(card);
+            UpdateImage();
+        }
+
+        public void AddRange(IEnumerable<Card> cards)
+        {
+            foreach (var c in cards)
+            {
+                _cards.Push(c);
+            }
+            UpdateImage();
         }
 
         /// <summary>
@@ -33,7 +61,7 @@ namespace Watermelon.Gameplay
         /// <param name="burn"></param>
         public void PlayCard(Card card, out bool burn)
         {
-            AddOneCard(card, CardOrientation.FaceUp);
+            Add(card);
             Thread.Sleep(Game.ACTION_DELAY);
             burn = TryBurn();
         }
@@ -45,43 +73,45 @@ namespace Watermelon.Gameplay
         /// <param name="burn"></param>
         public void PlayCards(IEnumerable<Card> cards, out bool burn)
         {
-            AddManyCards(cards, CardOrientation.FaceUp);
+            AddRange(cards);
             Thread.Sleep(Game.ACTION_DELAY);
             burn = TryBurn();
         }
 
         public IEnumerable<Card> PickUp()
         {
-            return TakeAllCards();
+            var cards = _cards;
+            _cards = new Stack<Card>();
+            UpdateImage();
+            OnCleared(new CardEventArgs(_cards));
+            return cards;
         }
 
-        [Obsolete]
         public IEnumerator<Card> GetEnumerator()
         {
-            return _orientedCards.Select(orientedCard => orientedCard.Card).GetEnumerator();
+            return ((IEnumerable<Card>)_cards).GetEnumerator();
         }
 
-        [Obsolete]
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _orientedCards.Select(orientedCard => orientedCard.Card).GetEnumerator();
+            return ((IEnumerable<Card>)_cards).GetEnumerator();
         }
 
         private bool TryBurn()
         {
-            if (!_orientedCards.Any())
+            if (!_cards.Any())
             {
                 return false;
             }
-            else if (_orientedCards.Last().Card.Rank == CardRank.Ten)
+            else if (_cards.Peek().Rank == CardRank.Ten)
             {
                 Burn();
                 return true;
             }
-            else if (_orientedCards.Count >= 4)
+            else if (_cards.Count >= 4)
             {
-                var topFourCards = _orientedCards.Skip(_orientedCards.Count - 4);
-                if (topFourCards.All(x => topFourCards.All(y => x.Card.Rank == y.Card.Rank)))
+                var topFourCards = _cards.Take(4);
+                if (topFourCards.All(x => topFourCards.All(y => x.Rank == y.Rank)))
                 {
                     Burn();
                     return true;
@@ -99,12 +129,30 @@ namespace Watermelon.Gameplay
 
         private void Burn()
         {
-            TakeAllCards();
-            OnCleared(EventArgs.Empty);
+            _cards.Clear();
+            UpdateImage();
+            OnCleared(new CardEventArgs(_cards));
             Thread.Sleep(Game.ACTION_DELAY);
         }
 
+        private Image ComputeImage()
+        {
+            return _cards.Any() ? _cards.Peek().FrontImage : null;
+        }
+
+        private void UpdateImage()
+        {
+            _image = ComputeImage();
+            OnImageUpdated(EventArgs.Empty);
+        }
+
+        public event EventHandler ImageUpdated;
         public event EventHandler Cleared;
+
+        protected virtual void OnImageUpdated(EventArgs e)
+        {
+            ImageUpdated?.Invoke(this, e);
+        }
 
         protected virtual void OnCleared(EventArgs e)
         {
