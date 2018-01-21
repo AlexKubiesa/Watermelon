@@ -13,21 +13,23 @@ namespace Watermelon.UI
 {
     public partial class GameBoardInformationForm : Form
     {
-        public GameBoardInformationForm(IEnumerable<Card> discardPile)
+        public GameBoardInformationForm(IEnumerable<DiscardPileHistoryRecord> history)
         {
             InitializeComponent();
-            FillCardHistoryListView(discardPile);
+            FillCardHistoryListView(history);
         }
 
-        private void FillCardHistoryListView(IEnumerable<Card> discardPile)
+        private void FillCardHistoryListView(IEnumerable<DiscardPileHistoryRecord> history)
         {
-            cardHistoryListView.Items.AddRange(discardPile.Select(CreateListViewItem).ToArray());
+            cardHistoryListView.Items.AddRange(history.Select(CreateListViewItem).ToArray());
         }
 
-        private ListViewItem CreateListViewItem(Card card)
+        private ListViewItem CreateListViewItem(DiscardPileHistoryRecord historyRecord)
         {
-            var str = new CardConverter().ConvertToString(card);
-            return new ListViewItem(str);
+            var subItemStrings = new string[2];
+            subItemStrings[0] = new CardConverter().ConvertToString(historyRecord.Card);
+            subItemStrings[1] = historyRecord.Player.ToString();
+            return new ListViewItem(subItemStrings);
         }
     }
 }

@@ -44,15 +44,11 @@ namespace Watermelon.UI
 
         private List<PictureBox> _computerUpDownCardPictureBoxes;
 
-        private DrawPile DrawPile
-        {
-            get { return _game.DrawPile; }
-        }
+        private DrawPile _drawPile;
 
-        private DiscardPile DiscardPile
-        {
-            get { return _game.DiscardPile; }
-        }
+        private DiscardPile _discardPile;
+
+        private DiscardPileHistoryTracker _discardPileHistoryTracker;
 
         public GameBoard()
         {
@@ -83,8 +79,12 @@ namespace Watermelon.UI
         {
             _game = new Game(_gameDifficulty);
 
-            DrawPile.ImageUpdated += DrawPile_ImageUpdated;
-            DiscardPile.ImageUpdated += DiscardPile_ImageUpdated;
+            _drawPile = _game.DrawPile;
+            _discardPile = _game.DiscardPile;
+            _drawPile.ImageUpdated += DrawPile_ImageUpdated;
+            _discardPile.ImageUpdated += DiscardPile_ImageUpdated;
+
+            _discardPileHistoryTracker = new DiscardPileHistoryTracker(_discardPile, _game.Players);
 
             _humanCardBoxesToCards = new Bidictionary<CardSelectionBox, Card>();
             _computerCardPictureBoxes = new Dictionary<Card, PictureBox>();
@@ -93,7 +93,7 @@ namespace Watermelon.UI
             _humanPlayer.ActiveRegionChanged += HumanPlayer_ActiveRegionChanged;
             _humanPlayer.PlayedFromHand += HumanPlayer_PlayedFromHand;
             _humanPlayer.PlayedUpCards += HumanPlayer_PlayedUpCards;
-            _humanPlayer.BlindPlayerDownCard += HumanPlayer_PlayedDownCard;
+            _humanPlayer.BlindPlayedDownCard += HumanPlayer_PlayedDownCard;
             _humanPlayer.AddedCardsToHand += HumanPlayer_AddedCardsToHand;
             _humanPlayer.AddedUpCard += HumanPlayer_AddedUpCard;
             _humanPlayer.AddedDownCard += HumanPlayer_AddedDownCard;
@@ -102,7 +102,7 @@ namespace Watermelon.UI
             _computerPlayer = _game.ComputerPlayer;
             _computerPlayer.PlayedFromHand += ComputerPlayer_PlayedFromHand;
             _computerPlayer.PlayedUpCards += ComputerPlayer_PlayedUpCards;
-            _computerPlayer.BlindPlayerDownCard += ComputerPlayer_PlayedDownCard;
+            _computerPlayer.BlindPlayedDownCard += ComputerPlayer_PlayedDownCard;
             _computerPlayer.AddedCardsToHand += ComputerPlayer_AddedCardsToHand;
             _computerPlayer.AddedUpCard += ComputerPlayer_AddedUpCard;
             _computerPlayer.AddedDownCard += ComputerPlayer_AddedDownCard;
@@ -463,7 +463,7 @@ namespace Watermelon.UI
 
         private void infoButton_Click(object sender, EventArgs e)
         {
-            var detailsForm = new GameBoardInformationForm(DiscardPile);
+            var detailsForm = new GameBoardInformationForm(_discardPileHistoryTracker.History);
             detailsForm.ShowDialog();
         }
     }

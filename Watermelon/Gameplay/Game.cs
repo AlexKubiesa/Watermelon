@@ -1,4 +1,5 @@
-﻿using Watermelon.Gameplay.Players;
+﻿using System.Collections.Generic;
+using Watermelon.Gameplay.Players;
 
 namespace Watermelon.Gameplay
 {
@@ -34,6 +35,8 @@ namespace Watermelon.Gameplay
         {
             get { return _computerPlayer; }
         }
+
+        public IEnumerable<Player> Players => _turnTracker.Players;
 
         private GameDifficulty _difficulty;
 

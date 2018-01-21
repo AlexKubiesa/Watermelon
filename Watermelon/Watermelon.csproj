@@ -112,6 +112,8 @@
     <Compile Include="UI\DifficultyMenu.Designer.cs">
       <DependentUpon>DifficultyMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\DiscardPileHistoryRecord.cs" />
+    <Compile Include="UI\DiscardPileHistoryTracker.cs" />
     <Compile Include="UI\GameBoardInformationForm.cs">
       <SubType>Form</SubType>
     </Compile>

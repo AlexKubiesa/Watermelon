@@ -146,9 +146,15 @@ namespace Watermelon.Gameplay
 
         public event EventHandler ImageUpdated;
 
+        public event EventHandler<CardEventArgs> CardsAdded;
+
+        public event EventHandler<CardEventArgs> CardsRemoved;
+
         protected virtual void OnImageUpdated(EventArgs e)
         {
             ImageUpdated?.Invoke(this, e);
         }
+
+        // ToDo: Factor out the image handling into a separate class.
     }
 }

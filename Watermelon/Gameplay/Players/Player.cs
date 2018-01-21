@@ -427,14 +427,14 @@ namespace Watermelon.Gameplay.Players
             PlayedFromHand?.Invoke(this, e);
         }
 
-        protected virtual void OnPlayedUpCards(EventArgs e)
+        protected virtual void OnPlayedUpCards(CardEventArgs e)
         {
             PlayedUpCards?.Invoke(this, e);
         }
 
-        protected virtual void OnBlindPlayedDownCard(EventArgs e)
+        protected virtual void OnBlindPlayedDownCard(CardEventArgs e)
         {
-            BlindPlayerDownCard?.Invoke(this, e);
+            BlindPlayedDownCard?.Invoke(this, e);
         }
 
         protected virtual void OnEndedTurn(EventArgs e)
@@ -457,9 +457,9 @@ namespace Watermelon.Gameplay.Players
 
         public event EventHandler<CardEventArgs> PlayedFromHand;
 
-        public event EventHandler PlayedUpCards;
+        public event EventHandler<CardEventArgs> PlayedUpCards;
 
-        public event EventHandler BlindPlayerDownCard;
+        public event EventHandler<CardEventArgs> BlindPlayedDownCard;
 
         public event EventHandler EndedTurn;
 
