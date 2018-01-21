@@ -8,7 +8,8 @@ namespace Watermelon.Gameplay.Players
 {
     sealed class HumanPlayer : Player
     {
-        public HumanPlayer(Game game) : base(game)
-        { }
+        public HumanPlayer(string name, Game game) : base(name, game)
+        {
+        }
     }
 }

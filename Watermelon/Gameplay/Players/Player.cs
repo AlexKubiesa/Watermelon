@@ -17,6 +17,8 @@ namespace Watermelon.Gameplay.Players
 
     abstract class Player
     {
+        public string Name => _name;
+
         public virtual bool Active
         {
             get { return _active; }
@@ -51,6 +53,8 @@ namespace Watermelon.Gameplay.Players
             get { return _downCards; }
         }
 
+        private readonly string _name;
+
         private bool _active;
 
         private Game _game;
@@ -74,8 +78,9 @@ namespace Watermelon.Gameplay.Players
             get { return _game.DiscardPile; }
         }
 
-        public Player(Game game)
+        public Player(string name, Game game)
         {
+            _name = name;
             _active = false;
             _game = game;
             _hand = new List<Card>();

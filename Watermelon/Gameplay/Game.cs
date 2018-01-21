@@ -54,9 +54,9 @@ namespace Watermelon.Gameplay
         {
             _difficulty = difficulty;
 
-            _humanPlayer = new HumanPlayer(this);
+            _humanPlayer = new HumanPlayer("You", this);
 
-            _computerPlayer = ComputerPlayer.Create(this);
+            _computerPlayer = ComputerPlayer.Create("Computer", this);
 
             _turnTracker = new TurnTracker();
             _turnTracker.AddPlayer(_humanPlayer);

@@ -28,7 +28,7 @@ namespace Watermelon.UI
         {
             var subItemStrings = new string[2];
             subItemStrings[0] = new CardConverter().ConvertToString(historyRecord.Card);
-            subItemStrings[1] = historyRecord.Player.ToString();
+            subItemStrings[1] = historyRecord.Player.Name;
             return new ListViewItem(subItemStrings);
         }
     }
