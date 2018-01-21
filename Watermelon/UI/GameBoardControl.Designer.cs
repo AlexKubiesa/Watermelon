@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.computerHandPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.computerHandGroupBox = new System.Windows.Forms.GroupBox();
             this.computerUpDownCardsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.computerUpDownCardPictureBox1 = new System.Windows.Forms.PictureBox();
             this.computerUpDownCardPictureBox2 = new System.Windows.Forms.PictureBox();
@@ -37,16 +35,16 @@
             this.computerUpDownCardsGroupBox = new System.Windows.Forms.GroupBox();
             this.playerUpDownCardsGroupBox = new System.Windows.Forms.GroupBox();
             this.playerUpDownCardsPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.humanPlayerHandControl = new HumanPlayerHandControl();
             this.humanUpDownCardBox3 = new Watermelon.UI.CardSelectionBox();
             this.humanUpDownCardBox2 = new Watermelon.UI.CardSelectionBox();
             this.humanUpDownCardBox1 = new Watermelon.UI.CardSelectionBox();
+            this.humanPlayerHandControl = new HumanPlayerHandControl();
+            this.computerPlayerHandControl = new ComputerPlayerHandControl();
             this.discardGroupBox = new System.Windows.Forms.GroupBox();
             this.discardPilePictureBox = new System.Windows.Forms.PictureBox();
             this.drawGroupBox = new System.Windows.Forms.GroupBox();
             this.drawPilePictureBox = new System.Windows.Forms.PictureBox();
             this.infoButton = new System.Windows.Forms.Button();
-            this.computerHandGroupBox.SuspendLayout();
             this.computerUpDownCardsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox2)).BeginInit();
@@ -59,29 +57,6 @@
             this.drawGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.drawPilePictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // computerHandPanel
-            // 
-            this.computerHandPanel.BackColor = System.Drawing.Color.SteelBlue;
-            this.computerHandPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.computerHandPanel.Location = new System.Drawing.Point(3, 19);
-            this.computerHandPanel.Name = "computerHandPanel";
-            this.computerHandPanel.Size = new System.Drawing.Size(794, 78);
-            this.computerHandPanel.TabIndex = 0;
-            // 
-            // computerHandGroupBox
-            // 
-            this.computerHandGroupBox.BackColor = System.Drawing.Color.MidnightBlue;
-            this.computerHandGroupBox.Controls.Add(this.computerHandPanel);
-            this.computerHandGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.computerHandGroupBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.computerHandGroupBox.ForeColor = System.Drawing.Color.White;
-            this.computerHandGroupBox.Location = new System.Drawing.Point(0, 0);
-            this.computerHandGroupBox.Name = "computerHandGroupBox";
-            this.computerHandGroupBox.Size = new System.Drawing.Size(800, 100);
-            this.computerHandGroupBox.TabIndex = 5;
-            this.computerHandGroupBox.TabStop = false;
-            this.computerHandGroupBox.Text = "Computer\'s Hand";
             // 
             // computerUpDownCardsPanel
             // 
@@ -296,22 +271,34 @@
             this.infoButton.UseVisualStyleBackColor = false;
             this.infoButton.Click += new System.EventHandler(this.infoButton_Click);
             // 
+            // computerPlayerHandControl
+            // 
+            this.computerPlayerHandControl.AreCardsVisible = false;
+            this.computerPlayerHandControl.BackColor = System.Drawing.Color.MidnightBlue;
+            this.computerPlayerHandControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.computerPlayerHandControl.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.computerPlayerHandControl.ForeColor = System.Drawing.Color.White;
+            this.computerPlayerHandControl.Location = new System.Drawing.Point(0, 0);
+            this.computerPlayerHandControl.Name = "computerPlayerHandControl";
+            this.computerPlayerHandControl.Size = new System.Drawing.Size(800, 100);
+            this.computerPlayerHandControl.TabIndex = 13;
+            this.computerPlayerHandControl.Text = "Computer\'s Hand";
+            // 
             // GameBoardControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.computerPlayerHandControl);
             this.Controls.Add(this.humanPlayerHandControl);
             this.Controls.Add(this.infoButton);
             this.Controls.Add(this.playerUpDownCardsGroupBox);
             this.Controls.Add(this.discardGroupBox);
             this.Controls.Add(this.drawGroupBox);
             this.Controls.Add(this.computerUpDownCardsGroupBox);
-            this.Controls.Add(this.computerHandGroupBox);
             this.Name = "GameBoardControl";
             this.Size = new System.Drawing.Size(800, 600);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProcessKeyDown);
-            this.computerHandGroupBox.ResumeLayout(false);
             this.computerUpDownCardsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.computerUpDownCardPictureBox2)).EndInit();
@@ -328,9 +315,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel computerHandPanel;
-        private System.Windows.Forms.GroupBox computerHandGroupBox;
         private System.Windows.Forms.TableLayoutPanel computerUpDownCardsPanel;
         private System.Windows.Forms.PictureBox computerUpDownCardPictureBox1;
         private System.Windows.Forms.PictureBox computerUpDownCardPictureBox2;
@@ -347,5 +331,6 @@
         private System.Windows.Forms.PictureBox drawPilePictureBox;
         private System.Windows.Forms.Button infoButton;
         private HumanPlayerHandControl humanPlayerHandControl;
+        private ComputerPlayerHandControl computerPlayerHandControl;
     }
 }

@@ -105,6 +105,12 @@
     <Compile Include="UI\CardSelectionBox.Designer.cs">
       <DependentUpon>CardSelectionBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ComputerPlayerHandControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ComputerPlayerHandControl.Designer.cs">
+      <DependentUpon>ComputerPlayerHandControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\DifficultyMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gameplay\Card.cs" />
+    <EmbeddedResource Include="UI\ComputerPlayerHandControl.resx">
+      <DependentUpon>ComputerPlayerHandControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\DifficultyMenu.resx">
       <DependentUpon>DifficultyMenu.cs</DependentUpon>
     </EmbeddedResource>
