@@ -31,7 +31,7 @@ namespace Watermelon.UI
             set
             {
                 player = value;
-                player.AddedCardsToHand += HumanPlayer_AddedCardsToHand;
+                player.AddedCardsToHand += Player_AddedCardsToHand;
                 //_humanPlayer.ActiveRegionChanged += HumanPlayer_ActiveRegionChanged;
                 //_humanPlayer.PlayedFromHand += HumanPlayer_PlayedFromHand;
             }
@@ -40,12 +40,12 @@ namespace Watermelon.UI
         private HumanPlayer player;
 
         // Converts between cards in the human player's hand and the corresponding card selection boxes.
-        private Bidictionary<CardSelectionBox, Card> _humanCardBoxesToCards;
+        private Bidictionary<CardSelectionBox, Card> _playerCardBoxesToCards;
 
         internal HumanPlayerHandControl()
         {
             InitializeComponent();
-            _humanCardBoxesToCards = new Bidictionary<CardSelectionBox, Card>();
+            _playerCardBoxesToCards = new Bidictionary<CardSelectionBox, Card>();
         }
 
         private void AddCard(Card card)
@@ -62,14 +62,14 @@ namespace Watermelon.UI
                 HoverColor = Color.White,
                 CheckedColor = Color.Black
             };
-            cardSelectionBox.Confirm += HumanHandCardBox_Confirm;
+            cardSelectionBox.Confirm += CardSelectionBox_Confirm;
             flowLayoutPanel.Controls.Add(cardSelectionBox);
 
             // Add card to dictionary.
-            _humanCardBoxesToCards.Add(cardSelectionBox, card);
+            _playerCardBoxesToCards.Add(cardSelectionBox, card);
         }
 
-        private void HumanPlayer_AddedCardsToHand(object sender, CardEventArgs e)
+        private void Player_AddedCardsToHand(object sender, CardEventArgs e)
         {
             CardDelegate d = AddCard;
 
@@ -79,13 +79,13 @@ namespace Watermelon.UI
             }
         }
 
-        private async void HumanHandCardBox_Confirm(object sender, SelectionEventArgs e)
+        private async void CardSelectionBox_Confirm(object sender, SelectionEventArgs e)
         {
             // Try to play all the selected cards.
             // Used ToList() to force evaluation, so that it doesn't fall over later when trying to figure out
             // which cards have been played but GameWindow has removed the relevant information from its
             // dictionary.
-            var cards = e.Selection.Cast<CardSelectionBox>().Select(x => _humanCardBoxesToCards.Forward(x)).ToList();
+            var cards = e.Selection.Cast<CardSelectionBox>().Select(x => _playerCardBoxesToCards.Forward(x)).ToList();
             await Task.Run(() => Player.TryPlayFromHand(cards));
         }
     }
