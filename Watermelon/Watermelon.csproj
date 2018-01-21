@@ -159,6 +159,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gameplay\Card.cs" />
+    <Compile Include="Utility\CircularDoublyLinkedList.cs" />
+    <Compile Include="Utility\CircularDoublyLinkedList.Node.cs" />
+    <Compile Include="Utility\ICircularDoublyLinkedListNode.cs" />
     <EmbeddedResource Include="UI\ComputerPlayerHandControl.resx">
       <DependentUpon>ComputerPlayerHandControl.cs</DependentUpon>
     </EmbeddedResource>
