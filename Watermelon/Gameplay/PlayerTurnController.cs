@@ -15,7 +15,14 @@ namespace Watermelon.Gameplay
         public PlayerTurnController(IEnumerable<Player> players)
         {
             playersLinkedList = new CircularDoublyLinkedList<Player>(players);
-            currentPlayerNode = playersLinkedList.Head;
+
+            foreach (var player in players)
+            {
+                player.EndedTurn += Player_EndedTurn;
+            }
+
+            // Start positioned at the last player, because then we'll move forward and call the first player.
+            currentPlayerNode = playersLinkedList.Tail;
         }
 
         // Only call this method once, and only after all players have been added to the turn tracker.
