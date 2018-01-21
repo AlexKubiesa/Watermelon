@@ -51,10 +51,34 @@ namespace Watermelon.Utility
             return newNode;
         }
 
-        private void LinkNodes(Node<TValue> first, Node<TValue> second)
+        public void Reverse()
+        {
+            foreach (var node in ToList())
+            {
+                ReverseNode(node);
+            }
+
+            Swap(ref head, ref tail);
+        }
+
+        private static void LinkNodes(Node<TValue> first, Node<TValue> second)
         {
             first.Next = second;
             second.Previous = first;
+        }
+
+        private static void ReverseNode(Node<TValue> node)
+        {
+            var newNext = node.Previous;
+            node.Previous = node.Next;
+            node.Next = newNext;
+        }
+
+        private static void Swap<TObject>(ref TObject first, ref TObject second)
+        {
+            TObject temp = first;
+            first = second;
+            second = temp;
         }
 
         public IEnumerator<ICircularDoublyLinkedListNode<TValue>> GetEnumerator()
@@ -67,9 +91,9 @@ namespace Watermelon.Utility
             return GetEnumerator();
         }
 
-        private List<ICircularDoublyLinkedListNode<TValue>> ToList()
+        private List<Node<TValue>> ToList()
         {
-            var list = new List<ICircularDoublyLinkedListNode<TValue>>();
+            var list = new List<Node<TValue>>();
 
             var current = head;
             list.Add(current);
