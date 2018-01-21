@@ -31,10 +31,6 @@ namespace Watermelon.UI
 
         private Game _game;
 
-        [Obsolete]
-        // Converts between cards in the human player's hand and the corresponding card selection boxes.
-        private Bidictionary<CardSelectionBox, Card> _humanCardBoxesToCards;
-
         private Dictionary<Card, PictureBox> _computerCardPictureBoxes;
 
         private HumanPlayer _humanPlayer;
@@ -87,7 +83,6 @@ namespace Watermelon.UI
 
             _discardPileHistoryTracker = new DiscardPileHistoryTracker(_game.DiscardPile, _game.Players);
 
-            _humanCardBoxesToCards = new Bidictionary<CardSelectionBox, Card>();
             _computerCardPictureBoxes = new Dictionary<Card, PictureBox>();
 
             _humanPlayer = _game.HumanPlayer;
@@ -305,10 +300,7 @@ namespace Watermelon.UI
 
         private void DisableHumanPlayerHand()
         {
-            foreach (var cardBox in _humanCardBoxesToCards.Keys)
-            {
-                cardBox.Enabled = false;
-            }
+            humanPlayerHandControl.Enabled = false;
         }
 
         private void DisableHumanPlayerUpDownCardBox(CardSelectionBox box)
@@ -326,10 +318,7 @@ namespace Watermelon.UI
 
         private void EnableHumanPlayerHand()
         {
-            foreach (var cardBox in _humanCardBoxesToCards.Keys)
-            {
-                cardBox.Enabled = true;
-            }
+            humanPlayerHandControl.Enabled = true;
         }
 
         private void EnableHumanPlayerUpDownCardPile(CardSelectionBox box)

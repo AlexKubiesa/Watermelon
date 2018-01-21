@@ -60,23 +60,14 @@ namespace Watermelon.UI
                 Cursor = Cursors.Hand,
                 Padding = new Padding(4),
                 HoverColor = Color.White,
-                CheckedColor = Color.Black
+                CheckedColor = Color.Black,
+                Enabled = Enabled
             };
             cardSelectionBox.Confirm += CardSelectionBox_Confirm;
             flowLayoutPanel.Controls.Add(cardSelectionBox);
 
             // Add card to dictionary.
             _playerCardBoxesToCards.Add(cardSelectionBox, card);
-        }
-
-        private void Player_AddedCardsToHand(object sender, CardEventArgs e)
-        {
-            CardDelegate d = AddCard;
-
-            foreach (var card in e.Cards)
-            {
-                Invoke(d, card);
-            }
         }
 
         private void RemoveCard(Card card)
@@ -89,6 +80,26 @@ namespace Watermelon.UI
             _playerCardBoxesToCards.RemoveReverse(card);
         }
 
+        private void Player_AddedCardsToHand(object sender, CardEventArgs e)
+        {
+            CardDelegate d = AddCard;
+
+            foreach (var card in e.Cards)
+            {
+                Invoke(d, card);
+            }
+        }
+
+        private void Player_PlayedFromHand(object sender, CardEventArgs e)
+        {
+            CardDelegate d = RemoveCard;
+
+            foreach (var card in e.Cards)
+            {
+                Invoke(d, card);
+            }
+        }
+
         private async void CardSelectionBox_Confirm(object sender, SelectionEventArgs e)
         {
             // Try to play all the selected cards.
@@ -99,13 +110,13 @@ namespace Watermelon.UI
             await Task.Run(() => Player.TryPlayFromHand(cards));
         }
 
-        private void Player_PlayedFromHand(object sender, CardEventArgs e)
+        protected override void OnEnabledChanged(EventArgs e)
         {
-            CardDelegate d = RemoveCard;
+            base.OnEnabledChanged(e);
 
-            foreach (var card in e.Cards)
+            foreach (var cardSelectionBox in _playerCardBoxesToCards.Keys)
             {
-                Invoke(d, card);
+                cardSelectionBox.Enabled = Enabled;
             }
         }
     }
