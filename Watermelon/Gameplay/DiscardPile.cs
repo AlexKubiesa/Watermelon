@@ -7,8 +7,10 @@ using System.Threading;
 
 namespace Watermelon.Gameplay
 {
-    class DiscardPile : CardPile
+    internal class DiscardPile : CardPile
     {
+        public IEnumerable<(Card Card, CardOrientation Orientation)> OrientedCards => _orientedCards;
+
         // The rank of the top non-three, or null if no such card exists.
         public CardRank? EffectiveRank =>
             _orientedCards.FirstOrDefault(orientedCard => orientedCard.Card.Rank != CardRank.Three)
