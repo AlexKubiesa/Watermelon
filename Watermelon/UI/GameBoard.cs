@@ -44,9 +44,9 @@ namespace Watermelon.UI
 
         private List<PictureBox> _computerUpDownCardPictureBoxes;
 
-        private DrawPile _drawPile;
+        private ICardPile _drawPile;
 
-        private DiscardPile _discardPile;
+        private ICardPile _discardPile;
 
         private DiscardPileHistoryTracker _discardPileHistoryTracker;
 
@@ -84,7 +84,7 @@ namespace Watermelon.UI
             _drawPile.ImageUpdated += DrawPile_ImageUpdated;
             _discardPile.ImageUpdated += DiscardPile_ImageUpdated;
 
-            _discardPileHistoryTracker = new DiscardPileHistoryTracker(_discardPile, _game.Players);
+            _discardPileHistoryTracker = new DiscardPileHistoryTracker(_game.DiscardPile, _game.Players);
 
             _humanCardBoxesToCards = new Bidictionary<CardSelectionBox, Card>();
             _computerCardPictureBoxes = new Dictionary<Card, PictureBox>();
