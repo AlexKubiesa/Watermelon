@@ -6,77 +6,34 @@ using System.Linq;
 
 namespace Watermelon.Gameplay
 {
-    class DrawPile : IEnumerable<Card>
+    class DrawPile : CardPile
     {
-        private Stack<Card> _cards;
-
-        private Image _image;
-
-        public Image Image
+        public DrawPile() : base()
         {
-            get
-            {
-                return _image;
-            }
         }
 
-        public DrawPile() : this(new Stack<Card>())
-        { }
-
-        public DrawPile(Stack<Card> cards)
+        public DrawPile(IEnumerable<Card> cards, CardOrientation orientation) : base(cards, orientation)
         {
-            _cards = cards;
-            _image = ComputeImage();
         }
 
         public Card Draw()
         {
-            var result = _cards.Pop();
-            UpdateImage();
-            return result;
+            return TakeTopCard();
         }
 
         public void Add(Card card)
         {
-            _cards.Push(card);
-            UpdateImage();
+            AddOneCard(card, CardOrientation.FaceDown);
         }
 
         public void AddRange(IEnumerable<Card> cards)
         {
-            foreach (var c in cards)
-            {
-                _cards.Push(c);
-            }
-            UpdateImage();
+            AddManyCards(cards, CardOrientation.FaceDown);
         }
 
-        public IEnumerator<Card> GetEnumerator()
+        public bool Any()
         {
-            return ((IEnumerable<Card>)_cards).GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable<Card>)_cards).GetEnumerator();
-        }
-
-        private Image ComputeImage()
-        {
-            return _cards.Any() ? _cards.Peek().BackImage : null;
-        }
-
-        private void UpdateImage()
-        {
-            _image = ComputeImage();
-            OnImageUpdated(EventArgs.Empty);
-        }
-
-        public event EventHandler ImageUpdated;
-
-        protected virtual void OnImageUpdated(EventArgs e)
-        {
-            ImageUpdated?.Invoke(this, e);
+            return _orientedCards.Any();
         }
     }
 }
