@@ -13,7 +13,7 @@ namespace Watermelon.UI
 {
     public partial class MainForm : Form
     {
-        private GameBoard _gameBoard;
+        private GameBoardControl _gameBoard;
 
         public MainForm()
         {
@@ -37,7 +37,7 @@ namespace Watermelon.UI
             menu.Enabled = false;
 
             SuspendLayout();
-            _gameBoard = new GameBoard()
+            _gameBoard = new GameBoardControl()
             {
                 BackColor = Color.WhiteSmoke,
                 Dock = DockStyle.Fill,
