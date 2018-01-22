@@ -13,39 +13,45 @@ namespace Watermelon.UI
 {
     public partial class DifficultyMenu : UserControl
     {
-        private const string NOT_IMPLEMENTED_MESSAGE = "Not implemented yet. Stay tuned!";
+        private GameSettings gameSettings;
 
-        public DifficultyMenu()
+        /// <summary>
+        /// Provided for designer support.
+        /// </summary>
+        public DifficultyMenu() : this(new GameSettings())
         {
-            InitializeComponent();
         }
 
-        private void DifficultyMenu_Load(object sender, EventArgs e)
+        internal DifficultyMenu(GameSettings gameSettings)
         {
-            toolTip.SetToolTip(hardButton, NOT_IMPLEMENTED_MESSAGE);
+            InitializeComponent();
+
+            this.gameSettings = gameSettings;
         }
 
         private void EasyButton_Click(object sender, EventArgs e)
         {
-            OnDifficultyChosen(new GameDifficultyEventArgs(GameDifficulty.Easy));
+            gameSettings.Difficulty = GameDifficulty.Easy;
+            OnConfirmed(EventArgs.Empty);
         }
 
         private void MediumButton_Click(object sender, EventArgs e)
         {
-            OnDifficultyChosen(new GameDifficultyEventArgs(GameDifficulty.Medium));
+            gameSettings.Difficulty = GameDifficulty.Medium;
+            OnConfirmed(EventArgs.Empty);
         }
 
         private void HardButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(NOT_IMPLEMENTED_MESSAGE, "Not implemented", MessageBoxButtons.OK);
-            hardButton.Enabled = false;
+            gameSettings.Difficulty = GameDifficulty.Hard;
+            OnConfirmed(EventArgs.Empty);
         }
 
-        internal virtual void OnDifficultyChosen(GameDifficultyEventArgs e)
+        internal virtual void OnConfirmed(EventArgs e)
         {
-            DifficultyChosen?.Invoke(this, e);
+            Confirmed?.Invoke(this, e);
         }
 
-        public event EventHandler<GameDifficultyEventArgs> DifficultyChosen;
+        public event EventHandler Confirmed;
     }
 }

@@ -25,9 +25,7 @@ namespace Watermelon.UI
         private const bool SHOW_COMPUTER_CARDS = false;
 #endif
 
-        internal GameDifficulty GameDifficulty { get => _gameDifficulty; set => _gameDifficulty = value; }
-
-        private GameDifficulty _gameDifficulty;
+        private GameSettings _gameSettings;
 
         private Game _game;
 
@@ -45,6 +43,9 @@ namespace Watermelon.UI
 
         private DiscardPileHistoryTracker _discardPileHistoryTracker;
 
+        /// <summary>
+        /// Provided for designer support.
+        /// </summary>
         public GameBoardControl()
         {
             InitializeComponent();
@@ -72,9 +73,17 @@ namespace Watermelon.UI
             computerPlayerHandControl.AreCardsVisible = SHOW_COMPUTER_CARDS;
         }
 
+        internal GameBoardControl(GameSettings gameSettings) : this()
+        {
+            _gameSettings = gameSettings;
+
+            _gameSettings.NumberOfHumanPlayers = 1;
+            _gameSettings.NumberOfComputerPlayers = 1;
+        }
+
         public void StartGame()
         {
-            _game = new Game(_gameDifficulty);
+            _game = new Game(_gameSettings);
 
             _drawPile = _game.DrawPile;
             _discardPile = _game.DiscardPile;

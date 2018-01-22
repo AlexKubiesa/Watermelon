@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.easyButton = new System.Windows.Forms.Button();
             this.mediumButton = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
             this.hardButton = new System.Windows.Forms.Button();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // easyButton
@@ -91,11 +89,6 @@
             this.hardButton.UseVisualStyleBackColor = false;
             this.hardButton.Click += new System.EventHandler(this.HardButton_Click);
             // 
-            // toolTip
-            // 
-            this.toolTip.BackColor = System.Drawing.Color.MidnightBlue;
-            this.toolTip.ForeColor = System.Drawing.Color.White;
-            // 
             // DifficultyMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -107,7 +100,6 @@
             this.Controls.Add(this.titleLabel);
             this.Name = "DifficultyMenu";
             this.Size = new System.Drawing.Size(800, 600);
-            this.Load += new System.EventHandler(this.DifficultyMenu_Load);
             this.ResumeLayout(false);
 
         }
@@ -118,6 +110,5 @@
         private System.Windows.Forms.Button mediumButton;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Button hardButton;
-        private System.Windows.Forms.ToolTip toolTip;
     }
 }

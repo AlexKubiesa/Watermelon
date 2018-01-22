@@ -30,29 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenu = new Watermelon.UI.MainMenu();
-            this.difficultyMenu = new Watermelon.UI.DifficultyMenu();
             this.SuspendLayout();
             // 
             // mainMenu
             // 
             this.mainMenu.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.mainMenu.DifficultyMenu = this.difficultyMenu;
             this.mainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
             this.mainMenu.Size = new System.Drawing.Size(784, 561);
             this.mainMenu.TabIndex = 0;
-            this.mainMenu.StartButtonClicked += new System.EventHandler(this.MainMenu_StartButtonClicked);
-            // 
-            // difficultyMenu
-            // 
-            this.difficultyMenu.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.difficultyMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.difficultyMenu.Location = new System.Drawing.Point(0, 0);
-            this.difficultyMenu.Name = "difficultyMenu";
-            this.difficultyMenu.Size = new System.Drawing.Size(784, 561);
-            this.difficultyMenu.TabIndex = 2;
-            this.difficultyMenu.DifficultyChosen += new System.EventHandler<Watermelon.UI.GameDifficultyEventArgs>(this.DifficultyMenu_DifficultyChosen);
+            this.mainMenu.Confirmed += new System.EventHandler(this.MainMenu_Confirmed);
             // 
             // MainForm
             // 
@@ -61,7 +49,6 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.mainMenu);
-            this.Controls.Add(this.difficultyMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(800, 600);
@@ -76,6 +63,5 @@
         #endregion
 
         private MainMenu mainMenu;
-        private DifficultyMenu difficultyMenu;
     }
 }

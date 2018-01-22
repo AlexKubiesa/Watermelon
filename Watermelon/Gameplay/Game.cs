@@ -52,10 +52,9 @@ namespace Watermelon.Gameplay
 
         private DiscardPile _discardPile;
 
-        public Game(GameDifficulty difficulty)
+        public Game(GameSettings settings)
         {
-            _difficulty = difficulty;
-
+            _difficulty = settings.Difficulty;
             _humanPlayer = new HumanPlayer("You", this);
 
             _computerPlayer = ComputerPlayer.Create("Computer", this);

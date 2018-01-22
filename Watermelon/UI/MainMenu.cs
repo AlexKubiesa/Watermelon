@@ -32,14 +32,14 @@ namespace Watermelon.UI
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            OnStartButtonClicked(EventArgs.Empty);
+            OnConfirmed(EventArgs.Empty);
         }
 
-        protected virtual void OnStartButtonClicked(EventArgs e)
+        protected virtual void OnConfirmed(EventArgs e)
         {
-            StartButtonClicked?.Invoke(this, e);
+            Confirmed?.Invoke(this, e);
         }
 
-        public event EventHandler StartButtonClicked;
+        public event EventHandler Confirmed;
     }
 }
