@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Gameplay\CardPile.cs" />
     <Compile Include="Gameplay\Deck.cs" />
+    <Compile Include="Gameplay\GameSettings.cs" />
     <Compile Include="Gameplay\ICardPile.cs" />
     <Compile Include="Gameplay\Players\ComputerPlayer.cs" />
     <Compile Include="Gameplay\Players\EasyComputerPlayer.cs" />

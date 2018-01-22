@@ -15,9 +15,13 @@ namespace Watermelon.UI
     {
         private GameBoardControl _gameBoard;
 
+        private GameSettings _gameSettings;
+
         public MainForm()
         {
             InitializeComponent();
+
+            _gameSettings = new GameSettings();
         }
 
         private void MainMenu_StartButtonClicked(object sender, EventArgs e)
