@@ -19,43 +19,43 @@ namespace Watermelon.Gameplay
 
         public DrawPile DrawPile
         {
-            get { return _drawPile; }
+            get { return drawPile; }
         }
 
         public DiscardPile DiscardPile
         {
-            get { return _discardPile; }
+            get { return discardPile; }
         }
 
-        public IEnumerable<Player> Players => _players;
+        public IEnumerable<Player> Players => players;
 
         private GameDifficulty difficulty;
 
-        private PlayerTurnController _turnController;
+        private DrawPile drawPile;
 
-        private DrawPile _drawPile;
+        private DiscardPile discardPile;
 
-        private DiscardPile _discardPile;
+        private List<Player> players;
 
-        private List<Player> _players;
+        private PlayerTurnController turnController;
 
         public Game(GameSettings settings)
         {
             difficulty = settings.Difficulty;
 
-            _turnController = new PlayerTurnController(_players);
-
-            _drawPile = new DrawPile();
-            _discardPile = new DiscardPile();
+            drawPile = new DrawPile();
+            discardPile = new DiscardPile();
         }
 
         public void AddPlayers(IEnumerable<Player> players)
         {
-            _players = new List<Player>(players);
-            foreach (var player in _players)
+            this.players = new List<Player>(players);
+            foreach (var player in this.players)
             {
                 player.JoinGame(this);
             }
+
+            turnController = new PlayerTurnController(this.players);
         }
 
         public void Start()
@@ -66,10 +66,10 @@ namespace Watermelon.Gameplay
 
             // Shuffle and deal the cards.
             dealer.Shuffle();
-            dealer.Deal(_players, _drawPile);
+            dealer.Deal(players, drawPile);
 
             // Start the game!
-            _turnController.Start();
+            turnController.Start();
         }
     }
 }
