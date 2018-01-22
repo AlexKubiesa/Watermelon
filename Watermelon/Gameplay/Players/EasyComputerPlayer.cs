@@ -10,7 +10,7 @@ namespace Watermelon.Gameplay.Players
     {
         private Random _random;
 
-        public EasyComputerPlayer(string name, Game game) : base(name, game)
+        public EasyComputerPlayer(string name) : base(name)
         {
             _random = new Random();
         }

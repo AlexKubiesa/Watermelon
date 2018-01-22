@@ -77,13 +77,26 @@ namespace Watermelon.UI
         {
             _gameSettings = gameSettings;
 
-            _gameSettings.NumberOfHumanPlayers = 1;
-            _gameSettings.NumberOfComputerPlayers = 1;
-        }
-
-        public void StartGame()
-        {
             _game = new Game(_gameSettings);
+
+            _humanPlayer = new HumanPlayer("You");
+
+            _humanPlayer.ActiveRegionChanged += HumanPlayer_ActiveRegionChanged;
+            _humanPlayer.PlayedUpCards += HumanPlayer_PlayedUpCards;
+            _humanPlayer.BlindPlayedDownCard += HumanPlayer_PlayedDownCard;
+            _humanPlayer.AddedUpCard += HumanPlayer_AddedUpCard;
+            _humanPlayer.AddedDownCard += HumanPlayer_AddedDownCard;
+            _humanPlayer.Won += HumanPlayer_Won;
+
+            _computerPlayer = ComputerPlayer.Create("Computer", _gameSettings.Difficulty);
+
+            _computerPlayer.PlayedUpCards += ComputerPlayer_PlayedUpCards;
+            _computerPlayer.BlindPlayedDownCard += ComputerPlayer_PlayedDownCard;
+            _computerPlayer.AddedUpCard += ComputerPlayer_AddedUpCard;
+            _computerPlayer.AddedDownCard += ComputerPlayer_AddedDownCard;
+            _computerPlayer.Won += ComputerPlayer_Won;
+
+            _game.AddPlayers(new List<Player> { _humanPlayer, _computerPlayer });
 
             _drawPile = _game.DrawPile;
             _discardPile = _game.DiscardPile;
@@ -92,25 +105,13 @@ namespace Watermelon.UI
 
             _discardPileHistoryTracker = new DiscardPileHistoryTracker(_game.DiscardPile, _game.Players);
 
-            _humanPlayer = _game.HumanPlayer;
-            _humanPlayer.ActiveRegionChanged += HumanPlayer_ActiveRegionChanged;
-            _humanPlayer.PlayedUpCards += HumanPlayer_PlayedUpCards;
-            _humanPlayer.BlindPlayedDownCard += HumanPlayer_PlayedDownCard;
-            _humanPlayer.AddedUpCard += HumanPlayer_AddedUpCard;
-            _humanPlayer.AddedDownCard += HumanPlayer_AddedDownCard;
-            _humanPlayer.Won += HumanPlayer_Won;
-
-            _computerPlayer = _game.ComputerPlayer;
-            _computerPlayer.PlayedUpCards += ComputerPlayer_PlayedUpCards;
-            _computerPlayer.BlindPlayedDownCard += ComputerPlayer_PlayedDownCard;
-            _computerPlayer.AddedUpCard += ComputerPlayer_AddedUpCard;
-            _computerPlayer.AddedDownCard += ComputerPlayer_AddedDownCard;
-            _computerPlayer.Won += ComputerPlayer_Won;
-
             humanPlayerHandControl.Player = _humanPlayer;
 
             computerPlayerHandControl.Player = _computerPlayer;
+        }
 
+        public void StartGame()
+        {
             _game.Start();
         }
 

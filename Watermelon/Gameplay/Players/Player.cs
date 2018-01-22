@@ -65,27 +65,27 @@ namespace Watermelon.Gameplay.Players
 
         private Card[] _downCards;
 
+        private DrawPile _drawPile;
+
+        private DiscardPile _discardPile;
+
         // Should only be set with UpdateActiveRegion, so that the value makes sense.
         private PlayRegion? _activeRegion;
 
-        private DrawPile DrawPile
-        {
-            get { return _game.DrawPile; }
-        }
-
-        private DiscardPile DiscardPile
-        {
-            get { return _game.DiscardPile; }
-        }
-
-        public Player(string name, Game game)
+        public Player(string name)
         {
             _name = name;
+        }
+
+        public void JoinGame(Game game)
+        {
             _active = false;
             _game = game;
             _hand = new List<Card>();
             _upCards = new Card[3];
             _downCards = new Card[3];
+            _drawPile = game.DrawPile;
+            _discardPile = game.DiscardPile;
             _activeRegion = null;
         }
 
@@ -131,8 +131,8 @@ namespace Watermelon.Gameplay.Players
                 return;
             }
             // Check if card can be played onto the discard pile.
-            else if (DiscardPile.EffectiveRank.HasValue &&
-                !cards.First().CanBePlayedOn(DiscardPile.EffectiveRank.Value))
+            else if (_discardPile.EffectiveRank.HasValue &&
+                !cards.First().CanBePlayedOn(_discardPile.EffectiveRank.Value))
             {
                 return;
             }
@@ -144,7 +144,7 @@ namespace Watermelon.Gameplay.Players
                 if (cards.Count() == 1)
                 {
                     // Pick up the discard pile and end the player's turn.
-                    var pile = DiscardPile.PickUp();
+                    var pile = _discardPile.PickUp();
                     _hand.AddRange(pile);
                     OnAddedCardsToHand(new CardEventArgs(pile));
                     EndTurn();
@@ -164,8 +164,8 @@ namespace Watermelon.Gameplay.Players
                     _hand.Remove(c);
                 }
                 OnPlayedFromHand(new CardEventArgs(cards));
-                DiscardPile.PlayCards(cards, out bool burn);
-                while (DrawPile.Any() && _hand.Count < 3)
+                _discardPile.PlayCards(cards, out bool burn);
+                while (_drawPile.Any() && _hand.Count < 3)
                 {
                     DrawCard();
                 }
@@ -203,8 +203,8 @@ namespace Watermelon.Gameplay.Players
                 return;
             }
             // Check if card can be played onto the discard pile.
-            else if (DiscardPile.EffectiveRank.HasValue &&
-                !cards.First().CanBePlayedOn(DiscardPile.EffectiveRank.Value))
+            else if (_discardPile.EffectiveRank.HasValue &&
+                !cards.First().CanBePlayedOn(_discardPile.EffectiveRank.Value))
             {
                 return;
             }
@@ -216,8 +216,8 @@ namespace Watermelon.Gameplay.Players
                     _upCards[Array.IndexOf(_upCards, c)] = null;
                 }
                 OnPlayedUpCards(new CardEventArgs(cards));
-                DiscardPile.PlayCards(cards, out bool burn);
-                while (DrawPile.Any() && _hand.Count < 3)
+                _discardPile.PlayCards(cards, out bool burn);
+                while (_drawPile.Any() && _hand.Count < 3)
                 {
                     DrawCard();
                 }
@@ -237,15 +237,15 @@ namespace Watermelon.Gameplay.Players
                 return;
             }
             // Check if card can be played onto the discard pile.
-            if (DiscardPile.EffectiveRank.HasValue &&
-                !card.CanBePlayedOn(DiscardPile.EffectiveRank.Value))
+            if (_discardPile.EffectiveRank.HasValue &&
+                !card.CanBePlayedOn(_discardPile.EffectiveRank.Value))
             {
                 // Pick up the card, then pick up the discard pile.
                 _downCards[Array.IndexOf(_downCards, card)] = null;
                 OnBlindPlayedDownCard(new CardEventArgs(card));
                 _hand.Add(card);
                 OnAddedCardsToHand(new CardEventArgs(card));
-                var pile = DiscardPile.PickUp();
+                var pile = _discardPile.PickUp();
                 _hand.AddRange(pile);
                 OnAddedCardsToHand(new CardEventArgs(pile));
                 EndTurn();
@@ -260,7 +260,7 @@ namespace Watermelon.Gameplay.Players
                 OnBlindPlayedDownCard(new CardEventArgs(card));
                 _hand.Add(card);
                 OnAddedCardsToHand(new CardEventArgs(card));
-                var pile = DiscardPile.PickUp();
+                var pile = _discardPile.PickUp();
                 _hand.AddRange(pile);
                 OnAddedCardsToHand(new CardEventArgs(pile));
                 EndTurn();
@@ -271,8 +271,8 @@ namespace Watermelon.Gameplay.Players
                 // Play the card.
                 _downCards[Array.IndexOf(_downCards, card)] = null;
                 OnBlindPlayedDownCard(new CardEventArgs(card));
-                DiscardPile.PlayCard(card, out bool burn);
-                while (DrawPile.Any() && _hand.Count < 3)
+                _discardPile.PlayCard(card, out bool burn);
+                while (_drawPile.Any() && _hand.Count < 3)
                 {
                     DrawCard();
                 }
@@ -329,17 +329,17 @@ namespace Watermelon.Gameplay.Players
                         else
                         {
                             // Otherwise, normal rules apply.
-                            return !DiscardPile.EffectiveRank.HasValue ?
+                            return !_discardPile.EffectiveRank.HasValue ?
                                 _hand :
-                                _hand.Where(x => x.CanBePlayedOn(DiscardPile.EffectiveRank.Value));
+                                _hand.Where(x => x.CanBePlayedOn(_discardPile.EffectiveRank.Value));
                         }
 
                     case PlayRegion.UpCards:
                         // No check here for last card being a special, because it can't happen with up cards.
                         var upCards = _upCards.Where(x => (x != null));
-                        return !DiscardPile.EffectiveRank.HasValue ?
+                        return !_discardPile.EffectiveRank.HasValue ?
                             upCards :
-                            upCards.Where(x => x.CanBePlayedOn(DiscardPile.EffectiveRank.Value));
+                            upCards.Where(x => x.CanBePlayedOn(_discardPile.EffectiveRank.Value));
                         
                     case PlayRegion.DownCards:
                         // No checks here of any kind - whatever we have, we can try and blind-play.
@@ -354,7 +354,7 @@ namespace Watermelon.Gameplay.Players
         // This is for the benefit of ComputerPlayer, so that it doesn't need to compute available moves twice.
         protected void PickUp()
         {
-            var cards = DiscardPile.PickUp();
+            var cards = _discardPile.PickUp();
             _hand.AddRange(cards);
             OnAddedCardsToHand(new CardEventArgs(cards));
             Thread.Sleep(Game.ACTION_DELAY);
@@ -363,7 +363,7 @@ namespace Watermelon.Gameplay.Players
 
         private void DrawCard()
         {
-            var card = DrawPile.Draw();
+            var card = _drawPile.Draw();
             _hand.Add(card);
             OnAddedCardsToHand(new CardEventArgs(card));
             Thread.Sleep(Game.ACTION_DELAY);

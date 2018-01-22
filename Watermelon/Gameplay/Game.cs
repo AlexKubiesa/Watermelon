@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Watermelon.Gameplay.Players;
 
 namespace Watermelon.Gameplay
@@ -14,7 +15,7 @@ namespace Watermelon.Gameplay
     {
         public static int ACTION_DELAY { get => 300; }
 
-        public GameDifficulty Difficulty { get => _difficulty; }
+        public GameDifficulty Difficulty { get => difficulty; }
 
         public DrawPile DrawPile
         {
@@ -26,25 +27,9 @@ namespace Watermelon.Gameplay
             get { return _discardPile; }
         }
 
-        public HumanPlayer HumanPlayer
-        {
-            get { return _humanPlayer; }
-        }
-
-        public ComputerPlayer ComputerPlayer
-        {
-            get { return _computerPlayer; }
-        }
-
         public IEnumerable<Player> Players => _players;
 
-        private GameDifficulty _difficulty;
-
-        private HumanPlayer _humanPlayer;
-
-        private ComputerPlayer _computerPlayer;
-
-        private List<Player> _players;
+        private GameDifficulty difficulty;
 
         private PlayerTurnController _turnController;
 
@@ -52,19 +37,25 @@ namespace Watermelon.Gameplay
 
         private DiscardPile _discardPile;
 
+        private List<Player> _players;
+
         public Game(GameSettings settings)
         {
-            _difficulty = settings.Difficulty;
-            _humanPlayer = new HumanPlayer("You", this);
-
-            _computerPlayer = ComputerPlayer.Create("Computer", this);
-
-            _players = new List<Player> { _humanPlayer, _computerPlayer };
+            difficulty = settings.Difficulty;
 
             _turnController = new PlayerTurnController(_players);
 
             _drawPile = new DrawPile();
             _discardPile = new DiscardPile();
+        }
+
+        public void AddPlayers(IEnumerable<Player> players)
+        {
+            _players = new List<Player>(players);
+            foreach (var player in _players)
+            {
+                player.JoinGame(this);
+            }
         }
 
         public void Start()

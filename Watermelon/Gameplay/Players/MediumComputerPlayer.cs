@@ -33,7 +33,7 @@ namespace Watermelon.Gameplay.Players
 
         private Random _random;
 
-        public MediumComputerPlayer(string name, Game game) : base(name, game)
+        public MediumComputerPlayer(string name) : base(name)
         {
             _random = new Random();
         }
