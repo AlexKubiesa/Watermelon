@@ -25,14 +25,27 @@ namespace Watermelon.UI
             gameSettings = new GameSettings();
 
             SuspendLayout();
+
             difficultyMenu = new DifficultyMenu(gameSettings)
             {
                 Visible = false,
                 BackColor = Color.WhiteSmoke,
                 Dock = DockStyle.Fill
             };
+
             difficultyMenu.Confirmed += DifficultyMenu_Confirmed;
+
             Controls.Add(difficultyMenu);
+
+            gameBoardControl = new GameBoardControl(gameSettings)
+            {
+                BackColor = Color.WhiteSmoke,
+                Dock = DockStyle.Fill,
+                Visible = false
+            };
+
+            Controls.Add(gameBoardControl);
+
             ResumeLayout();
         }
 
@@ -40,39 +53,18 @@ namespace Watermelon.UI
         {
             var menu = sender as MainMenu;
 
-            menu.Enabled = false;
             difficultyMenu.Visible = true;
             menu.Visible = false;
-            difficultyMenu.Enabled = true;
         }
 
         private void DifficultyMenu_Confirmed(object sender, EventArgs e)
         {
             var menu = sender as DifficultyMenu;
 
-            menu.Enabled = false;
-
-            SuspendLayout();
-            gameBoardControl = new GameBoardControl()
-            {
-                BackColor = Color.WhiteSmoke,
-                Dock = DockStyle.Fill,
-                Enabled = false,
-                Location = new Point(0, 0),
-                Name = "_gameBoard",
-                Size = new Size(784, 561),
-                TabIndex = 1,
-                Visible = false
-            };
-
-            Controls.Add(gameBoardControl);
-            ResumeLayout();
-
             gameBoardControl.Visible = true;
             menu.Visible = false;
 
             gameBoardControl.StartGame();
-            gameBoardControl.Enabled = true;
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
