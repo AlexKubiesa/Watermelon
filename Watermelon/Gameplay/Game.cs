@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Watermelon.Gameplay.Players;
 
 namespace Watermelon.Gameplay
@@ -14,70 +15,62 @@ namespace Watermelon.Gameplay
     {
         public static int ACTION_DELAY { get => 300; }
 
-        public GameDifficulty Difficulty { get => _difficulty; }
+        public GameDifficulty Difficulty { get => difficulty; }
 
         public DrawPile DrawPile
         {
-            get { return _drawPile; }
+            get { return drawPile; }
         }
 
         public DiscardPile DiscardPile
         {
-            get { return _discardPile; }
+            get { return discardPile; }
         }
 
-        public HumanPlayer HumanPlayer
+        public IEnumerable<Player> Players => players;
+
+        private GameDifficulty difficulty;
+
+        private DrawPile drawPile;
+
+        private DiscardPile discardPile;
+
+        private List<Player> players;
+
+        private PlayerTurnController turnController;
+
+        public Game(GameSettings settings)
         {
-            get { return _humanPlayer; }
+            difficulty = settings.Difficulty;
+
+            drawPile = new DrawPile();
+            discardPile = new DiscardPile();
         }
 
-        public ComputerPlayer ComputerPlayer
+        public void AddPlayers(IEnumerable<Player> players)
         {
-            get { return _computerPlayer; }
-        }
+            this.players = new List<Player>(players);
+            foreach (var player in this.players)
+            {
+                player.JoinGame(this);
+            }
 
-        public IEnumerable<Player> Players => _turnTracker.Players;
-
-        private GameDifficulty _difficulty;
-
-        private HumanPlayer _humanPlayer;
-
-        private ComputerPlayer _computerPlayer;
-
-        private TurnTracker _turnTracker;
-
-        private DrawPile _drawPile;
-
-        private DiscardPile _discardPile;
-
-        public Game(GameDifficulty difficulty)
-        {
-            _difficulty = difficulty;
-
-            _humanPlayer = new HumanPlayer("You", this);
-
-            _computerPlayer = ComputerPlayer.Create("Computer", this);
-
-            _turnTracker = new TurnTracker();
-            _turnTracker.AddPlayer(_humanPlayer);
-            _turnTracker.AddPlayer(_computerPlayer);
-
-            _drawPile = new DrawPile();
-            _discardPile = new DiscardPile();
+            turnController = new PlayerTurnController(this.players);
         }
 
         public void Start()
         {
             // Create the deck and dealer.
-            var deck = new Deck();
+            var cardFactory = new CardFactory(players.Count);
+            var deck = new Deck(cardFactory);
             var dealer = new Dealer(deck);
 
             // Shuffle and deal the cards.
             dealer.Shuffle();
-            dealer.Deal(_turnTracker.Players, _drawPile);
+            dealer.Deal(players, drawPile);
 
             // Start the game!
-            _turnTracker.Start();
+            turnController.Start();
         }
     }
 }

@@ -25,16 +25,9 @@ namespace Watermelon.UI
         private const bool SHOW_COMPUTER_CARDS = false;
 #endif
 
-        internal GameDifficulty GameDifficulty { get => _gameDifficulty; set => _gameDifficulty = value; }
-
-        private GameDifficulty _gameDifficulty;
+        private GameSettings _gameSettings;
 
         private Game _game;
-
-        // Converts between cards in the human player's hand and the corresponding card selection boxes.
-        private Bidictionary<CardSelectionBox, Card> _humanCardBoxesToCards;
-
-        private Dictionary<Card, PictureBox> _computerCardPictureBoxes;
 
         private HumanPlayer _humanPlayer;
 
@@ -50,6 +43,9 @@ namespace Watermelon.UI
 
         private DiscardPileHistoryTracker _discardPileHistoryTracker;
 
+        /// <summary>
+        /// Provided for designer support.
+        /// </summary>
         public GameBoardControl()
         {
             InitializeComponent();
@@ -73,11 +69,34 @@ namespace Watermelon.UI
                 computerUpDownCardPictureBox2,
                 computerUpDownCardPictureBox3
             };
+
+            computerPlayerHandControl.AreCardsVisible = SHOW_COMPUTER_CARDS;
         }
 
-        public void StartGame()
+        internal GameBoardControl(GameSettings gameSettings) : this()
         {
-            _game = new Game(_gameDifficulty);
+            _gameSettings = gameSettings;
+
+            _game = new Game(_gameSettings);
+
+            _humanPlayer = new HumanPlayer("You");
+
+            _humanPlayer.ActiveRegionChanged += HumanPlayer_ActiveRegionChanged;
+            _humanPlayer.PlayedUpCards += HumanPlayer_PlayedUpCards;
+            _humanPlayer.BlindPlayedDownCard += HumanPlayer_PlayedDownCard;
+            _humanPlayer.AddedUpCard += HumanPlayer_AddedUpCard;
+            _humanPlayer.AddedDownCard += HumanPlayer_AddedDownCard;
+            _humanPlayer.Won += HumanPlayer_Won;
+
+            _computerPlayer = ComputerPlayer.Create("Computer", _gameSettings.Difficulty);
+
+            _computerPlayer.PlayedUpCards += ComputerPlayer_PlayedUpCards;
+            _computerPlayer.BlindPlayedDownCard += ComputerPlayer_PlayedDownCard;
+            _computerPlayer.AddedUpCard += ComputerPlayer_AddedUpCard;
+            _computerPlayer.AddedDownCard += ComputerPlayer_AddedDownCard;
+            _computerPlayer.Won += ComputerPlayer_Won;
+
+            _game.AddPlayers(new List<Player> { _humanPlayer, _computerPlayer });
 
             _drawPile = _game.DrawPile;
             _discardPile = _game.DiscardPile;
@@ -86,28 +105,13 @@ namespace Watermelon.UI
 
             _discardPileHistoryTracker = new DiscardPileHistoryTracker(_game.DiscardPile, _game.Players);
 
-            _humanCardBoxesToCards = new Bidictionary<CardSelectionBox, Card>();
-            _computerCardPictureBoxes = new Dictionary<Card, PictureBox>();
+            humanPlayerHandControl.Player = _humanPlayer;
 
-            _humanPlayer = _game.HumanPlayer;
-            _humanPlayer.ActiveRegionChanged += HumanPlayer_ActiveRegionChanged;
-            _humanPlayer.PlayedFromHand += HumanPlayer_PlayedFromHand;
-            _humanPlayer.PlayedUpCards += HumanPlayer_PlayedUpCards;
-            _humanPlayer.BlindPlayedDownCard += HumanPlayer_PlayedDownCard;
-            _humanPlayer.AddedCardsToHand += HumanPlayer_AddedCardsToHand;
-            _humanPlayer.AddedUpCard += HumanPlayer_AddedUpCard;
-            _humanPlayer.AddedDownCard += HumanPlayer_AddedDownCard;
-            _humanPlayer.Won += HumanPlayer_Won;
+            computerPlayerHandControl.Player = _computerPlayer;
+        }
 
-            _computerPlayer = _game.ComputerPlayer;
-            _computerPlayer.PlayedFromHand += ComputerPlayer_PlayedFromHand;
-            _computerPlayer.PlayedUpCards += ComputerPlayer_PlayedUpCards;
-            _computerPlayer.BlindPlayedDownCard += ComputerPlayer_PlayedDownCard;
-            _computerPlayer.AddedCardsToHand += ComputerPlayer_AddedCardsToHand;
-            _computerPlayer.AddedUpCard += ComputerPlayer_AddedUpCard;
-            _computerPlayer.AddedDownCard += ComputerPlayer_AddedDownCard;
-            _computerPlayer.Won += ComputerPlayer_Won;
-
+        public void StartGame()
+        {
             _game.Start();
         }
 
@@ -123,16 +127,6 @@ namespace Watermelon.UI
             var discardPile = sender as DiscardPile;
             PictureBoxImageUpdateDelegate d = delegate (PictureBox box, Image image) { box.Image = image; };
             Invoke(d, discardPilePictureBox, discardPile.Image);
-        }
-
-        private async void HumanHandCardBox_Confirm(object sender, SelectionEventArgs e)
-        {
-            // Try to play all the selected cards.
-            // Used ToList() to force evaluation, so that it doesn't fall over later when trying to figure out
-            // which cards have been played but GameWindow has removed the relevant information from its
-            // dictionary.
-            var cards = e.Selection.Cast<CardSelectionBox>().Select(x => _humanCardBoxesToCards.Forward(x)).ToList();
-            await Task.Run(() => _humanPlayer.TryPlayFromHand(cards));
         }
 
         private async void HumanUpDownCardBox_Confirm(object sender, SelectionEventArgs e)
@@ -166,26 +160,6 @@ namespace Watermelon.UI
             Invoke(d);
         }
 
-        private void HumanPlayer_AddedCardsToHand(object sender, CardEventArgs e)
-        {
-            CardDelegate d = AddToHumanHand;
-
-            foreach (var card in e.Cards)
-            {
-                Invoke(d, card);
-            }
-        }
-
-        private void ComputerPlayer_AddedCardsToHand(object sender, CardEventArgs e)
-        {
-            CardDelegate d = AddToComputerHand;
-
-            foreach (var card in e.Cards)
-            {
-                Invoke(d, card);
-            }
-        }
-
         private void HumanPlayer_AddedUpCard(object sender, EventArgs e)
         {
             VoidDelegate d = UpdateHumanUpDownCardBoxes;
@@ -208,26 +182,6 @@ namespace Watermelon.UI
         {
             VoidDelegate d = UpdateComputerUpDownCardPictureBoxes;
             Invoke(d);
-        }
-
-        private void HumanPlayer_PlayedFromHand(object sender, CardEventArgs e)
-        {
-            CardDelegate d = RemoveFromHumanHand;
-
-            foreach (var card in e.Cards)
-            {
-                Invoke(d, card);
-            }
-        }
-
-        private void ComputerPlayer_PlayedFromHand(object sender, CardEventArgs e)
-        {
-            CardDelegate d = RemoveFromComputerHand;
-
-            foreach (var card in e.Cards)
-            {
-                Invoke(d, card);
-            }
         }
 
         private void HumanPlayer_PlayedUpCards(object sender, EventArgs e)
@@ -324,10 +278,7 @@ namespace Watermelon.UI
 
         private void DisableHumanPlayerHand()
         {
-            foreach (var cardBox in _humanCardBoxesToCards.Keys)
-            {
-                cardBox.Enabled = false;
-            }
+            humanPlayerHandControl.Enabled = false;
         }
 
         private void DisableHumanPlayerUpDownCardBox(CardSelectionBox box)
@@ -345,72 +296,12 @@ namespace Watermelon.UI
 
         private void EnableHumanPlayerHand()
         {
-            foreach (var cardBox in _humanCardBoxesToCards.Keys)
-            {
-                cardBox.Enabled = true;
-            }
+            humanPlayerHandControl.Enabled = true;
         }
 
         private void EnableHumanPlayerUpDownCardPile(CardSelectionBox box)
         {
             box.Enabled = true;
-        }
-
-        private void AddToHumanHand(Card card)
-        {
-            // Show card in player's hand.
-            var addedCardBox = new CardSelectionBox()
-            {
-                Image = card.FrontImage,
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                Width = drawPilePictureBox.Width - 20,
-                Height = playerHandPanel.Height - playerHandPanel.Padding.Vertical - 6,
-                Cursor = Cursors.Hand,
-                Padding = new Padding(4),
-                HoverColor = Color.White,
-                CheckedColor = Color.Black
-            };
-            addedCardBox.Confirm += HumanHandCardBox_Confirm;
-            playerHandPanel.Controls.Add(addedCardBox);
-
-            // Add card to dictionary.
-            _humanCardBoxesToCards.Add(addedCardBox, card);
-        }
-
-        private void AddToComputerHand(Card card)
-        {
-            // Show card in player's hand.
-            PictureBox addedCardPictureBox = new PictureBox()
-            {
-                Image = SHOW_COMPUTER_CARDS ? card.FrontImage : card.BackImage,
-                SizeMode = PictureBoxSizeMode.Zoom,
-                Width = drawPilePictureBox.Width,
-                Height = computerHandPanel.Height - computerHandPanel.Padding.Vertical - 6
-            };
-            computerHandPanel.Controls.Add(addedCardPictureBox);
-
-            // Add card to dictionary.
-            _computerCardPictureBoxes.Add(card, addedCardPictureBox);
-        }
-
-        private void RemoveFromHumanHand(Card card)
-        {
-            // Remove card from player's hand.
-            var removedCardBox = _humanCardBoxesToCards.Reverse(card);
-            playerHandPanel.Controls.Remove(removedCardBox);
-
-            // Remove card from dictionary.
-            _humanCardBoxesToCards.RemoveReverse(card);
-        }
-
-        private void RemoveFromComputerHand(Card card)
-        {
-            // Remove card from player's hand.
-            PictureBox removedCardPictureBox = _computerCardPictureBoxes[card];
-            computerHandPanel.Controls.Remove(removedCardPictureBox);
-
-            // Remove card from dictionary.
-            _computerCardPictureBoxes.Remove(card);
         }
 
         private void UpdateHumanUpDownCardBoxes()

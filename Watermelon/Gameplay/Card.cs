@@ -35,52 +35,33 @@ namespace Watermelon.Gameplay
 
     public class Card
     {
-        private static bool IsSpecialRank(CardRank rank)
-        {
-            switch (rank)
-            {
-                case CardRank.Two:
-                case CardRank.Three:
-                case CardRank.Seven:
-                case CardRank.Ten:
-                    return true;
+        public CardRank Rank => rank;
+        public CardSuit Suit => suit;
 
-                default:
-                    return false;
-            }
-        }
+        public bool IsSpecial { get; set; }
+        public bool ReversesTurnOrder { get; set; }
 
-        public CardRank Rank { get; }
+        public Image FrontImage => frontImage;
+        public Image BackImage => backImage;
 
-        public CardSuit Suit { get; }
+        private readonly CardRank rank;
+        private readonly CardSuit suit;
 
-        public bool IsSpecial { get; }
+        private Image frontImage;
+        private Image backImage;
 
-        public Image FrontImage
-        {
-            get { return _frontImage; }
-        }
-
-        public Image BackImage
-        {
-            get { return _backImage; }
-        }
-
-        private Image _frontImage;
-
-        private Image _backImage;
-
+        /// <summary>
+        /// Don't call this directly - use CardFactory.CreateCard instead.
+        /// </summary>
+        /// <param name="rank"></param>
+        /// <param name="suit"></param>
         internal Card(CardRank rank, CardSuit suit)
         {
-            Rank = rank;
-            Suit = suit;
-            IsSpecial = IsSpecialRank(rank);
-            _frontImage = CardImageHandler.GetCardImage(rank, suit);
-            _backImage = CardImageHandler.FaceDownImage;
+            this.rank = rank;
+            this.suit = suit;
+            frontImage = CardImageHandler.GetCardImage(rank, suit);
+            backImage = CardImageHandler.FaceDownImage;
         }
-
-        internal Card(Card card) : this(card.Rank, card.Suit)
-        { }
 
         public bool? CanBePlayedOn(Card other)
         {

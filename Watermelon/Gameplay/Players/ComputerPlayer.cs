@@ -8,25 +8,25 @@ namespace Watermelon.Gameplay.Players
 {
     abstract class ComputerPlayer : Player
     {
-        public static ComputerPlayer Create(string name, Game game)
+        public static ComputerPlayer Create(string name, GameDifficulty difficulty)
         {
-            switch (game.Difficulty)
+            switch (difficulty)
             {
                 case GameDifficulty.Easy:
-                    return new EasyComputerPlayer(name, game);
+                    return new EasyComputerPlayer(name);
 
                 case GameDifficulty.Medium:
-                    return new MediumComputerPlayer(name, game);
+                    return new MediumComputerPlayer(name);
 
                 case GameDifficulty.Hard:
                     throw new NotImplementedException();
 
                 default:
-                    return new EasyComputerPlayer(name, game);
+                    return new EasyComputerPlayer(name);
             }
         }
 
-        protected ComputerPlayer(string name, Game game) : base(name, game)
+        protected ComputerPlayer(string name) : base(name)
         {
         }
 

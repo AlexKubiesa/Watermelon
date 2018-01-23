@@ -13,7 +13,7 @@ namespace Watermelon.Gameplay
     {
         private List<Card> _cards;
 
-        public Deck()
+        internal Deck(CardFactory cardFactory)
         {
             // Add cards to deck.
             _cards = new List<Card>();
@@ -22,7 +22,7 @@ namespace Watermelon.Gameplay
             {
                 foreach (var rank in Enum.GetValues(typeof(CardRank)).Cast<CardRank>())
                 {
-                    _cards.Add(new Card(rank, suit));
+                    _cards.Add(cardFactory.CreateCard(rank, suit));
                 }
             }
         }
