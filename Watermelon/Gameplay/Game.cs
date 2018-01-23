@@ -61,7 +61,8 @@ namespace Watermelon.Gameplay
         public void Start()
         {
             // Create the deck and dealer.
-            var deck = new Deck();
+            var cardFactory = new CardFactory(players.Count);
+            var deck = new Deck(cardFactory);
             var dealer = new Dealer(deck);
 
             // Shuffle and deal the cards.

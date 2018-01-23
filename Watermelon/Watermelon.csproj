@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gameplay\CardFactory.cs" />
     <Compile Include="Gameplay\CardPile.cs" />
     <Compile Include="Gameplay\Deck.cs" />
     <Compile Include="Gameplay\GameSettings.cs" />
